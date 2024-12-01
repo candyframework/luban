@@ -3,7 +3,7 @@
  * @license MIT
  */
 import type IApplication from './IApplication.ts';
-import type IException from "./IException.ts";
+import type IException from './IException.ts';
 import Candy from '../Candy.ts';
 import InvalidConfigException from './InvalidConfigEception.ts';
 
@@ -11,24 +11,23 @@ export interface ApplicationConfig {
   /**
    * Application id
    */
-  id: string
+  id: string;
 
   /**
    * The path of the application
    */
-  appPath?: string
+  appPath?: string;
 
   /**
    * The path of runtime cache files
    */
-  runtimePath?: string
+  runtimePath?: string;
 }
 
 /**
  * 应用基类
  */
 export default abstract class AbstractApplication implements IApplication {
-
   public encoding = 'UTF-8';
   public debug = false;
   public exceptionHandler = '';
@@ -40,19 +39,18 @@ export default abstract class AbstractApplication implements IApplication {
   }
 
   protected init(config: ApplicationConfig): void {
-    if(undefined === config.id) {
+    if (undefined === config.id) {
       throw new InvalidConfigException('The "id" configuration of the Application is missing');
     }
 
-    if(undefined !== config.appPath) {
+    if (undefined !== config.appPath) {
       this.setAppPath(config.appPath);
       delete config.appPath;
     }
 
-    if(undefined !== config.runtimePath) {
+    if (undefined !== config.runtimePath) {
       this.setRuntimePath(config.runtimePath);
       delete config.runtimePath;
-
     } else {
       // set as "app/runtime"
       this.setRuntimePath(this.getAppPath() + '/runtime');
@@ -90,11 +88,10 @@ export default abstract class AbstractApplication implements IApplication {
   /**
    * @inheritdoc
    */
-  public abstract requestListener(request: Request): Response;
+  public abstract requestListener(request: Request): Promise<Response>;
 
   /**
    * @inheritdoc
    */
   public abstract handlerException(exception: IException, request: Request): Response;
-
 }

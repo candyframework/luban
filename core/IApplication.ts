@@ -56,7 +56,7 @@ export default interface IApplication {
    *
    * @param {Request} request http request
    */
-  requestListener(request: Request): Response;
+  requestListener(request: Request): Promise<Response>;
 
   /**
    * 异常处理

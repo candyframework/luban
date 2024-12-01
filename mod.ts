@@ -4,19 +4,19 @@ import type IException from './core/IException.ts';
 /**
  * Framework Entry
  */
-export default class CandyJs {
+export default class Main {
   public application: IApplication;
 
   constructor(app: IApplication) {
     this.application = app;
   }
 
-  private requestListener(req: Request): Response {
-    let res: Response
+  private async requestListener(req: Request): Promise<Response> {
+    let res: Response;
 
     try {
-       res = this.application.requestListener(req);
-    } catch(e) {
+      res = await this.application.requestListener(req);
+    } catch (e) {
       res = this.application.handlerException(e as IException, req);
     }
 

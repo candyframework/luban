@@ -1,3 +1,4 @@
+import type IClass from './core/IClass.ts';
 import type IApplication from './core/IApplication.ts';
 
 /**
@@ -39,11 +40,11 @@ export default class Candy {
    */
   static setPathAlias(alias: string, path: string): void {
     if ('@' !== alias.charAt(0)) {
-        alias = '@' + alias;
+      alias = '@' + alias;
     }
 
     if ('/' === path.charAt(path.length - 1)) {
-        path = path.substring(0, path.length - 1);
+      path = path.substring(0, path.length - 1);
     }
 
     Candy.pathAliases.set(alias, path);
@@ -56,15 +57,32 @@ export default class Candy {
    */
   static deletePathAlias(alias: string): void {
     if ('@' !== alias.charAt(0)) {
-        alias = '@' + alias;
+      alias = '@' + alias;
     }
 
     Candy.pathAliases.delete(alias);
   }
 
-  static configure(object: any, properties: any): void {
+  static async createObject(definition: IClass, parameters: any): Promise<any> {
+    const realClass = Candy.getPathAlias('@' + definition.classPath);
+    const ClassName = await import(realClass);
+    const instance = new ClassName(parameters);
+
+    return instance;
+  }
+
+  static async createObjectAsString(classPath: string, parameters: any): Promise<any> {
+    const realClass = Candy.getPathAlias('@' + classPath);
+    const ClassName = await import(realClass);
+
+    return new ClassName(parameters);
+  }
+
+  static configure(object: any, properties: any): any {
     for (const key in properties) {
       object[key] = properties[key];
     }
+
+    return object;
   }
 }
