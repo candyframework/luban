@@ -4,21 +4,21 @@
  */
 
 /**
- * 控制器动作事件
+ * Controller action event
  */
 export default class ActionEvent {
-  /**
-   * http request
-   */
-  public request: Request | null = null;
+    /**
+     * http request
+     */
+    public request: Request | null = null;
 
-  /**
-   * 数据
-   */
-  public data: unknown = null;
+    /**
+     * Data
+     */
+    public data: string = '';
 
-  /**
-   * 是否继续执行后续程序
-   */
-  public valid: boolean = true;
+    /**
+     * A flag used to determine whether to stop the request
+     */
+    public valid: boolean = true;
 }

@@ -5,6 +5,6 @@
 import AbstractException from './AbstractException.ts';
 
 /**
- * 未找到异常
+ * Not found exception
  */
 export default class NotFoundException extends AbstractException {}

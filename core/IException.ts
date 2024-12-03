@@ -7,10 +7,15 @@
  * Exception interface
  */
 export default interface IException {
-  /**
-   * 获得错误名
-   *
-   * @return {string} 异常类名称
-   */
-  getName(): string;
+    /**
+     * Exception message
+     */
+    message: string;
+
+    /**
+     * Get the name of the exception
+     *
+     * @return {string} Name of the exception
+     */
+    getName(): string;
 }

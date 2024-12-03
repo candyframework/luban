@@ -2,19 +2,18 @@
  * @author afu
  * @license MIT
  */
-import type IClass from './IClass.ts';
 
 /**
- * 实现该接口的类称为资源类
+ * Class implementing this interface is called a resource class
  */
 export default interface IResource {
-  /**
-   * 声明资源过滤器
-   */
-  filters(): IClass[] | null;
+    /**
+     * Declare resource filters
+     */
+    filters(): string[] | null;
 
-  /**
-   * 执行
-   */
-  run(request: Request): Promise<Response>;
+    /**
+     * Run the resource
+     */
+    run(request: Request): Promise<Response>;
 }

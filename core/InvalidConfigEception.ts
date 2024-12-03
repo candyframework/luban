@@ -5,6 +5,6 @@
 import AbstractException from './AbstractException.ts';
 
 /**
- * 配置异常
+ * Configuration exception
  */
 export default class InvalidConfigException extends AbstractException {}

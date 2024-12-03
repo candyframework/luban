@@ -1,40 +1,71 @@
-import type ActionEvent from './ActionEvent.ts';
-import type IClass from './IClass.ts';
+/**
+ * @author afu
+ * @license MIT
+ */
 import type IController from './IController.ts';
+import ActionEvent from './ActionEvent.ts';
+import Event from './Event.ts';
 
 /**
  * @author afu
  * @license MIT
  */
-export default abstract class AbstractController implements IController {
-  /**
-   * @inheritdoc
-   */
-  public beforeAction(actionEvent: ActionEvent): void {
-    throw new Error('Method not implemented.');
-  }
+export default abstract class AbstractController extends Event implements IController {
+    static EVENT_BEFORE_ACTION: string = 'beforeAction';
 
-  /**
-   * @inheritdoc
-   */
-  public afterAction(actionEvent: ActionEvent): void {
-    throw new Error('Method not implemented.');
-  }
+    static EVENT_AFTER_ACTION: string = 'afterAction';
 
-  /**
-   * @inheritdoc
-   */
-  public filters(): IClass[] | null {
-    return null;
-  }
+    /**
+     * the filter collection
+     */
+    // public filterChain: FilterChain;
 
-  /**
-   * @inheritdoc
-   */
-  public abstract render(view: string, parameters?: unknown): string;
+    /**
+     * @inheritdoc
+     */
+    public beforeAction(actionEvent: ActionEvent): void {
+        this.trigger(AbstractController.EVENT_BEFORE_ACTION, actionEvent);
+    }
 
-  /**
-   * @inheritdoc
-   */
-  public abstract run(request: Request): Promise<Response>;
+    /**
+     * @inheritdoc
+     */
+    public afterAction(actionEvent: ActionEvent): void {
+        this.trigger(AbstractController.EVENT_AFTER_ACTION, actionEvent);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public filters(): string[] | null {
+        return null;
+    }
+
+    public async runControllerAction(request: Request): Promise<Response> {
+        const actionEvent = new ActionEvent();
+        actionEvent.request = request;
+
+        this.beforeAction(actionEvent);
+
+        if (false === actionEvent.valid) {
+            return new Response(actionEvent.data);
+        }
+
+        // const data = await this.filterChain.doFilter(request);
+        const res = await this.run(request);
+
+        this.afterAction(actionEvent);
+
+        return res;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public abstract render(view: string, parameters?: unknown): string;
+
+    /**
+     * @inheritdoc
+     */
+    public abstract run(request: Request): Promise<Response>;
 }

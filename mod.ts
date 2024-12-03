@@ -5,27 +5,27 @@ import type IException from './core/IException.ts';
  * Framework Entry
  */
 export default class Main {
-  public application: IApplication;
+    public application: IApplication;
 
-  constructor(app: IApplication) {
-    this.application = app;
-  }
-
-  private async requestListener(req: Request): Promise<Response> {
-    let res: Response;
-
-    try {
-      res = await this.application.requestListener(req);
-    } catch (e) {
-      res = this.application.handlerException(e as IException, req);
+    constructor(app: IApplication) {
+        this.application = app;
     }
 
-    return res;
-  }
+    private async requestListener(req: Request): Promise<Response> {
+        let res: Response;
 
-  public listen(options: Deno.ServeTcpOptions): void {
-    Deno.serve(options, (req: Request) => {
-      return this.requestListener(req);
-    });
-  }
+        try {
+            res = await this.application.requestListener(req);
+        } catch (e) {
+            res = await this.application.handlerException(e as IException);
+        }
+
+        return res;
+    }
+
+    public listen(options: Deno.ServeTcpOptions): void {
+        Deno.serve(options, (req: Request) => {
+            return this.requestListener(req);
+        });
+    }
 }
