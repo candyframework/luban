@@ -26,11 +26,11 @@ export default class HttpRequest extends AbstractRequest {
     }
 
     /**
-     * 获取 get 参数
+     * Get query string parameter
      *
-     * @param {string} parameter 参数名
-     * @param {string} defaultValue 默认值
-     * @return {string | null}
+     * @param {string} parameter Parameter name
+     * @param {string} defaultValue Default value
+     * @returns {string | null}
      */
     public getQueryString(parameter: string, defaultValue: string | null = null): string | null {
         const params = new URL(this.request.url, this.getHostInfo()).searchParams;
@@ -44,11 +44,11 @@ export default class HttpRequest extends AbstractRequest {
     }
 
     /**
-     * 获取 post 参数
+     * Get post parameter
      *
-     * @param {string} parameter 参数名
-     * @param {string} defaultValue 默认值
-     * @return {string}
+     * @param {string} parameter Parameter name
+     * @param {string} defaultValue Default value
+     * @returns {string}
      */
     public getParameter(parameter: string, defaultValue: string = ''): string {
         throw new Error('not support');
@@ -57,7 +57,7 @@ export default class HttpRequest extends AbstractRequest {
     /**
      * Returns the headers collection
      *
-     * @return {HeaderCollection}
+     * @returns {HeaderCollection}
      */
     public getHeaders(): HeaderCollection {
         if (null === this.headers) {
@@ -65,7 +65,6 @@ export default class HttpRequest extends AbstractRequest {
 
             const map = this.request.headers;
             for (const pair of map.entries()) {
-                // ??? 待确认
                 // For duplicate cookie headers, the values are joined together with '; '
                 // For all other headers, the values are joined together with ', '
                 this.headers.set(pair[0], pair[1]);
@@ -78,13 +77,12 @@ export default class HttpRequest extends AbstractRequest {
     /**
      * Returns the cookies collection
      *
-     * @return {CookieCollection}
+     * @returns {CookieCollection}
      */
     public getCookies(): CookieCollection {
         if (null === this.cookies) {
             this.cookies = new CookieCollection();
 
-            // ??? 待确认
             const cookie = this.request.headers.get('cookie');
             if (null === cookie) {
                 return this.cookies;
@@ -109,9 +107,9 @@ export default class HttpRequest extends AbstractRequest {
     }
 
     /**
-     * 获取客户端 ip
+     * Get client IP address
      *
-     * @return {string}
+     * @returns {string}
      */
     public getClientIp(): string {
         const forward = this.request.headers.get('x-forwarded-for');
@@ -124,38 +122,24 @@ export default class HttpRequest extends AbstractRequest {
     }
 
     /**
-     * 获取引用网址
+     * Get referrer URL
      *
-     * @return {string}
+     * @returns {string}
      */
     public getReferrer(): string {
         return this.request.referrer;
     }
 
     /**
-     * 获取 URI 协议和主机部分
+     * Get host info
      *
-     * @return {string}
+     * @returns {string}
      */
     public getHostInfo(): string {
-        return '';
-    }
+        const xfp = this.request.headers.get('x-forwarded-protocol');
+        const protocol = null !== xfp && 'https' === xfp ? 'https' : 'http';
 
-    /**
-     * 获取当前网址 不包含锚点部分
-     *
-     * @return {String}
-     */
-    public getCurrent(): string {
-        return this.getHostInfo() + this.request.url;
-    }
-
-    /**
-     * 创建 URL 对象
-     *
-     * @return {URL}
-     */
-    public createURL(): URL {
-        return new URL(this.request.url, this.getHostInfo());
+        const host = protocol + '://' + this.request.headers.get('host');
+        return host;
     }
 }

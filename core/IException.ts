@@ -15,7 +15,7 @@ export default interface IException {
     /**
      * Get the name of the exception
      *
-     * @return {string} Name of the exception
+     * @returns {string} Name of the exception
      */
     getName(): string;
 }

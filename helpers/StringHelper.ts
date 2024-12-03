@@ -12,7 +12,7 @@ export default class StringHelper {
      *
      * @param {string} content The content to be searched
      * @param {string} find The string to find
-     * @return {number}
+     * @returns {number}
      */
     static frequency(content: string, find: string): number {
         let num = 0;
@@ -31,7 +31,7 @@ export default class StringHelper {
      * @param {string} str The content to be searched
      * @param {string} find The string to find
      * @param {number} n The Nth occurrence
-     * @return {number}
+     * @returns {number}
      */
     static nIndexOf(str: string, find: string, n: number): number {
         let x = str.indexOf(find);
@@ -47,7 +47,7 @@ export default class StringHelper {
      *
      * @param {string} str The string to be processed
      * @param {string} character The character to be removed
-     * @return {string}
+     * @returns {string}
      */
     static trimChar(str: string, character: string): string {
         if (character === str.charAt(0)) {
@@ -65,7 +65,7 @@ export default class StringHelper {
      *
      * @param {string} str The string to be processed
      * @param {string} character The character to be removed
-     * @return {string}
+     * @returns {string}
      */
     static lTrimChar(str: string, character: string): string {
         if (character === str.charAt(0)) {
@@ -80,7 +80,7 @@ export default class StringHelper {
      *
      * @param {string} str The string to be processed
      * @param {string} character The character to be removed
-     * @return {string}
+     * @returns {string}
      */
     static rTrimChar(str: string, character: string): string {
         if (character === str.charAt(str.length - 1)) {
@@ -94,7 +94,7 @@ export default class StringHelper {
      * First letter to uppercase
      *
      * @param {string} str The string to be processed
-     * @return {string}
+     * @returns {string}
      */
     static ucFirst(str: string): string {
         const ret = str.charAt(0).toUpperCase();
@@ -113,7 +113,7 @@ export default class StringHelper {
      *
      * @param {string} str The string to be processed
      * @param {string} allowed Allowed tags
-     * @return {string}
+     * @returns {string}
      */
     static filterTags(str: string, allowed: string = ''): string {
         const tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi;

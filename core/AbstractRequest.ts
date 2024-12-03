@@ -17,7 +17,7 @@ export default abstract class AbstractRequest {
     /**
      * Get the absolute path of the current module
      *
-     * @return {string}
+     * @returns {string}
      */
     public getScriptFile(): string {
         if ('' === this.scriptFile) {

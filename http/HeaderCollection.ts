@@ -37,25 +37,24 @@ export default class HeaderCollection {
     }
 
     /**
-     * 获取一条 header
+     * Get a header by name
      *
      * @param {string} name the name of the header
-     * @param {string} defaultValue
-     * @return {string | undefined}
+     * @returns {string | undefined}
      */
-    public get(name: string, defaultValue: string | undefined = undefined): string | undefined {
+    public get(name: string): string | undefined {
         name = name.toLowerCase();
         const header = this.headers.get(name);
 
         if (undefined === header) {
-            return defaultValue;
+            return undefined;
         }
 
         return header.join(', ');
     }
 
     /**
-     * 添加一条 header 如果有重名则覆盖
+     * Add a header, if there is a duplicate name, it will be overwritten
      *
      * @param {string} name the name of the header
      * @param {string} value the value of the header
@@ -67,7 +66,7 @@ export default class HeaderCollection {
     }
 
     /**
-     * 添加一条 header 如果有重名则追加
+     * Add a header, if there is a duplicate name, it will be appended
      *
      * @param {string} name the name of the header
      * @param {string} value the value of the header
@@ -85,10 +84,10 @@ export default class HeaderCollection {
     }
 
     /**
-     * 是否存在 header
+     * Check if a header exists
      *
      * @param {string} name the name of the header
-     * @return {boolean}
+     * @returns {boolean}
      */
     public has(name: string): boolean {
         name = name.toLowerCase();
@@ -97,10 +96,10 @@ export default class HeaderCollection {
     }
 
     /**
-     * 删除一条 header
+     * Delete a header
      *
      * @param {string} name the name of the header
-     * @return {boolean}
+     * @returns {boolean}
      */
     public remove(name: string): boolean {
         name = name.toLowerCase();
@@ -109,7 +108,7 @@ export default class HeaderCollection {
     }
 
     /**
-     * 删除所有 header
+     * Delete all headers
      */
     public clear(): void {
         this.headers.clear();

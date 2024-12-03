@@ -35,25 +35,19 @@ export default class CookieCollection {
     }
 
     /**
-     * 获取一条 cookie
+     * Get a cookie by name
      *
-     * @param {string} name the name of the cookie
-     * @param {string} defaultValue
-     * @return {string | undefined}
+     * @param {string} name The name of the cookie
+     * @returns {string | undefined}
      */
-    public get(name: string, defaultValue: string | undefined = undefined): string | undefined {
+    public get(name: string): string | undefined {
         name = name.toLowerCase();
-        const cookie = this.cookies.get(name);
 
-        if (undefined === cookie) {
-            return defaultValue;
-        }
-
-        return cookie;
+        return this.cookies.get(name);
     }
 
     /**
-     * 添加一条 cookie 如果有重名则覆盖
+     * Add a cookie, if there is a duplicate name, it will be overwritten
      *
      * @param {string} name the name of the cookie
      * @param {string} value the value of the cookie
@@ -65,10 +59,10 @@ export default class CookieCollection {
     }
 
     /**
-     * 是否存在 cookie
+     * Check if a cookie exists
      *
-     * @param {String} name the name of the cookie
-     * @return {Boolean}
+     * @param {string} name the name of the cookie
+     * @returns {boolean}
      */
     public has(name: string): boolean {
         name = name.toLowerCase();
@@ -77,10 +71,10 @@ export default class CookieCollection {
     }
 
     /**
-     * 删除一条 cookie
+     * Delete a cookie
      *
-     * @param {String} name the name of the cookie
-     * @return {Boolean}
+     * @param {string} name the name of the cookie
+     * @returns {boolean}
      */
     public remove(name: string): boolean {
         name = name.toLowerCase();
@@ -89,7 +83,7 @@ export default class CookieCollection {
     }
 
     /**
-     * 删除所有 cookie
+     * Delete all cookies
      */
     public clear(): void {
         this.cookies.clear();

@@ -33,7 +33,7 @@ export default interface IApplication {
     /**
      * Get application path
      *
-     * @return {string} Application path
+     * @returns {string} Application path
      */
     getAppPath(): string;
 
@@ -47,7 +47,7 @@ export default interface IApplication {
     /**
      * Get runtime path
      *
-     * @return {string} Runtime path
+     * @returns {string} Runtime path
      */
     getRuntimePath(): string;
 
