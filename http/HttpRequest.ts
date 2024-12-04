@@ -6,11 +6,14 @@ import AbstractRequest from '../core/AbstractRequest.ts';
 import CookieCollection from './CookieCollection.ts';
 import HeaderCollection from './HeaderCollection.ts';
 
+export type ConnectionInfo = Deno.ServeHandlerInfo<Deno.NetAddr> & { encrypted?: boolean };
+
 /**
- * @author afu
- * @license MIT
+ * HTTP request
  */
 export default class HttpRequest extends AbstractRequest {
+    private connectionInfo: ConnectionInfo | null = null;
+
     /**
      * http headers
      */
@@ -21,8 +24,10 @@ export default class HttpRequest extends AbstractRequest {
      */
     private cookies: CookieCollection | null = null;
 
-    constructor(request: Request) {
+    constructor(request: Request, info: ConnectionInfo) {
         super(request);
+
+        this.connectionInfo = info;
     }
 
     /**
@@ -50,7 +55,7 @@ export default class HttpRequest extends AbstractRequest {
      * @param {string} defaultValue Default value
      * @returns {string}
      */
-    public getParameter(parameter: string, defaultValue: string = ''): string {
+    public getParameter(_parameter: string, _defaultValue: string = ''): string {
         throw new Error('not support');
     }
 
@@ -115,7 +120,7 @@ export default class HttpRequest extends AbstractRequest {
         const forward = this.request.headers.get('x-forwarded-for');
 
         if (null === forward) {
-            return '';
+            return this.connectionInfo?.remoteAddr.hostname ?? '';
         }
 
         return forward.indexOf(',') > 0 ? forward.substring(0, forward.indexOf(',')) : forward;
@@ -137,7 +142,9 @@ export default class HttpRequest extends AbstractRequest {
      */
     public getHostInfo(): string {
         const xfp = this.request.headers.get('x-forwarded-protocol');
-        const protocol = null !== xfp && 'https' === xfp ? 'https' : 'http';
+        const protocol = this.connectionInfo?.encrypted || (null !== xfp && 'https' === xfp)
+            ? 'https'
+            : 'http';
 
         const host = protocol + '://' + this.request.headers.get('host');
         return host;

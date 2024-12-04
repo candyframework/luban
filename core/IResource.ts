@@ -2,6 +2,7 @@
  * @author afu
  * @license MIT
  */
+import type HttpRequest from '../http/HttpRequest.ts';
 
 /**
  * Class implementing this interface is called a resource class
@@ -15,5 +16,5 @@ export default interface IResource {
     /**
      * Run the resource
      */
-    run(request: Request): Promise<Response>;
+    run(request: HttpRequest): Promise<Response>;
 }

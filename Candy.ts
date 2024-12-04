@@ -1,3 +1,7 @@
+/**
+ * @author afu
+ * @license MIT
+ */
 import type IApplication from './core/IApplication.ts';
 
 /**

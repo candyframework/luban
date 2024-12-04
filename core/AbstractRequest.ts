@@ -7,23 +7,21 @@
  * server request
  */
 export default abstract class AbstractRequest {
+    /**
+     * Native request object
+     */
     public request: Request;
-    private scriptFile: string = '';
 
     constructor(request: Request) {
         this.request = request;
     }
 
     /**
-     * Get the absolute path of the current module
+     * Get the entry script file path
      *
      * @returns {string}
      */
     public getScriptFile(): string {
-        if ('' === this.scriptFile) {
-            this.scriptFile = import.meta.filename ?? '';
-        }
-
-        return this.scriptFile;
+        return Deno.mainModule;
     }
 }

@@ -3,22 +3,32 @@
  * @license MIT
  */
 import type IController from './IController.ts';
+import type HttpRequest from '../http/HttpRequest.ts';
 import ActionEvent from './ActionEvent.ts';
 import Event from './Event.ts';
 
 /**
- * @author afu
- * @license MIT
+ * Abstract controller
  */
 export default abstract class AbstractController extends Event implements IController {
+    /**
+     * The event before action
+     */
     static EVENT_BEFORE_ACTION: string = 'beforeAction';
 
+    /**
+     * The event after action
+     */
     static EVENT_AFTER_ACTION: string = 'afterAction';
 
     /**
      * the filter collection
      */
     // public filterChain: FilterChain;
+
+    constructor() {
+        super();
+    }
 
     /**
      * @inheritdoc
@@ -41,7 +51,7 @@ export default abstract class AbstractController extends Event implements IContr
         return null;
     }
 
-    public async runControllerAction(request: Request): Promise<Response> {
+    public async runControllerAction(request: HttpRequest): Promise<Response> {
         const actionEvent = new ActionEvent();
         actionEvent.request = request;
 
@@ -62,10 +72,10 @@ export default abstract class AbstractController extends Event implements IContr
     /**
      * @inheritdoc
      */
-    public abstract render(view: string, parameters?: unknown): string;
+    public abstract render(view: string, parameters?: unknown): Promise<string>;
 
     /**
      * @inheritdoc
      */
-    public abstract run(request: Request): Promise<Response>;
+    public abstract run(request: HttpRequest): Promise<Response>;
 }

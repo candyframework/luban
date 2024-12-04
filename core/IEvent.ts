@@ -9,16 +9,16 @@ export default interface IEvent {
     /**
      * Register a event
      *
-     * @param {String} eventName Event name
-     * @param {Function} handler Event handler
+     * @param {string} eventName Event name
+     * @param {any} handler Event handler
      */
     on(eventName: string, handler: any): void;
 
     /**
      * 注销事件
      *
-     * @param {String} eventName Event name
-     * @param {Function} handler Event handler
+     * @param {string} eventName Event name
+     * @param {any} handler Event handler
      */
     off(eventName: string, handler: any): void;
 
@@ -30,7 +30,7 @@ export default interface IEvent {
     /**
      * Trigger an event
      *
-     * @param {String} eventName Event name
+     * @param {string} eventName Event name
      * @param {any} parameter Parameter
      */
     trigger(eventName: string, parameter: any): void;

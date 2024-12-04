@@ -2,15 +2,16 @@
  * @author afu
  * @license MIT
  */
+import type HttpRequest from '../http/HttpRequest.ts';
 
 /**
  * Controller action event
  */
 export default class ActionEvent {
     /**
-     * http request
+     * Http request
      */
-    public request: Request | null = null;
+    public request: HttpRequest | null = null;
 
     /**
      * Data

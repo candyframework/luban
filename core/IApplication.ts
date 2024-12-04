@@ -2,6 +2,7 @@
  * @author afu
  * @license MIT
  */
+import type HttpRequest from '../http/HttpRequest.ts';
 import type IException from './IException.ts';
 
 /**
@@ -54,9 +55,9 @@ export default interface IApplication {
     /**
      * Process http request
      *
-     * @param {Request} request http request
+     * @param {HttpRequest} request http request
      */
-    requestListener(request: Request): Promise<Response>;
+    requestListener(request: HttpRequest): Promise<Response>;
 
     /**
      * Handle exception

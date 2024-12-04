@@ -4,6 +4,7 @@
  */
 import type IException from '../core/IException.ts';
 import type ExceptionHandler from './ExceptionHandler.ts';
+import type HttpRequest from '../http/HttpRequest.ts';
 import AbstractApplication, { type ApplicationConfig } from '../core/AbstractApplication.ts';
 import StringHelper from '../helpers/StringHelper.ts';
 import NotFoundException from '../core/NotFoundException.ts';
@@ -22,11 +23,11 @@ export type WebApplicationConfig = {
     /**
      * @link Application#routesMap
      */
-    routesMap?: { [key: string]: string };
+    routesMap?: Record<string, string>;
     /**
      * @link Application#modules
      */
-    modules?: { [key: string]: string };
+    modules?: Record<string, string>;
     /**
      * @link Application#defaultView
      */
@@ -62,12 +63,12 @@ export default class Application extends AbstractApplication {
     /**
      * Routes map
      */
-    public routesMap: { [key: string]: string } | null = null;
+    public routesMap: Record<string, string> | null = null;
 
     /**
      * Modules
      */
-    public modules: { [key: string]: string } | null = null;
+    public modules: Record<string, string> | null = null;
 
     /**
      * Default view class
@@ -98,8 +99,8 @@ export default class Application extends AbstractApplication {
     /**
      * @inheritdoc
      */
-    public override async requestListener(request: Request): Promise<Response> {
-        const route = new URL(request.url).pathname;
+    public override async requestListener(request: HttpRequest): Promise<Response> {
+        const route = new URL(request.request.url).pathname;
         const controller = await this.createController(route);
 
         if (null === controller) {

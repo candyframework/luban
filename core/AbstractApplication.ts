@@ -4,6 +4,7 @@
  */
 import type IApplication from './IApplication.ts';
 import type IException from './IException.ts';
+import type HttpRequest from '../http/HttpRequest.ts';
 import Candy from '../Candy.ts';
 import InvalidConfigException from './InvalidConfigEception.ts';
 
@@ -11,7 +12,7 @@ export type ApplicationConfig = {
     /**
      * Application id
      */
-    id: number;
+    id: string;
 
     /**
      * The path of the application
@@ -28,7 +29,10 @@ export type ApplicationConfig = {
  * Base class for application
  */
 export default abstract class AbstractApplication implements IApplication {
-    public id = 1;
+    /**
+     * Application id
+     */
+    public id = '';
 
     public encoding = 'UTF-8';
     public debug = false;
@@ -92,7 +96,7 @@ export default abstract class AbstractApplication implements IApplication {
     /**
      * @inheritdoc
      */
-    public abstract requestListener(request: Request): Promise<Response>;
+    public abstract requestListener(request: HttpRequest): Promise<Response>;
 
     /**
      * @inheritdoc

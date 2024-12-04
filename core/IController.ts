@@ -26,5 +26,5 @@ export default interface IController extends IResource {
      * @param {string} view View name or path
      * @param {unknown} parameters Parameters to be passed to the view
      */
-    render(view: string, parameters?: unknown): string;
+    render(view: string, parameters?: unknown): Promise<string>;
 }
