@@ -8,7 +8,7 @@ import type IApplication from './core/IApplication.ts';
  * Asistant class
  */
 export default class Candy {
-    static defaultExtension = '.ts';
+    static defaultExtension: string = '.ts';
 
     static application: IApplication | null = null;
 

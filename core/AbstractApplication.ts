@@ -32,11 +32,11 @@ export default abstract class AbstractApplication implements IApplication {
     /**
      * Application id
      */
-    public id = '';
+    public id: string = '';
 
-    public encoding = 'UTF-8';
-    public debug = false;
-    public exceptionHandler = '';
+    public encoding: string = 'UTF-8';
+    public debug: boolean = false;
+    public exceptionHandler: string = '';
 
     constructor(config: ApplicationConfig) {
         Candy.application = this;
