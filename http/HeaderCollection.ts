@@ -16,7 +16,7 @@ export default class HeaderCollection {
 
     constructor() {}
 
-    [Symbol.iterator]() {
+    [Symbol.iterator](): Iterator<[string, string] | undefined> {
         const keysIterator = this.headers.keys();
         let index = 0;
 

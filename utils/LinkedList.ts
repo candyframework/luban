@@ -22,7 +22,7 @@ export default class LinkedList<T> implements IList<T> {
 
     constructor() {}
 
-    [Symbol.iterator]() {
+    [Symbol.iterator](): Iterator<T | null> {
         let node = this.headNode;
 
         return {

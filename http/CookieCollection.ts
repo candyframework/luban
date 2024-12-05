@@ -14,7 +14,7 @@ export default class CookieCollection {
 
     constructor() {}
 
-    [Symbol.iterator]() {
+    [Symbol.iterator](): Iterator<[string, string] | undefined> {
         let index = 0;
         const keysIterator = this.cookies.keys();
 

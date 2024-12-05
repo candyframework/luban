@@ -47,7 +47,7 @@ export default class ArrayList<T> implements IList<T> {
         this.elementData = new Array(initialCapacity);
     }
 
-    [Symbol.iterator]() {
+    [Symbol.iterator](): Iterator<T | null> {
         let index = 0;
 
         return {
