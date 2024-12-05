@@ -1,23 +1,23 @@
 /**
  * Node
  */
-export default class DataNode {
+export default class DataNode<T> {
     /**
      * The saved data
      */
-    public data: any;
+    public data: T | null;
 
     /**
      * Pointer to next node
      */
-    public next: DataNode | null;
+    public next: DataNode<T> | null;
 
     /**
      * Pointer to previous node
      */
-    public previous: DataNode | null;
+    public previous: DataNode<T> | null;
 
-    constructor(data: any, next: DataNode | null = null, previous: DataNode | null = null) {
+    constructor(data: T, next: DataNode<T> | null = null, previous: DataNode<T> | null = null) {
         this.data = data;
         this.next = next;
         this.previous = previous;

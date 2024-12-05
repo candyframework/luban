@@ -13,12 +13,12 @@ export default class LinkedList<T> implements IList<T> {
     /**
      * Pointer to first node
      */
-    private headNode: DataNode | null = null;
+    private headNode: DataNode<T> | null = null;
 
     /**
      * Pointer to last node
      */
-    private tailNode: DataNode | null = null;
+    private tailNode: DataNode<T> | null = null;
 
     constructor() {}
 
@@ -26,7 +26,7 @@ export default class LinkedList<T> implements IList<T> {
         let node = this.headNode;
 
         return {
-            next: (): { value: T | undefined; done: boolean } => {
+            next: (): { value: T | null; done: boolean } => {
                 if (null !== node) {
                     const ret = { value: node.data, done: false };
                     node = node.next;
@@ -34,7 +34,7 @@ export default class LinkedList<T> implements IList<T> {
                     return ret;
                 }
 
-                return { value: undefined, done: true };
+                return { value: null, done: true };
             },
         };
     }
@@ -44,8 +44,8 @@ export default class LinkedList<T> implements IList<T> {
      *
      * Before use, make sure the node exists!
      */
-    private getNode(index: number): DataNode {
-        let node: DataNode;
+    private getNode(index: number): DataNode<T> {
+        let node: DataNode<T>;
 
         if (index < (this.length >> 1)) {
             node = this.headNode!;
@@ -67,7 +67,7 @@ export default class LinkedList<T> implements IList<T> {
     /**
      * Links element as last element
      */
-    protected linkLast(element: any): void {
+    protected linkLast(element: T): void {
         const last = this.tailNode;
         const newNode = new DataNode(element, null, last);
 
@@ -84,7 +84,7 @@ export default class LinkedList<T> implements IList<T> {
     /**
      * Inserts element before node
      */
-    protected linkBefore(element: any, node: DataNode): void {
+    protected linkBefore(element: T, node: DataNode<T>): void {
         const prev = node.previous;
         const newNode = new DataNode(element, node, prev);
 
@@ -101,7 +101,7 @@ export default class LinkedList<T> implements IList<T> {
     /**
      * Unlinks node
      */
-    protected unlink(node: DataNode): any {
+    protected unlink(node: DataNode<T>): T | null {
         const data = node.data;
         const next = node.next;
         const prev = node.previous;
@@ -145,7 +145,7 @@ export default class LinkedList<T> implements IList<T> {
      *
      * @param {any} element
      */
-    public contains(element: any): boolean {
+    public contains(element: T): boolean {
         return this.indexOf(element) >= 0;
     }
 
@@ -154,7 +154,7 @@ export default class LinkedList<T> implements IList<T> {
      *
      * @param {any} element
      */
-    public indexOf(element: any): number {
+    public indexOf(element: T): number {
         let index = 0;
         for (let x = this.headNode; null !== x; x = x.next) {
             if (element === x.data) {
@@ -172,7 +172,7 @@ export default class LinkedList<T> implements IList<T> {
      *
      * @param {any} element
      */
-    public lastIndexOf(element: any): number {
+    public lastIndexOf(element: T): number {
         let index = this.length;
         for (let x = this.tailNode; null !== x; x = x.previous) {
             index--;
@@ -219,7 +219,7 @@ export default class LinkedList<T> implements IList<T> {
      *
      * @param {any} element
      */
-    public remove(element: any): boolean {
+    public remove(element: T): boolean {
         for (let x = this.headNode; null !== x; x = x.next) {
             if (element === x.data) {
                 this.unlink(x);

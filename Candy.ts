@@ -68,7 +68,7 @@ export default class Candy {
         Candy.pathAliases.delete(alias);
     }
 
-    static async createObjectAsString(classPath: string, parameters: any): Promise<any> {
+    static async createObjectAsString(classPath: string, parameters: any = null): Promise<any> {
         const realClass = Candy.getPathAlias('@' + classPath);
         const ClassName = await import(realClass + Candy.defaultExtension);
 

@@ -21,12 +21,13 @@ export default class HeaderCollection {
         let index = 0;
 
         return {
-            next: () => {
+            next: (): { value: [string, string] | undefined; done: boolean } => {
                 if (index++ < this.headers.size) {
                     const key = keysIterator.next().value as string;
+                    const value = this.get(key) as string;
 
                     return {
-                        value: [key, this.get(key)],
+                        value: [key, value],
                         done: false,
                     };
                 }

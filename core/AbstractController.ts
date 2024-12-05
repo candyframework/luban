@@ -2,10 +2,13 @@
  * @author afu
  * @license MIT
  */
-import type IController from './IController.ts';
+import type FilterChain from './FilterChain.ts';
 import type HttpRequest from '../http/HttpRequest.ts';
+import type IController from './IController.ts';
+import type IFilter from './IFilter.ts';
 import ActionEvent from './ActionEvent.ts';
 import Event from './Event.ts';
+import FilterFactory from './FilterFactory.ts';
 
 /**
  * Abstract controller
@@ -24,10 +27,12 @@ export default abstract class AbstractController extends Event implements IContr
     /**
      * the filter collection
      */
-    // public filterChain: FilterChain;
+    public filterChain: FilterChain;
 
     constructor() {
         super();
+
+        this.filterChain = FilterFactory.createFilterChain(this);
     }
 
     /**
@@ -47,10 +52,13 @@ export default abstract class AbstractController extends Event implements IContr
     /**
      * @inheritdoc
      */
-    public filters(): string[] | null {
+    public filters(): IFilter[] | null {
         return null;
     }
 
+    /**
+     * Then entry of the controller
+     */
     public async runControllerAction(request: HttpRequest): Promise<Response> {
         const actionEvent = new ActionEvent();
         actionEvent.request = request;
@@ -61,8 +69,7 @@ export default abstract class AbstractController extends Event implements IContr
             return new Response(actionEvent.data);
         }
 
-        // const data = await this.filterChain.doFilter(request);
-        const res = await this.run(request);
+        const res = await this.filterChain.doFilter(request);
 
         this.afterAction(actionEvent);
 

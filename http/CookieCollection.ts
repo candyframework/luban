@@ -19,12 +19,13 @@ export default class CookieCollection {
         const keysIterator = this.cookies.keys();
 
         return {
-            next: () => {
+            next: (): { value: [string, string] | undefined; done: boolean } => {
                 if (index++ < this.cookies.size) {
                     const key = keysIterator.next().value as string;
+                    const value = this.get(key) as string;
 
                     return {
-                        value: [key, this.get(key)],
+                        value: [key, value],
                         done: false,
                     };
                 }
