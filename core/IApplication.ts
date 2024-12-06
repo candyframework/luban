@@ -3,6 +3,7 @@
  * @license MIT
  */
 import type HttpRequest from '../http/HttpRequest.ts';
+import type AbstractExceptionHandler from './AbstractExceptionHandler.ts';
 import type IException from './IException.ts';
 
 /**
@@ -22,7 +23,7 @@ export default interface IApplication {
     /**
      * Exception handler class
      */
-    exceptionHandler: string;
+    exceptionHandler: typeof AbstractExceptionHandler | null;
 
     /**
      * Set application path
@@ -64,5 +65,5 @@ export default interface IApplication {
      *
      * @param {Request} exception Exception instance
      */
-    handlerException(exception: IException): Promise<Response>;
+    handlerException(exception: IException): Response;
 }

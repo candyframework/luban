@@ -5,6 +5,7 @@
 import type IApplication from './IApplication.ts';
 import type IException from './IException.ts';
 import type HttpRequest from '../http/HttpRequest.ts';
+import type AbstractExceptionHandler from './AbstractExceptionHandler.ts';
 import Candy from '../Candy.ts';
 import InvalidConfigException from './InvalidConfigEception.ts';
 
@@ -36,7 +37,7 @@ export default abstract class AbstractApplication implements IApplication {
 
     public encoding: string = 'UTF-8';
     public debug: boolean = false;
-    public exceptionHandler: string = '';
+    public exceptionHandler: typeof AbstractExceptionHandler | null = null;
 
     constructor(config: ApplicationConfig) {
         Candy.application = this;
@@ -101,5 +102,5 @@ export default abstract class AbstractApplication implements IApplication {
     /**
      * @inheritdoc
      */
-    public abstract handlerException(exception: IException): Promise<Response>;
+    public abstract handlerException(exception: IException): Response;
 }

@@ -4,8 +4,7 @@ import Controller from '../../../../../web/Controller.ts';
 
 export default class IndexController extends Controller {
     public override async run(_request: HttpRequest): Promise<Response> {
-        const view = await this.getView();
-        const result = await view.render('index');
+        const result = await this.getView().render('index');
 
         return HttpResponse.fromHTML(result);
     }

@@ -3,23 +3,26 @@
  * @license MIT
  */
 import type IException from '../core/IException.ts';
-import type ExceptionHandler from './ExceptionHandler.ts';
 import type HttpRequest from '../http/HttpRequest.ts';
+import type Interceptor from './Interceptor.ts';
+import type IResource from '../core/IResource.ts';
 import AbstractApplication, { type ApplicationConfig } from '../core/AbstractApplication.ts';
+import ExceptionHandler from './ExceptionHandler.ts';
 import StringHelper from '../helpers/StringHelper.ts';
 import NotFoundException from '../core/NotFoundException.ts';
 import Candy from '../Candy.ts';
 import Controller from './Controller.ts';
+import View from './View.ts';
 
 export type WebApplicationConfig = {
     /**
      * @link Application#exceptionHandler
      */
-    exceptionHandler?: string;
+    exceptionHandler?: typeof ExceptionHandler;
     /**
      * @link Application#interceptor
      */
-    interceptor?: string;
+    interceptor?: typeof Interceptor | null;
     /**
      * @link Application#routesMap
      */
@@ -31,7 +34,7 @@ export type WebApplicationConfig = {
     /**
      * @link Application#defaultView
      */
-    defaultView?: string;
+    defaultView?: typeof View;
     /**
      * @link Application#defaultControllerNamespace
      */
@@ -53,12 +56,12 @@ export default class Application extends AbstractApplication {
     /**
      * Exception handler class
      */
-    public override exceptionHandler: string = 'candy/web/ExceptionHandler';
+    public override exceptionHandler: typeof ExceptionHandler = ExceptionHandler;
 
     /**
      * Interceptor class
      */
-    public interceptor: string = '';
+    public interceptor: typeof Interceptor | null = null;
 
     /**
      * Routes map
@@ -73,7 +76,7 @@ export default class Application extends AbstractApplication {
     /**
      * Default view class
      */
-    public defaultView = 'candy/web/View';
+    public defaultView: typeof View = View;
 
     /**
      * Default controller directory
@@ -109,7 +112,8 @@ export default class Application extends AbstractApplication {
 
         // 是否继承自框架控制器
         if (!(controller instanceof Controller)) {
-            return Reflect.apply(controller['run'], controller, [request]);
+            return controller.run(request);
+            // return Reflect.apply(controller['run'], controller, [request]);
         }
 
         controller.context.request = request;
@@ -119,16 +123,13 @@ export default class Application extends AbstractApplication {
     /**
      * @inheritdoc
      */
-    public override async handlerException(exception: IException): Promise<Response> {
-        const handler: ExceptionHandler = await Candy.createObjectAsString(
-            this.exceptionHandler,
-            this,
-        );
+    public override handlerException(exception: IException): Response {
+        const handler = new this.exceptionHandler(this);
 
         return handler.handlerException(exception);
     }
 
-    private createController(route: string): Promise<Controller | null> {
+    private createController(route: string): Promise<IResource | null> {
         let moduleId = '';
         let controllerId = '';
         let viewPath = '';
@@ -144,8 +145,8 @@ export default class Application extends AbstractApplication {
         }
 
         // 拦截路由
-        if ('' !== this.interceptor) {
-            return Candy.createObjectAsString(this.interceptor, this);
+        if (null !== this.interceptor) {
+            return Promise.resolve(new this.interceptor(this));
         }
 
         let id = '';

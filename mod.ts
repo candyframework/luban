@@ -24,7 +24,7 @@ export default class Main {
         try {
             res = await this.application.requestListener(httpRequest);
         } catch (e) {
-            res = await this.application.handlerException(e as IException);
+            res = this.application.handlerException(e as IException);
         }
 
         return res;

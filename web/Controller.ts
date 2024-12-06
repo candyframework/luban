@@ -6,7 +6,6 @@ import type Application from './Application.ts';
 import type HttpRequest from '../http/HttpRequest.ts';
 import type View from './View.ts';
 import AbstractController from '../core/AbstractController.ts';
-import Candy from '../Candy.ts';
 
 export type ControllerContext = {
     application: Application;
@@ -38,12 +37,9 @@ export default abstract class Controller extends AbstractController {
     /**
      * Get view class
      */
-    public async getView(): Promise<View> {
+    public getView(): View {
         if (null === this.view) {
-            this.view = await Candy.createObjectAsString(
-                this.context.application.defaultView,
-                this.context,
-            ) as View;
+            this.view = new this.context.application.defaultView(this.context);
         }
 
         return this.view;
@@ -61,8 +57,8 @@ export default abstract class Controller extends AbstractController {
     /**
      * @inheritdoc
      */
-    public override async render(view: string, parameters?: unknown): Promise<string> {
-        const instance = await this.getView();
+    public override render(view: string, parameters?: unknown): Promise<string> {
+        const instance = this.getView();
 
         return instance.render(view, parameters);
     }
