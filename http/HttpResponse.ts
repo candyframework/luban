@@ -128,7 +128,7 @@ export default class HttpResponse {
      */
     public setStatusCode(value: number, text: string = ''): HttpResponse {
         if (value < 100 || value >= 600) {
-            throw new HttpException('HTTP status code is invalid');
+            throw new HttpException('HTTP status code is invalid.');
         }
 
         this.statusCode = value;

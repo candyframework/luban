@@ -107,7 +107,7 @@ export default class Application extends AbstractApplication {
         const controller = await this.createController(route);
 
         if (null === controller) {
-            throw new NotFoundException('The route requested is not found');
+            throw new NotFoundException('The route requested is not found.');
         }
 
         // 是否继承自框架控制器
