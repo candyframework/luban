@@ -3,6 +3,7 @@
  * @license MIT
  */
 import type IResource from './IResource.ts';
+import type { SubFilter } from './IFilter.ts';
 import FilterChain from './FilterChain.ts';
 
 /**
@@ -21,13 +22,13 @@ export default class FilterFactory {
         const filterChain = new FilterChain();
         filterChain.setResource(resource);
 
-        const filters = resource.filters();
+        const filters = resource.filters() as (SubFilter[] | null);
         if (null === filters) {
             return filterChain;
         }
 
-        for (const filter of filters) {
-            filterChain.addFilter(filter);
+        for (const F of filters) {
+            filterChain.addFilter(new F());
         }
 
         return filterChain;

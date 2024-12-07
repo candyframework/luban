@@ -16,10 +16,10 @@ export default class Main {
         this.application = app;
     }
 
-    private async requestListener(req: Request, info: ConnectionInfo): Promise<Response> {
+    private async requestListener(req: Request, connectionInfo: ConnectionInfo): Promise<Response> {
         let res: Response;
 
-        const httpRequest = new HttpRequest(req, info);
+        const httpRequest = new HttpRequest(req, connectionInfo);
 
         try {
             res = await this.application.requestListener(httpRequest);
@@ -31,10 +31,11 @@ export default class Main {
     }
 
     public listen(options: Partial<Deno.ServeTcpOptions & Deno.TlsCertifiedKeyPem>): void {
-        const encrypted = undefined !== options.cert;
-        Deno.serve(options, (req: Request, info: ConnectionInfo) => {
-            info.encrypted = encrypted;
-            return this.requestListener(req, info);
+        Deno.serve(options, (req: Request, info: Deno.ServeHandlerInfo<Deno.NetAddr>) => {
+            return this.requestListener(req, {
+                encrypted: undefined !== options.cert,
+                info,
+            });
         });
     }
 }

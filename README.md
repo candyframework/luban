@@ -2,7 +2,6 @@
 
 This project is rewritten based on the architecture of Project [CandyJs](https://github.com/candyframework)
 
-
 ## Quick start
 
 CandyJs application start with an entry file
@@ -20,5 +19,4 @@ const main = new Main(app);
 main.listen({
     port: 2333,
 });
-
 ```

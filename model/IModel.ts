@@ -3,9 +3,10 @@
  * @license MIT
  */
 import type IValidator from './IValidator.ts';
+import type { SubValidator } from './IValidator.ts';
 
 export type Rule = {
-    validator: { classType: { new (): IValidator }; [key: string]: any };
+    validator: { classType: SubValidator; [key: string]: any };
     attributes: string[];
     messages: string[];
 };

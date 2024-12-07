@@ -2,10 +2,10 @@
  * @author afu
  * @license MIT
  */
-import type IFilter from '../core/IFilter.ts';
 import type IResource from '../core/IResource.ts';
 import type HttpRequest from '../http/HttpRequest.ts';
 import type Application from './Application.ts';
+import type IFilter from '../core/IFilter.ts';
 
 /**
  * Interceptor
@@ -17,10 +17,16 @@ export default class Interceptor implements IResource {
         this.application = application;
     }
 
+    /**
+     * @inheritdoc
+     */
     public filters(): IFilter[] | null {
-        throw new Error('Method not implemented.');
+        return null;
     }
 
+    /**
+     * @inheritdoc
+     */
     public run(_request: HttpRequest): Promise<Response> {
         return Promise.resolve(new Response('Currently temporarily out of service.'));
     }

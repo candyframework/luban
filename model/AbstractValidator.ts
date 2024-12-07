@@ -23,7 +23,7 @@ export default abstract class AbstractValidator implements IValidator {
      * Get error message for an attribute
      *
      * @param {string} attributeName Attribute name
-     * @return {string} Return error message if validation fails, otherwise return an empty string
+     * @returns {string} Return error message if validation fails, otherwise return an empty string
      */
     public getMessage(attributeName: string): string {
         if (null === this.attributes || null === this.messages) {
@@ -41,7 +41,7 @@ export default abstract class AbstractValidator implements IValidator {
     /**
      * Entry to validate all assigned attributes
      *
-     * @return {string[]}
+     * @returns {string[]}
      */
     public validateAttributes(): string[] {
         const list = this.attributes;

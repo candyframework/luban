@@ -2,6 +2,12 @@
  * @author afu
  * @license MIT
  */
+
+export type SubValidator = new () => IValidator;
+
+/**
+ * Validator interface
+ */
 export default interface IValidator {
     /**
      * Atrributes list to be validated
@@ -35,7 +41,7 @@ export default interface IValidator {
      *
      * @param {string} attributeName Attribute name
      * @param {any} attributeValue Attribute value
-     * @return {string} Return error message if validation fails, otherwise return an empty string
+     * @returns {string} Return error message if validation fails, otherwise return an empty string
      */
     validate(attributeName: string, attributeValue: any): string;
 }

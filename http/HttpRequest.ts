@@ -3,10 +3,14 @@
  * @license MIT
  */
 import AbstractRequest from '../core/AbstractRequest.ts';
+import HttpException from '../core/HttpException.ts';
 import CookieCollection from './CookieCollection.ts';
 import HeaderCollection from './HeaderCollection.ts';
 
-export type ConnectionInfo = Deno.ServeHandlerInfo<Deno.NetAddr> & { encrypted?: boolean };
+export type ConnectionInfo = {
+    encrypted?: boolean;
+    info: Deno.ServeHandlerInfo<Deno.NetAddr>;
+};
 
 /**
  * HTTP request
@@ -56,7 +60,7 @@ export default class HttpRequest extends AbstractRequest {
      * @returns {string}
      */
     public getParameter(_parameter: string, _defaultValue: string = ''): string {
-        throw new Error('not support');
+        throw new HttpException('Method not implemented.');
     }
 
     /**
@@ -120,7 +124,7 @@ export default class HttpRequest extends AbstractRequest {
         const forward = this.request.headers.get('x-forwarded-for');
 
         if (null === forward) {
-            return this.connectionInfo?.remoteAddr.hostname ?? '';
+            return this.connectionInfo?.info.remoteAddr.hostname ?? '';
         }
 
         return forward.indexOf(',') > 0 ? forward.substring(0, forward.indexOf(',')) : forward;
