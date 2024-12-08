@@ -1,4 +1,4 @@
-## An object-oriented efficient MVC framework
+## An object-oriented efficient MVC and RESTful framework
 
 This project is rewritten based on the architecture of Project [CandyJs](https://github.com/candyframework)
 

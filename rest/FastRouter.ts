@@ -4,10 +4,10 @@
  */
 import type HttpRequest from '../http/HttpRequest.ts';
 
-export type HandlerParameters = Record<string, any> | null;
+export type RouteParameters = Record<string, any> | null;
 export type Route = {
     route: string;
-    handler: (request: HttpRequest, parameters: HandlerParameters) => Promise<Response>;
+    handler: (request: HttpRequest, parameters: RouteParameters) => Promise<Response>;
 };
 export type RegExpRouter = {
     pattern: string;
@@ -156,7 +156,7 @@ export default class FastRouter {
 
     public execInOrder(route: string): {
         handler: Route['handler'];
-        parameters: HandlerParameters;
+        parameters: RouteParameters;
     } | null {
         let ret = null;
         let matches: RegExpExecArray | null = null;
@@ -170,7 +170,7 @@ export default class FastRouter {
                 continue;
             }
 
-            let parameters: HandlerParameters = null;
+            let parameters: RouteParameters = null;
             if (null !== regExp.parameters) {
                 parameters = {};
 
@@ -194,7 +194,7 @@ export default class FastRouter {
 
     public exec(route: string): {
         handler: Route['handler'];
-        parameters: HandlerParameters;
+        parameters: RouteParameters;
     } | null {
         this.combineRoutes();
         if (null === this.combinedRouteParameters) {
@@ -214,7 +214,7 @@ export default class FastRouter {
             : this.getMatchedRouteIndexBySubPattern(subPatternPosition);
 
         const parameterNames = this.combinedRouteParameters[routeIndex];
-        let parameters: HandlerParameters = null;
+        let parameters: RouteParameters = null;
         if (null !== parameterNames) {
             parameters = {};
 

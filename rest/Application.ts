@@ -9,7 +9,7 @@ import AbstractApplication, { type ApplicationConfig } from '../core/AbstractApp
 import ExceptionHandler from './ExceptionHandler.ts';
 import NotFoundException from '../core/NotFoundException.ts';
 import Candy from '../Candy.ts';
-import FastRouter, { type HandlerParameters, type Route } from './FastRouter.ts';
+import FastRouter, { type Route, type RouteParameters } from './FastRouter.ts';
 
 export type RestApplicationConfig = {
     /**
@@ -26,12 +26,10 @@ export type RestApplicationConfig = {
  * Rest application
  */
 export default class Application extends AbstractApplication implements IRestApplication {
-    public override exceptionHandler: typeof ExceptionHandler = ExceptionHandler;
-
     /**
-     * Class and method separator
+     * @inheritdoc
      */
-    // static separator: string = '@';
+    public override exceptionHandler: typeof ExceptionHandler = ExceptionHandler;
 
     /**
      * Methods
@@ -79,23 +77,16 @@ export default class Application extends AbstractApplication implements IRestApp
             throw new NotFoundException('The route requested is not found');
         }
 
-        // handler is function
-        // if('function' === typeof ret.handler) {
         return ret.handler(request, ret.parameters);
-        // }
+    }
 
-        // handler is string
-        // const pos = ret.handler.indexOf(Application.separator);
-        // let obj: any = null;
+    /**
+     * @inheritdoc
+     */
+    public override handlerException(exception: IException): Response {
+        const handler = new this.exceptionHandler(this);
 
-        // if(-1 === pos) {
-        //     obj = await Candy.createObjectAsString(ret.handler);
-        //     return obj.run(request, ret.parameters);
-
-        // }
-
-        // obj = Candy.createObjectAsString( ret.handler.substring(0, pos) );
-        // return obj[ ret.handler.substring(pos + 1) ](request, ret.parameters);
+        return handler.handlerException(exception);
     }
 
     /**
@@ -106,7 +97,7 @@ export default class Application extends AbstractApplication implements IRestApp
      */
     private resolveRoutes(route: string, httpMethod: string): {
         handler: Route['handler'];
-        parameters: HandlerParameters;
+        parameters: RouteParameters;
     } | null {
         const routesMap = this.methods[httpMethod];
         if (0 === routesMap.length) {
@@ -203,14 +194,5 @@ export default class Application extends AbstractApplication implements IRestApp
      */
     public options(route: string, handler: Route['handler']): void {
         this.addRoute('OPTIONS', route, handler);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public override handlerException(exception: IException): Response {
-        const handler = new this.exceptionHandler(this);
-
-        return handler.handlerException(exception);
     }
 }

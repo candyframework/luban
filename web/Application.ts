@@ -54,7 +54,7 @@ export type WebApplicationConfig = {
  */
 export default class Application extends AbstractApplication {
     /**
-     * Exception handler class
+     * @inheritdoc
      */
     public override exceptionHandler: typeof ExceptionHandler = ExceptionHandler;
 
