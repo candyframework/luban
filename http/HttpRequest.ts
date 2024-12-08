@@ -35,6 +35,15 @@ export default class HttpRequest extends AbstractRequest {
     }
 
     /**
+     * Get request method
+     *
+     * @returns {string}
+     */
+    public getRequestMethod(): string {
+        return this.request.method.toUpperCase();
+    }
+
+    /**
      * Get query string parameter
      *
      * @param {string} parameter Parameter name

@@ -11,9 +11,24 @@ import InvalidConfigException from './InvalidConfigEception.ts';
 
 export type ApplicationConfig = {
     /**
-     * Application id
+     * @link AbstractApplication#id
      */
     id: string;
+
+    /**
+     * @link IApplication#encoding
+     */
+    endcoding?: string;
+
+    /**
+     * @link IApplication#debug
+     */
+    debug?: boolean;
+
+    /**
+     * @link IApplication#exceptionHandler
+     */
+    exceptionHandler?: typeof AbstractExceptionHandler;
 
     /**
      * The path of the application
