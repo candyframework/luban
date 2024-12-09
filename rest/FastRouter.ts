@@ -4,7 +4,7 @@
  */
 import type HttpRequest from '../http/HttpRequest.ts';
 
-export type RouteParameters = Record<string, any> | null;
+export type RouteParameters = Record<string, string> | null;
 export type Route = {
     route: string;
     handler: (request: HttpRequest, parameters: RouteParameters) => Promise<Response>;

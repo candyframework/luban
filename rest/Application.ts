@@ -122,9 +122,9 @@ export default class Application extends AbstractApplication implements IRestApp
      *
      * @param {string} httpMethod
      * @param {string} route
-     * @param {any} handler
+     * @param {Route['handler']} handler
      */
-    public addRoute(httpMethod: string, route: string, handler: any): void {
+    public addRoute(httpMethod: string, route: string, handler: Route['handler']): void {
         this.methods[httpMethod].push({
             route: route,
             handler: handler,
@@ -136,9 +136,9 @@ export default class Application extends AbstractApplication implements IRestApp
      *
      * @param {string[]} httpMethods
      * @param {string} route
-     * @param {any} handler
+     * @param {Route['handler']} handler
      */
-    public addRoutes(httpMethods: string[], route: string, handler: any): void {
+    public addRoutes(httpMethods: string[], route: string, handler: Route['handler']): void {
         for (let i = 0, len = httpMethods.length; i < len; i++) {
             this.methods[httpMethods[i]].push({
                 route: route,
