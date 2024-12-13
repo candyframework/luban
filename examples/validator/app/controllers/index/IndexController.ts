@@ -1,10 +1,10 @@
-import type HttpRequest from '../../../../../http/HttpRequest.ts';
-import type { Rule } from '../../../../../model/IModel.ts';
-import HttpResponse from '../../../../../http/HttpResponse.ts';
-import Model from '../../../../../model/Model.ts';
-import Controller from '../../../../../web/Controller.ts';
-import StringValidator from '../../../../../model/validators/StringValidator.ts';
-import RequiredValidator from '../../../../../model/validators/RequiredValidator.ts';
+import type HttpRequest from '../../../../../src/http/HttpRequest.ts';
+import type { Rule } from '../../../../../src/model/IModel.ts';
+import HttpResponse from '../../../../../src/http/HttpResponse.ts';
+import Model from '../../../../../src/model/Model.ts';
+import Controller from '../../../../../src/web/Controller.ts';
+import StringValidator from '../../../../../src/model/validators/StringValidator.ts';
+import RequiredValidator from '../../../../../src/model/validators/RequiredValidator.ts';
 
 class UserModel extends Model {
     public override attributes = {

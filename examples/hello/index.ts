@@ -1,5 +1,5 @@
-import CandyJs from '../../mod.ts';
-import Application from '../../web/Application.ts';
+import CandyJs from '../../src/mod.ts';
+import Application from '../../src/web/Application.ts';
 
 const app = new Application({
     id: 'hello',

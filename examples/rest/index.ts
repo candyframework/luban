@@ -1,6 +1,6 @@
-import type HttpRequest from '../../http/HttpRequest.ts';
-import Application from '../../rest/Application.ts';
-import Main from '../../mod.ts';
+import type HttpRequest from '../../src/http/HttpRequest.ts';
+import Application from '../../src/rest/Application.ts';
+import Main from '../../src/mod.ts';
 
 const app = new Application({
     id: 'rest',
