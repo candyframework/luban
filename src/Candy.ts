@@ -2,6 +2,7 @@
  * @author afu
  * @license MIT
  */
+import { toFileUrl } from '@std/path/to-file-url';
 import type IApplication from './core/IApplication.ts';
 
 /**
@@ -69,8 +70,9 @@ export default class Candy {
     }
 
     static async createObjectAsString(classPath: string, parameters: any = null): Promise<any> {
-        const realClass = Candy.getPathAlias('@' + classPath);
-        const ClassName = await import(realClass + Candy.defaultExtension);
+        const realClass = Candy.getPathAlias('@' + classPath) + Candy.defaultExtension;
+        const path = toFileUrl(realClass).toString();
+        const ClassName = await import(path);
 
         return new ClassName.default(parameters);
     }

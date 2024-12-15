@@ -71,5 +71,7 @@
         "include": ["./"],
         "exclude": [".git/", ".vscode/"]
     },
-    "imports": {}
+    "imports": {
+        "@std/path": "jsr:@std/path@^1.0.8"
+    }
 }
