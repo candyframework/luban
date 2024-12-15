@@ -15,7 +15,10 @@ export default async function build(dir: string) {
 
         const full = dir + '/' + entry.name;
         if (entry.isFile) {
-            const key = full.replace('/src/', '/');
+            let key = full.replace('/src/', '/');
+            if (key.endsWith('.ts')) {
+                key = key.slice(0, -3);
+            }
             tree[key] = full;
         } else if (entry.isDirectory) {
             await build(full);
