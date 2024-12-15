@@ -7,9 +7,9 @@ This project is rewritten based on the architecture of Project [CandyJs](https:/
 CandyJs application start with an entry file
 
 ```typescript
-import type HttpRequest from '../../http/HttpRequest.ts';
-import Application from '../../rest/Application.ts';
-import Main from '../../mod.ts';
+import type HttpRequest from "@candy/framework/http/HttpRequest";
+import Application from "@candy/framework/rest/Application";
+import Main from '@candy/framework';
 
 const app = new Application({
     id: 'rest',
