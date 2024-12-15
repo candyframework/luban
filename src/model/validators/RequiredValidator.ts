@@ -7,7 +7,7 @@ import AbstractValidator from '../AbstractValidator.ts';
 /**
  * Check if the attribute value is `''` or `undefined` or `null`
  *
- * ```
+ * ```typescript
  * class XxxModel extends Model {
  *      rules() {
  *          return [

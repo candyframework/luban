@@ -14,6 +14,9 @@ import Candy from '../Candy.ts';
 import Controller from './Controller.ts';
 import View from './View.ts';
 
+/**
+ * Web application configuration
+ */
 export type WebApplicationConfig = {
     /**
      * @link Application#exceptionHandler

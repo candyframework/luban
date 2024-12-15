@@ -4,6 +4,9 @@
  */
 import type IApplication from '../core/IApplication.ts';
 
+/**
+ * Rest application interface
+ */
 export default interface IRestApplication extends IApplication {
     /**
      * Get request

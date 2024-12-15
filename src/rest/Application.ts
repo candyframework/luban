@@ -11,6 +11,9 @@ import NotFoundException from '../core/NotFoundException.ts';
 import Candy from '../Candy.ts';
 import FastRouter, { type Route, type RouteParameters } from './FastRouter.ts';
 
+/**
+ * Rest application configuration
+ */
 export type RestApplicationConfig = {
     /**
      * @link Application#exceptionHandler

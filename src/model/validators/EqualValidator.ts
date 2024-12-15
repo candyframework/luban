@@ -8,7 +8,7 @@ import ValidatorException from '../../core/ValidatorException.ts';
 /**
  * Check if the multiple attributes are equal
  *
- * ```
+ * ```typescript
  * class XxxModel extends Model {
  *      rules() {
  *          return [

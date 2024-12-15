@@ -7,7 +7,7 @@ import AbstractValidator from '../AbstractValidator.ts';
 /**
  * Validator for string
  *
- * ```
+ * ```typescript
  * class XxxModel extends Model {
  *      rules() {
  *          return [

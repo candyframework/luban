@@ -7,7 +7,7 @@ import AbstractValidator from '../AbstractValidator.ts';
 /**
  * Check if the attribute value is a valid email address
  *
- * ```
+ * ```typescript
  * class XxxModel extends Model {
  *      rules() {
  *          return [

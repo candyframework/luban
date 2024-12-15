@@ -7,6 +7,9 @@ import type HttpRequest from '../http/HttpRequest.ts';
 import type View from './View.ts';
 import AbstractController from '../core/AbstractController.ts';
 
+/**
+ * The context of the controller
+ */
 export type ControllerContext = {
     application: Application;
     moduleId: string;

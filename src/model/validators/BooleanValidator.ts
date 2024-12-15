@@ -7,7 +7,7 @@ import AbstractValidator from '../AbstractValidator.ts';
 /**
  * Check if the attribute value is a boolean value
  *
- * ```
+ * ```typescript
  * class XxxModel extends Model {
  *      rules() {
  *          return [

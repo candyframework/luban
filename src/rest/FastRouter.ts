@@ -1,6 +1,5 @@
 /**
  * @see https://github.com/candyframework/fast-regexp-router
- * @module FastRouter
  */
 import type HttpRequest from '../http/HttpRequest.ts';
 

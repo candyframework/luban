@@ -6,21 +6,23 @@ import type HttpRequest from '../http/HttpRequest.ts';
 import type IFilter from './IFilter.ts';
 
 /**
- * Class implementing this interface is called a resource class
+ * Class implementing this interface is a resource class
  */
 export default interface IResource {
     /**
      * Declare resource filters
      *
-     * ```
+     * ```typescript
      * import Filter1 from 'somewhere.ts';
      * import Filter2 from 'somewhere2.ts';
      *
-     * public filters() {
-     *      return [
-     *          Filter1,
-     *          Filter2
-     *      ];
+     * export default class MyResource implements IResource {
+     *      public filters() {
+     *          return [
+     *              Filter1,
+     *              Filter2
+     *          ];
+     *      }
      * }
      * ```
      */

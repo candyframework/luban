@@ -28,6 +28,11 @@ export default class StringHelper {
     /**
      * Find the Nth occurrence of a string in another string
      *
+     * ```typescript
+     * const x = StringHelper.nIndexOf('hello world hello', 'hello', 2)  // 12
+     * const y = StringHelper.nIndexOf('hello world hello', 'hello', 3)  // -1
+     * ```
+     *
      * @param {string} str The content to be searched
      * @param {string} find The string to find
      * @param {number} n The Nth occurrence
@@ -37,6 +42,9 @@ export default class StringHelper {
         let x = str.indexOf(find);
         for (let i = 1; i < n; i++) {
             x = str.indexOf(find, x + 1);
+            if (-1 === x) {
+                break;
+            }
         }
 
         return x;
@@ -105,10 +113,9 @@ export default class StringHelper {
     /**
      * Filter tags
      *
-     * ```
-     * eg.
-     * filterTags('<a>abc</a>xyz') -> abcxyz
-     * filterTags('<a>abc</a>xyz', '<a><b>') -> <a>abc</a>xyz
+     * ```typescript
+     * const s1 = StringHelper.filterTags('<a>abc</a>xyz')  // abcxyz
+     * const s2 = StringHelper.filterTags('<a>abc</a>xyz', '<a><b>')  // <a>abc</a>xyz
      * ```
      *
      * @param {string} str The string to be processed

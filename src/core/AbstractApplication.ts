@@ -9,6 +9,9 @@ import type AbstractExceptionHandler from './AbstractExceptionHandler.ts';
 import Candy from '../Candy.ts';
 import InvalidConfigException from './InvalidConfigEception.ts';
 
+/**
+ * Base configuration for application
+ */
 export type ApplicationConfig = {
     /**
      * @link AbstractApplication#id
