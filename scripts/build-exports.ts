@@ -9,6 +9,10 @@ export default async function build(dir: string) {
             continue;
         }
 
+        if (entry.name === 'mod.ts') {
+            continue;
+        }
+
         const full = dir + '/' + entry.name;
         if (entry.isFile) {
             const key = full.replace('/src/', '/');

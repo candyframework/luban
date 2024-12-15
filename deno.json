@@ -3,7 +3,6 @@
     "version": "0.1.4",
     "exports": {
         ".": "./src/mod.ts",
-        "./mod.ts": "./src/mod.ts",
         "./core/NotFoundException.ts": "./src/core/NotFoundException.ts",
         "./core/IException.ts": "./src/core/IException.ts",
         "./core/IEvent.ts": "./src/core/IEvent.ts",
