@@ -1,10 +1,11 @@
 {
     "name": "@candy/framework",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "exports": {
         ".": "./src/mod.ts",
         "./core/NotFoundException": "./src/core/NotFoundException.ts",
         "./core/IException": "./src/core/IException.ts",
+        "./core/Json": "./src/core/Json.ts",
         "./core/IEvent": "./src/core/IEvent.ts",
         "./core/ActionEvent": "./src/core/ActionEvent.ts",
         "./core/FilterChain": "./src/core/FilterChain.ts",
