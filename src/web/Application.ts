@@ -67,12 +67,24 @@ export default class Application extends AbstractApplication {
     public interceptor: typeof Interceptor | null = null;
 
     /**
-     * Routes map
+     * Custom routes map
+     *
+     * ```typescript
+     * {
+     *      user: 'app/controllers/user/UserController'
+     * }
+     * ```
      */
     public routesMap: Record<string, string> | null = null;
 
     /**
-     * Modules
+     * Register modules and their paths
+     *
+     * ```typescript
+     * {
+     *      'yearactivity': 'app/modules/newyearactivity'
+     * }
+     * ```
      */
     public modules: Record<string, string> | null = null;
 
