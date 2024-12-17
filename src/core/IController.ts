@@ -4,6 +4,7 @@
  */
 import type IResource from './IResource.ts';
 import type ActionEvent from './ActionEvent.ts';
+import type { JSONCompatible } from './Json.ts';
 
 export default interface IController extends IResource {
     /**
@@ -21,10 +22,7 @@ export default interface IController extends IResource {
     afterAction(actionEvent: ActionEvent): void;
 
     /**
-     * Render a view
-     *
-     * @param {string} view View name or path
-     * @param {unknown} parameters Parameters to be passed to the view
+     * A quick way to call view's render method
      */
-    render(view: string, parameters?: unknown): Promise<string>;
+    render<T>(view: string, parameters: JSONCompatible<T> | null): Promise<string>;
 }

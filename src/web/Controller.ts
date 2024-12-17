@@ -5,6 +5,7 @@
 import type Application from './Application.ts';
 import type HttpRequest from '../http/HttpRequest.ts';
 import type View from './View.ts';
+import type { JSONCompatible } from '../core/Json.ts';
 import AbstractController from '../core/AbstractController.ts';
 
 /**
@@ -60,7 +61,10 @@ export default abstract class Controller extends AbstractController {
     /**
      * @inheritdoc
      */
-    public override render(view: string, parameters?: unknown): Promise<string> {
+    public override render<T>(
+        view: string,
+        parameters: JSONCompatible<T> | null = null,
+    ): Promise<string> {
         const instance = this.getView();
 
         return instance.render(view, parameters);
