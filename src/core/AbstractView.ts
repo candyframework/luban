@@ -3,6 +3,7 @@
  * @license MIT
  */
 import type IView from './IView.ts';
+import type { JSONCompatible } from './Json.ts';
 
 /**
  * Abstract view
@@ -16,12 +17,9 @@ export default abstract class AbstractView implements IView {
     public defaultExtension: string = '.html';
 
     /**
-     * Render a view
-     *
-     * @param {string} view View name
-     * @param {any} parameters The parameters pass to view
+     * @inheritdoc
      */
-    public render(view: string, parameters: any = null): Promise<string> {
+    public render<T>(view: string, parameters: JSONCompatible<T> | null = null): Promise<string> {
         const file = this.findView(view);
 
         return this.renderFile(file, parameters);
@@ -41,5 +39,8 @@ export default abstract class AbstractView implements IView {
      * @param {string} file View file path
      * @param {any} parameters
      */
-    protected abstract renderFile(file: string, parameters: any): Promise<string>;
+    protected abstract renderFile<T>(
+        file: string,
+        parameters: JSONCompatible<T> | null,
+    ): Promise<string>;
 }

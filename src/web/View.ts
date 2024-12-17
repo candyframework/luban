@@ -3,6 +3,7 @@
  * @license MIT
  */
 import type { ControllerContext } from './Controller.ts';
+import type { JSONCompatible } from '../core/Json.ts';
 import AbstractView from '../core/AbstractView.ts';
 import Candy from '../Candy.ts';
 
@@ -124,7 +125,10 @@ export default class View extends AbstractView {
     /**
      * @inheritdoc
      */
-    protected override async renderFile(file: string, _parameters: any): Promise<string> {
+    protected override async renderFile<T>(
+        file: string,
+        _parameters: JSONCompatible<T> | null,
+    ): Promise<string> {
         const template = await Deno.readTextFile(file);
 
         return template;

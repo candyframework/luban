@@ -3,6 +3,7 @@
  * @license MIT
  */
 import HttpException from '../core/HttpException.ts';
+import { JSONCompatible } from '../core/Json.ts';
 import Cookie from './Cookie.ts';
 
 /**
@@ -241,7 +242,7 @@ export default class HttpResponse {
      *
      * @param {any} content Content to response
      */
-    public static fromJson(content: any): Response {
+    public static fromJson<T>(content: JSONCompatible<T>): Response {
         const body = JSON.stringify(content);
 
         return new Response(body, {
