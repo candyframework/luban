@@ -44,7 +44,7 @@ export default class FastRouter {
     /**
      * Parse route
      *
-     * ```
+     * ```text
      * pattern: /home/{uid}         -> \\/home\\/(\\w+)
      * pattern: /home/{uid}/{page}  -> \\/home\\/(\\w+)\\/(\\w+)
      * pattern: /home/{uid:\\d+}    -> \\/home\\/(\\d+)
