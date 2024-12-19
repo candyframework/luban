@@ -9,7 +9,12 @@ import HeaderCollection from './HeaderCollection.ts';
 
 export type ConnectionInfo = {
     encrypted?: boolean;
-    info: Deno.ServeHandlerInfo<Deno.NetAddr>;
+    info: {
+        remoteAddr: {
+            hostname: string;
+            port: number;
+        };
+    };
 };
 
 /**

@@ -51,6 +51,7 @@
         "./model/validators/RequiredValidator": "./src/model/validators/RequiredValidator.ts",
         "./model/validators/StringValidator": "./src/model/validators/StringValidator.ts",
         "./model/AbstractValidator": "./src/model/AbstractValidator.ts",
+        "./helpers/FileHelper": "./src/helpers/FileHelper.ts",
         "./helpers/StringHelper": "./src/helpers/StringHelper.ts",
         "./rest/ExceptionHandler": "./src/rest/ExceptionHandler.ts",
         "./rest/IRestApplication": "./src/rest/IRestApplication.ts",

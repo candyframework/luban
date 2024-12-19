@@ -22,6 +22,6 @@ export default abstract class AbstractRequest {
      * @returns {string}
      */
     public getScriptFile(): string {
-        return Deno.mainModule;
+        return '';
     }
 }

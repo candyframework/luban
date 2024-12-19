@@ -6,6 +6,7 @@ import type { ControllerContext } from './Controller.ts';
 import type { JSONCompatible } from '../core/Json.ts';
 import AbstractView from '../core/AbstractView.ts';
 import Candy from '../Candy.ts';
+import FileHelper from '../helpers/FileHelper.ts';
 
 /**
  * Web view
@@ -129,7 +130,7 @@ export default class View extends AbstractView {
         file: string,
         _parameters: JSONCompatible<T> | null,
     ): Promise<string> {
-        const template = await Deno.readTextFile(file);
+        const template = await FileHelper.readFile(file);
 
         return template;
     }
