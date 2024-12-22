@@ -55,35 +55,4 @@ export default class FileHelper {
 
         return ret.join('/');
     }
-
-    /**
-     * Create directory recursively
-     *
-     * @param {string} dir The directory path
-     * @param {number} mode The directory mode
-     */
-    static async createDirectory(dir: string, mode: number = 0o777): Promise<void> {
-        await Deno.mkdir(dir, { mode, recursive: true });
-    }
-
-    /**
-     * Read a file
-     *
-     * @param {string} file The file path
-     * @returns {string}
-     */
-    static readFile(file: string): Promise<string> {
-        return Deno.readTextFile(file);
-    }
-
-    /**
-     * @param {string} file The file to write
-     * @param {string} content Content to write
-     * @param {boolean} append Append or overwrite the file
-     */
-    static writeFile(file: string, content: string, append: boolean = false): Promise<void> {
-        return Deno.writeTextFile(file, content, {
-            append,
-        });
-    }
 }
