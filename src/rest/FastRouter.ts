@@ -2,11 +2,12 @@
  * @see https://github.com/candyframework/fast-regexp-router
  */
 import type HttpRequest from '../http/HttpRequest.ts';
+import type HttpResponse from '../http/HttpResponse.ts';
 
 export type RouteParameters = Record<string, string> | null;
 export type Route = {
     route: string;
-    handler: (request: HttpRequest, parameters: RouteParameters) => Promise<Response>;
+    handler: (request: HttpRequest, parameters: RouteParameters) => Promise<HttpResponse>;
 };
 export type RegExpRouter = {
     pattern: string;

@@ -4,6 +4,7 @@
  */
 import type Application from './Application.ts';
 import type HttpRequest from '../http/HttpRequest.ts';
+import type HttpResponse from '../http/HttpResponse.ts';
 import type View from './View.ts';
 import type { JSONCompatible } from '../core/Json.ts';
 import AbstractController from '../core/AbstractController.ts';
@@ -73,5 +74,5 @@ export default abstract class Controller extends AbstractController {
     /**
      * @inheritdoc
      */
-    public abstract override run(request: HttpRequest): Promise<Response>;
+    public abstract override run(request: HttpRequest): Promise<HttpResponse>;
 }

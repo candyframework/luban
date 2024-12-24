@@ -4,6 +4,7 @@
  */
 import type IRestApplication from './IRestApplication.ts';
 import type HttpRequest from '../http/HttpRequest.ts';
+import type HttpResponse from '../http/HttpResponse.ts';
 import type IException from '../core/IException.ts';
 import AbstractApplication, { type ApplicationConfig } from '../core/AbstractApplication.ts';
 import ExceptionHandler from './ExceptionHandler.ts';
@@ -72,7 +73,7 @@ export default class Application extends AbstractApplication implements IRestApp
     /**
      * @inheritdoc
      */
-    public override requestListener(request: HttpRequest): Promise<Response> {
+    public override requestListener(request: HttpRequest): Promise<HttpResponse> {
         const route = new URL(request.request.url).pathname;
         const ret = this.resolveRoutes(route, request.getRequestMethod());
 
@@ -86,7 +87,7 @@ export default class Application extends AbstractApplication implements IRestApp
     /**
      * @inheritdoc
      */
-    public override handlerException(exception: IException): Response {
+    public override handlerException(exception: IException): HttpResponse {
         const handler = new this.exceptionHandler(this);
 
         return handler.handlerException(exception);

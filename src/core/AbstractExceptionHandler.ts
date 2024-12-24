@@ -2,6 +2,7 @@
  * @author afu
  * @license MIT
  */
+import type HttpResponse from '../http/HttpResponse.ts';
 import type IApplication from './IApplication.ts';
 import type IException from './IException.ts';
 
@@ -20,5 +21,5 @@ export default abstract class AbstractExceptionHandler {
      *
      * @param {IException} exception Exception instance
      */
-    public abstract handlerException(exception: IException): Response;
+    public abstract handlerException(exception: IException): HttpResponse;
 }

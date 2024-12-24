@@ -10,6 +10,7 @@ import type { JSONCompatible } from './Json.ts';
 import ActionEvent from './ActionEvent.ts';
 import Event from './Event.ts';
 import FilterFactory from './FilterFactory.ts';
+import HttpResponse from '../http/HttpResponse.ts';
 
 /**
  * Abstract controller
@@ -60,14 +61,14 @@ export default abstract class AbstractController extends Event implements IContr
     /**
      * Then entry of the controller
      */
-    public async runControllerAction(request: HttpRequest): Promise<Response> {
+    public async runControllerAction(request: HttpRequest): Promise<HttpResponse> {
         const actionEvent = new ActionEvent();
         actionEvent.request = request;
 
         this.beforeAction(actionEvent);
 
         if (false === actionEvent.valid) {
-            return new Response(actionEvent.data);
+            return HttpResponse.fromText(actionEvent.data);
         }
 
         const res = await this.filterChain.doFilter(request);
@@ -85,5 +86,5 @@ export default abstract class AbstractController extends Event implements IContr
     /**
      * @inheritdoc
      */
-    public abstract run(request: HttpRequest): Promise<Response>;
+    public abstract run(request: HttpRequest): Promise<HttpResponse>;
 }

@@ -6,6 +6,7 @@ import type IFilter from './IFilter.ts';
 import type IFilterChain from './IFilterChain.ts';
 import type IResource from './IResource.ts';
 import type HttpRequest from '../http/HttpRequest.ts';
+import type HttpResponse from '../http/HttpResponse.ts';
 import ArrayList from '../utils/ArrayList.ts';
 
 /**
@@ -33,7 +34,7 @@ export default class FilterChain implements IFilterChain {
     /**
      * @inheritdoc
      */
-    public async doFilter(req: HttpRequest): Promise<Response> {
+    public async doFilter(req: HttpRequest): Promise<HttpResponse> {
         if (this.position >= this.filters.size()) {
             const res = await this.resource!.run(req);
             this.clearFilters();

@@ -3,6 +3,7 @@
  * @license MIT
  */
 import type HttpRequest from '../http/HttpRequest.ts';
+import type HttpResponse from '../http/HttpResponse.ts';
 import type AbstractExceptionHandler from './AbstractExceptionHandler.ts';
 import type IException from './IException.ts';
 
@@ -58,12 +59,12 @@ export default interface IApplication {
      *
      * @param {HttpRequest} request http request
      */
-    requestListener(request: HttpRequest): Promise<Response>;
+    requestListener(request: HttpRequest): Promise<HttpResponse>;
 
     /**
      * Handle exception
      *
-     * @param {Request} exception Exception instance
+     * @param {IException} exception Exception instance
      */
-    handlerException(exception: IException): Response;
+    handlerException(exception: IException): HttpResponse;
 }

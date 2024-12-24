@@ -10,6 +10,7 @@ CandyJs application start with an entry file
 import type HttpRequest from '@candy/framework/http/HttpRequest';
 import Application from '@candy/framework/rest/Application';
 import Main from '@candy/framework';
+import HttpResponse from '@candy/framework/http/HttpResponse';
 
 const app = new Application({
     id: 'rest',
@@ -17,11 +18,11 @@ const app = new Application({
 });
 
 app.get('/', async (_request: HttpRequest) => {
-    return new Response('Hello, world!');
+    return HttpResponse.fromText('Hello, world!');
 });
 
 app.get('/user/{id}', async (_request: HttpRequest, parameters: any) => {
-    return new Response('User ' + parameters.id);
+    return HttpResponse.fromText('User ' + parameters.id);
 });
 
 const main = new Main(app);

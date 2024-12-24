@@ -3,6 +3,7 @@
  * @license MIT
  */
 import type HttpRequest from '../http/HttpRequest.ts';
+import type HttpResponse from '../http/HttpResponse.ts';
 import type IFilter from './IFilter.ts';
 
 /**
@@ -31,5 +32,5 @@ export default interface IResource {
     /**
      * Run the resource
      */
-    run(request: HttpRequest): Promise<Response>;
+    run(request: HttpRequest): Promise<HttpResponse>;
 }

@@ -3,6 +3,7 @@
  * @license MIT
  */
 import type HttpRequest from '../http/HttpRequest.ts';
+import type HttpResponse from '../http/HttpResponse.ts';
 import type IFilterChain from './IFilterChain.ts';
 
 /**
@@ -21,5 +22,5 @@ export default interface IFilter {
      *
      * This method needs to call `filterChain.doFilter(request)` manually to execute the next filter
      */
-    doFilter(req: HttpRequest, filterChain: IFilterChain): Promise<Response>;
+    doFilter(req: HttpRequest, filterChain: IFilterChain): Promise<HttpResponse>;
 }

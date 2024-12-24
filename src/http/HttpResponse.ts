@@ -2,8 +2,8 @@
  * @author afu
  * @license MIT
  */
+import type { JSONCompatible } from '../core/Json.ts';
 import HttpException from '../core/HttpException.ts';
-import { JSONCompatible } from '../core/Json.ts';
 import Cookie from './Cookie.ts';
 
 /**
@@ -215,26 +215,43 @@ export default class HttpResponse {
     }
 
     /**
+     * Redirect to a URL
+     *
+     * @param {string} url The URL to redirect to
+     * @param {number} statusCode The status code for redirection
+     */
+    public redirect(url: string, statusCode: number = 302): HttpResponse {
+        this.setHeader('Location', url);
+        this.setStatusCode(statusCode);
+
+        return this;
+    }
+
+    /**
      * Convert to native response
      */
     public toResponse(): Response {
         const res = new Response(this.content, {
             status: this.statusCode,
             statusText: this.statusText,
-            headers: this.headers,
+            headers: new Headers(this.headers),
         });
+
+        this.clear();
 
         return res;
     }
 
     /**
-     * Redirect to a URL
-     *
-     * @param {string} url The URL to redirect to
-     * @param {number} statusCode The status code for redirection
+     * Clear headers, content and status code
      */
-    public static redirect(url: string, statusCode: number = 302): Response {
-        return Response.redirect(url, statusCode);
+    public clear(): void {
+        this.content = '';
+        this.statusCode = 200;
+        this.statusText = 'OK';
+        for (const key of this.headers.keys()) {
+            this.headers.delete(key);
+        }
     }
 
     /**
@@ -242,16 +259,14 @@ export default class HttpResponse {
      *
      * @param {any} content Content to response
      */
-    public static fromJson<T>(content: JSONCompatible<T>): Response {
+    public static fromJson<T>(content: JSONCompatible<T>): HttpResponse {
         const body = JSON.stringify(content);
 
-        return new Response(body, {
-            status: 200,
-            statusText: 'OK',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+        const response = new HttpResponse();
+        response.setContent(body);
+        response.setHeader('Content-Type', 'application/json');
+
+        return response;
     }
 
     /**
@@ -259,14 +274,12 @@ export default class HttpResponse {
      *
      * @param {string} content Content to response
      */
-    public static fromText(content: string): Response {
-        return new Response(content, {
-            status: 200,
-            statusText: 'OK',
-            headers: {
-                'Content-Type': 'text/plain',
-            },
-        });
+    public static fromText(content: string): HttpResponse {
+        const response = new HttpResponse();
+        response.setContent(content);
+        response.setHeader('Content-Type', 'text/plain');
+
+        return response;
     }
 
     /**
@@ -274,13 +287,11 @@ export default class HttpResponse {
      *
      * @param {string} content Content to response
      */
-    public static fromHTML(content: string): Response {
-        return new Response(content, {
-            status: 200,
-            statusText: 'OK',
-            headers: {
-                'Content-Type': 'text/html',
-            },
-        });
+    public static fromHTML(content: string): HttpResponse {
+        const response = new HttpResponse();
+        response.setContent(content);
+        response.setHeader('Content-Type', 'text/html');
+
+        return response;
     }
 }

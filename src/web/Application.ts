@@ -4,6 +4,7 @@
  */
 import type IException from '../core/IException.ts';
 import type HttpRequest from '../http/HttpRequest.ts';
+import type HttpResponse from '../http/HttpResponse.ts';
 import type Interceptor from './Interceptor.ts';
 import type IResource from '../core/IResource.ts';
 import AbstractApplication, { type ApplicationConfig } from '../core/AbstractApplication.ts';
@@ -117,7 +118,7 @@ export default class Application extends AbstractApplication {
     /**
      * @inheritdoc
      */
-    public override async requestListener(request: HttpRequest): Promise<Response> {
+    public override async requestListener(request: HttpRequest): Promise<HttpResponse> {
         const route = new URL(request.request.url).pathname;
         const controller = await this.createController(route);
 
@@ -138,7 +139,7 @@ export default class Application extends AbstractApplication {
     /**
      * @inheritdoc
      */
-    public override handlerException(exception: IException): Response {
+    public override handlerException(exception: IException): HttpResponse {
         const handler = new this.exceptionHandler(this);
 
         return handler.handlerException(exception);

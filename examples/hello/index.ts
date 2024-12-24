@@ -3,6 +3,7 @@ import Application from '../../src/web/Application.ts';
 
 const app = new Application({
     id: 'hello',
+    debug: true,
     appPath: Deno.cwd() + '/app',
 });
 const cj = new CandyJs(app);

@@ -1,6 +1,7 @@
 import type HttpRequest from '../../src/http/HttpRequest.ts';
 import Application from '../../src/rest/Application.ts';
 import Main from '../../src/mod.ts';
+import HttpResponse from '../../src/http/HttpResponse.ts';
 
 const app = new Application({
     id: 'rest',
@@ -8,11 +9,11 @@ const app = new Application({
 });
 
 app.get('/', async (_request: HttpRequest) => {
-    return new Response('Hello, world!');
+    return HttpResponse.fromText('Hello, world!');
 });
 
 app.get('/user/{id}', async (_request: HttpRequest, parameters: any) => {
-    return new Response('User ' + parameters.id);
+    return HttpResponse.fromText('User ' + parameters.id);
 });
 
 const main = new Main(app);

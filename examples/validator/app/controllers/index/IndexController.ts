@@ -21,7 +21,7 @@ class UserModel extends Model {
                     maxLength: 5,
                 },
                 attributes: ['name'],
-                messages: ['name length should be between 1 and 100'],
+                messages: ['name length should be between 1 and 5'],
             },
             {
                 validator: {
@@ -35,7 +35,7 @@ class UserModel extends Model {
 }
 
 export default class IndexController extends Controller {
-    public override async run(_request: HttpRequest): Promise<Response> {
+    public override async run(_request: HttpRequest): Promise<HttpResponse> {
         const model = new UserModel();
         model.setAttributes({
             name: 'zhangsan',
