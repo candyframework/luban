@@ -39,8 +39,5 @@ export default abstract class AbstractView implements IView {
      * @param {string} file View file path
      * @param {any} parameters
      */
-    protected abstract renderFile<T>(
-        file: string,
-        parameters: JSONCompatible<T> | null,
-    ): Promise<string>;
+    protected abstract renderFile<T>(file: string, parameters: JSONCompatible<T> | null): Promise<string>;
 }

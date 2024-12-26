@@ -212,9 +212,7 @@ export default class Application extends AbstractApplication {
         }
 
         clazz = this.defaultControllerNamespace +
-            '/' +
-            viewPath +
-            '/' +
+            '/' + viewPath + '/' +
             StringHelper.ucFirst(controllerId) + 'Controller';
 
         return Candy.createObjectAsString(clazz, {

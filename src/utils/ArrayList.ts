@@ -23,13 +23,7 @@ export default class ArrayList<T> implements IList<T> {
      * @param {number} destPos Start position of the target array
      * @param {number} length The number of elements to be copied
      */
-    static arrayCopy(
-        src: any[],
-        srcPos: number,
-        dest: any[],
-        destPos: number,
-        length: number,
-    ): void {
+    static arrayCopy(src: any[], srcPos: number, dest: any[], destPos: number, length: number): void {
         let copied = 0;
         for (let i = srcPos; i < src.length; i++) {
             if (destPos < dest.length) {

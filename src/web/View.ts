@@ -126,10 +126,7 @@ export default class View extends AbstractView {
     /**
      * @inheritdoc
      */
-    protected override renderFile<T>(
-        _file: string,
-        _parameters: JSONCompatible<T> | null,
-    ): Promise<string> {
+    protected override renderFile<T>(_file: string, _parameters: JSONCompatible<T> | null): Promise<string> {
         throw new ImplementException('The renderFile() method not implemented.');
     }
 }

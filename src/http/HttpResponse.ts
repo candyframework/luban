@@ -198,7 +198,6 @@ export default class HttpResponse {
         httpOnly: boolean = false,
     ): HttpResponse {
         const cookie = new Cookie(name, value, expires, path, domain, secure, httpOnly);
-
         this.headers.append('Set-Cookie', cookie.toString());
 
         return this;

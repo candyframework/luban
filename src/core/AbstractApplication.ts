@@ -66,9 +66,7 @@ export default abstract class AbstractApplication implements IApplication {
 
     protected init(config: ApplicationConfig): void {
         if (undefined === config.id) {
-            throw new InvalidConfigException(
-                'The "id" configuration of the Application is missing.',
-            );
+            throw new InvalidConfigException('The "id" configuration of the Application is missing.');
         }
 
         if (undefined !== config.appPath) {

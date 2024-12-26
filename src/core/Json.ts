@@ -13,7 +13,5 @@ export type NotAssignableToJson =
     | Function;
 
 export type JSONCompatible<T> = unknown extends T ? never : {
-    [P in keyof T]: T[P] extends JSONValue ? T[P]
-        : T[P] extends NotAssignableToJson ? never
-        : JSONCompatible<T[P]>;
+    [P in keyof T]: T[P] extends JSONValue ? T[P] : T[P] extends NotAssignableToJson ? never : JSONCompatible<T[P]>;
 };
