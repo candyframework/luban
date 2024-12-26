@@ -78,7 +78,7 @@ export default class Application extends AbstractApplication implements IRestApp
         const ret = this.resolveRoutes(route, request.getRequestMethod());
 
         if (null === ret) {
-            throw new NotFoundException('The route requested is not found');
+            throw new NotFoundException('The route requested is not found.');
         }
 
         return ret.handler(request, ret.parameters);
