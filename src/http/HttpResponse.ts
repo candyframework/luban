@@ -135,9 +135,7 @@ export default class HttpResponse {
         this.statusCode = value;
 
         if ('' === text) {
-            this.statusText = undefined !== HttpResponse.httpStatuses[String(value)]
-                ? HttpResponse.httpStatuses[String(value)]
-                : '';
+            this.statusText = undefined !== HttpResponse.httpStatuses[String(value)] ? HttpResponse.httpStatuses[String(value)] : '';
         } else {
             this.statusText = text;
         }
@@ -199,15 +197,7 @@ export default class HttpResponse {
         secure: boolean = false,
         httpOnly: boolean = false,
     ): HttpResponse {
-        const cookie = new Cookie(
-            name,
-            value,
-            expires,
-            path,
-            domain,
-            secure,
-            httpOnly,
-        );
+        const cookie = new Cookie(name, value, expires, path, domain, secure, httpOnly);
 
         this.headers.append('Set-Cookie', cookie.toString());
 

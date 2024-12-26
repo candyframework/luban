@@ -160,9 +160,7 @@ export default class HttpRequest extends AbstractRequest {
      */
     public getHostInfo(): string {
         const xfp = this.request.headers.get('x-forwarded-protocol');
-        const protocol = this.connectionInfo?.encrypted || (null !== xfp && 'https' === xfp)
-            ? 'https'
-            : 'http';
+        const protocol = this.connectionInfo?.encrypted || (null !== xfp && 'https' === xfp) ? 'https' : 'http';
 
         const host = protocol + '://' + this.request.headers.get('host');
         return host;

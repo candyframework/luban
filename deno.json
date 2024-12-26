@@ -65,7 +65,7 @@
     "license": "MIT",
     "fmt": {
         "useTabs": false,
-        "lineWidth": 100,
+        "lineWidth": 150,
         "indentWidth": 4,
         "semiColons": true,
         "singleQuote": true,

@@ -29,10 +29,9 @@ export default class Candy {
         // alias
         const pos = alias.indexOf('/');
         const root = -1 === pos ? alias : alias.substring(0, pos);
-        if (Candy.pathAliases.has(root)) {
-            return -1 === pos
-                ? Candy.pathAliases.get(root)!
-                : Candy.pathAliases.get(root) + alias.substring(pos);
+        const path = Candy.pathAliases.get(root);
+        if (undefined !== path) {
+            return -1 === pos ? path : path + alias.substring(pos);
         }
 
         return '';
