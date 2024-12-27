@@ -30,11 +30,7 @@ export default class RequiredValidator extends AbstractValidator {
     public validate(attributeName: string, attributeValue: any): string {
         const info = this.getMessage(attributeName);
 
-        if (
-            undefined === attributeValue ||
-            '' === attributeValue ||
-            null === attributeValue
-        ) {
+        if (undefined === attributeValue || '' === attributeValue || null === attributeValue) {
             return '' === info ? attributeName + ' is required' : info;
         }
 

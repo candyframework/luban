@@ -30,7 +30,7 @@ export default class StringValidator extends AbstractValidator {
     /**
      * Trim the string
      */
-    public trim: boolean = true;
+    public trim: boolean = false;
 
     /**
      * Minimum length
@@ -61,10 +61,7 @@ export default class StringValidator extends AbstractValidator {
         }
 
         if (attributeValue.length < this.minLength || attributeValue.length > this.maxLength) {
-            return '' === info
-                ? 'Length of the ' + attributeName + ' should be between ' + this.minLength +
-                    ' and ' + this.maxLength
-                : info;
+            return '' === info ? 'Length of the ' + attributeName + ' should be between ' + this.minLength + ' and ' + this.maxLength : info;
         }
 
         return '';
