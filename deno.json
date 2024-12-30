@@ -1,6 +1,6 @@
 {
     "name": "@candy/framework",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "exports": {
         ".": "./src/mod.ts",
         "./core/NotFoundException": "./src/core/NotFoundException.ts",
@@ -8,6 +8,7 @@
         "./core/Json": "./src/core/Json.ts",
         "./core/IEvent": "./src/core/IEvent.ts",
         "./core/ActionEvent": "./src/core/ActionEvent.ts",
+        "./core/ImplementionException": "./src/core/ImplementionException.ts",
         "./core/FilterChain": "./src/core/FilterChain.ts",
         "./core/InvalidConfigEception": "./src/core/InvalidConfigEception.ts",
         "./core/IFilter": "./src/core/IFilter.ts",
@@ -33,6 +34,9 @@
         "./web/Application": "./src/web/Application.ts",
         "./web/Controller": "./src/web/Controller.ts",
         "./Candy": "./src/Candy.ts",
+        "./utils/IQueue": "./src/utils/IQueue.ts",
+        "./utils/Stack": "./src/utils/Stack.ts",
+        "./utils/LinkedQueue": "./src/utils/LinkedQueue.ts",
         "./utils/IList": "./src/utils/IList.ts",
         "./utils/ArrayList": "./src/utils/ArrayList.ts",
         "./utils/DataNode": "./src/utils/DataNode.ts",

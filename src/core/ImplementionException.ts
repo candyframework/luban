@@ -7,4 +7,4 @@ import AbstractException from './AbstractException.ts';
 /**
  * Method not implemented exception
  */
-export default class ImplementException extends AbstractException {}
+export default class ImplementionException extends AbstractException {}
