@@ -10,7 +10,7 @@ export default interface IQueue<T> {
     /**
      * Add an item to the end of this queue
      *
-     * @param {any} item The item to be added
+     * @param {T} item The item to be added
      */
     enqueue(item: T): void;
 
@@ -24,7 +24,7 @@ export default interface IQueue<T> {
     /**
      * Remove an item from the queue
      *
-     * @param {any} item The item to be removed
+     * @param {T} item The item to be removed
      * @returns {boolean} true if the item was removed, false if the item was not found
      */
     remove(item: T): boolean;

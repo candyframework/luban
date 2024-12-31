@@ -2,17 +2,15 @@
  * @author afu
  * @license MIT
  */
-import { toFileUrl } from '@std/path/to-file-url';
 import type IApplication from './core/IApplication.ts';
+import FileHelper from './helpers/FileHelper.ts';
 
 /**
  * Asistant class
  */
 export default class Candy {
     static defaultExtension: string = '.ts';
-
     static application: IApplication | null = null;
-
     static pathAliases: Map<string, string> = new Map([['@candy', import.meta.dirname!]]);
 
     /**
@@ -70,10 +68,14 @@ export default class Candy {
 
     static async createObjectAsString(classPath: string, parameters: any = null): Promise<any> {
         const realClass = Candy.getPathAlias('@' + classPath) + Candy.defaultExtension;
-        const path = toFileUrl(realClass).toString();
+        const path = Candy.toFilePath(realClass);
         const ClassName = await import(path);
 
         return new ClassName.default(parameters);
+    }
+
+    static toFilePath(absolutePath: string): string {
+        return 'file://' + FileHelper.normalizePath(absolutePath, '/');
     }
 
     static configure(object: any, properties: any): any {

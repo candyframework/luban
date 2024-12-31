@@ -17,13 +17,13 @@ export default class ArrayList<T> implements IList<T> {
     /**
      * Copy an array
      *
-     * @param {any[]} src Array to be copied
+     * @param {T[]} src Array to be copied
      * @param {number} srcPos Start position of the source array
-     * @param {any[]} dest Target array
+     * @param {T[]} dest Target array
      * @param {number} destPos Start position of the target array
      * @param {number} length The number of elements to be copied
      */
-    static arrayCopy(src: any[], srcPos: number, dest: any[], destPos: number, length: number): void {
+    static arrayCopy<T>(src: T[], srcPos: number, dest: T[], destPos: number, length: number): void {
         let copied = 0;
         for (let i = srcPos; i < src.length; i++) {
             if (destPos < dest.length) {
@@ -77,38 +77,34 @@ export default class ArrayList<T> implements IList<T> {
             newCapacity = Number.MAX_SAFE_INTEGER;
         }
 
-        const dest = new Array(newCapacity);
+        const dest = new Array<T>(newCapacity);
         ArrayList.arrayCopy(this.elementData, 0, dest, 0, Math.min(oldCapacity, newCapacity));
         this.elementData = dest;
     }
 
     /**
-     * Returns the number of elements in this list
+     * @inheritdoc
      */
     public size(): number {
         return this.length;
     }
 
     /**
-     * Returns true if this list contains no elements
+     * @inheritdoc
      */
     public isEmpty(): boolean {
         return 0 === this.length;
     }
 
     /**
-     * Returns true if this list contains the specified element
-     *
-     * @param {any} element
+     * @inheritdoc
      */
     public contains(element: T): boolean {
         return this.indexOf(element) >= 0;
     }
 
     /**
-     * Returns the index of the first occurrence of the specified element in this list, or -1 if does not contain the element
-     *
-     * @param {any} element
+     * @inheritdoc
      */
     public indexOf(element: T): number {
         for (let i = 0; i < this.length; i++) {
@@ -121,9 +117,7 @@ export default class ArrayList<T> implements IList<T> {
     }
 
     /**
-     * Returns the index of the last occurrence of the specified element in this list, or -1 if does not contain the element
-     *
-     * @param {any} element
+     * @inheritdoc
      */
     public lastIndexOf(element: T): number {
         for (let i = this.length - 1; i >= 0; i--) {
@@ -136,9 +130,7 @@ export default class ArrayList<T> implements IList<T> {
     }
 
     /**
-     * Appends the specified element to the end of this list
-     *
-     * @param {any} element The element to be appended to this list
+     * @inheritdoc
      */
     public add(element: T): void {
         this.ensureCapacity(this.length + 1);
@@ -147,10 +139,7 @@ export default class ArrayList<T> implements IList<T> {
     }
 
     /**
-     * Inserts the specified element at the specified position
-     *
-     * @param {number} index The position to insert
-     * @param {any} element The element to insert
+     * @inheritdoc
      */
     public insert(index: number, element: T): boolean {
         if (index > this.length) {
@@ -174,9 +163,7 @@ export default class ArrayList<T> implements IList<T> {
     }
 
     /**
-     * Removes the first occurrence of the specified element from this list
-     *
-     * @param {any} element
+     * @inheritdoc
      */
     public remove(element: T): boolean {
         let move = 0;
@@ -195,9 +182,7 @@ export default class ArrayList<T> implements IList<T> {
     }
 
     /**
-     * Removes the element at the specified position in this list
-     *
-     * @param {number} index
+     * @inheritdoc
      */
     public removeAt(index: number): T | null {
         if (index >= this.length) {
@@ -215,9 +200,7 @@ export default class ArrayList<T> implements IList<T> {
     }
 
     /**
-     * Returns the element at the specified position in this list
-     *
-     * @param {number} index
+     * @inheritdoc
      */
     public get(index: number): T | null {
         if (index >= this.length) {
@@ -228,10 +211,7 @@ export default class ArrayList<T> implements IList<T> {
     }
 
     /**
-     * Replaces the element in the list with the specified element
-     *
-     * @param {number} index
-     * @param {any} element
+     * @inheritdoc
      */
     public set(index: number, element: T): T | null {
         if (index >= this.length) {
@@ -245,7 +225,7 @@ export default class ArrayList<T> implements IList<T> {
     }
 
     /**
-     * Removes all of the elements from this list
+     * @inheritdoc
      */
     public clear(): void {
         for (let i = 0; i < this.length; i++) {

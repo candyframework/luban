@@ -127,32 +127,28 @@ export default class LinkedList<T> implements IList<T> {
     }
 
     /**
-     * Returns the number of elements in this list
+     * @inheritdoc
      */
     public size(): number {
         return this.length;
     }
 
     /**
-     * Returns true if this list contains no elements
+     * @inheritdoc
      */
     public isEmpty(): boolean {
         return 0 === this.length;
     }
 
     /**
-     * Returns true if this list contains the specified element
-     *
-     * @param {any} element
+     * @inheritdoc
      */
     public contains(element: T): boolean {
         return this.indexOf(element) >= 0;
     }
 
     /**
-     * Returns the index of the first occurrence of the specified element in this list, or -1 if does not contain the element
-     *
-     * @param {any} element
+     * @inheritdoc
      */
     public indexOf(element: T): number {
         let index = 0;
@@ -168,9 +164,7 @@ export default class LinkedList<T> implements IList<T> {
     }
 
     /**
-     * Returns the index of the last occurrence of the specified element in this list, or -1 if does not contain the element
-     *
-     * @param {any} element
+     * @inheritdoc
      */
     public lastIndexOf(element: T): number {
         let index = this.length;
@@ -186,19 +180,14 @@ export default class LinkedList<T> implements IList<T> {
     }
 
     /**
-     * Appends the specified element to the end of this list
-     *
-     * @param {any} element
+     * @inheritdoc
      */
     public add(element: T): void {
         this.linkLast(element);
     }
 
     /**
-     * Inserts the specified element at the specified position
-     *
-     * @param {number} index
-     * @param {any} element
+     * @inheritdoc
      */
     public insert(index: number, element: T): boolean {
         if (index > this.length) {
@@ -215,9 +204,7 @@ export default class LinkedList<T> implements IList<T> {
     }
 
     /**
-     * Removes the first occurrence of the specified element from this list
-     *
-     * @param {any} element
+     * @inheritdoc
      */
     public remove(element: T): boolean {
         for (let x = this.headNode; null !== x; x = x.next) {
@@ -231,9 +218,7 @@ export default class LinkedList<T> implements IList<T> {
     }
 
     /**
-     * Removes the element at the specified position in this list
-     *
-     * @param {number} index
+     * @inheritdoc
      */
     public removeAt(index: number): T | null {
         if (index >= this.length) {
@@ -244,9 +229,7 @@ export default class LinkedList<T> implements IList<T> {
     }
 
     /**
-     * Returns the element at the specified position in this list
-     *
-     * @param {number} index
+     * @inheritdoc
      */
     public get(index: number): T | null {
         if (index >= this.length) {
@@ -257,10 +240,7 @@ export default class LinkedList<T> implements IList<T> {
     }
 
     /**
-     * Replaces the element in the list with the specified element
-     *
-     * @param {number} index
-     * @param {any} element
+     * @inheritdoc
      */
     public set(index: number, element: T): T | null {
         if (index >= this.length) {
@@ -275,7 +255,7 @@ export default class LinkedList<T> implements IList<T> {
     }
 
     /**
-     * Removes all of the elements from this list
+     * @inheritdoc
      */
     public clear(): void {
         for (let next = null, x = this.headNode; null !== x;) {

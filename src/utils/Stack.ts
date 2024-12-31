@@ -7,7 +7,7 @@ export default class Stack<T> extends ArrayList<T> {
     /**
      * Push an item onto the top of this stack
      *
-     * @param {any} item
+     * @param {T} item
      */
     public push(item: T): void {
         this.add(item);
