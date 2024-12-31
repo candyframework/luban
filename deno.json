@@ -76,6 +76,5 @@
         "proseWrap": "preserve",
         "include": ["./"],
         "exclude": [".git/", ".vscode/"]
-    },
-    "imports": {}
+    }
 }
