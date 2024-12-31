@@ -6,7 +6,7 @@ import type { ControllerContext } from './Controller.ts';
 import type { JSONCompatible } from '../core/Json.ts';
 import AbstractView from '../core/AbstractView.ts';
 import Candy from '../Candy.ts';
-import ImplementionException from '../core/ImplementionException.ts';
+import ImplementationException from '../core/ImplementationException.ts';
 
 /**
  * Web view
@@ -127,6 +127,6 @@ export default class View extends AbstractView {
      * @inheritdoc
      */
     protected override renderFile<T>(_file: string, _parameters: JSONCompatible<T> | null): Promise<string> {
-        throw new ImplementionException('The renderFile() method not implemented.');
+        throw new ImplementationException('The renderFile() method not implemented.');
     }
 }
