@@ -2,6 +2,9 @@
 node_modules
 package-lock.json
 yarn.lock
+deno.lock
+.vscode
+.git
 
 coverage
 .nyc_output
