@@ -5,8 +5,4 @@ yarn.lock
 deno.lock
 .vscode
 .git
-
-coverage
-.nyc_output
-codecov
-codecov.exe
+.editorconfig
