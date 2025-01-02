@@ -3,12 +3,12 @@
  * @license MIT
  */
 import AbstractRequest from '../core/AbstractRequest.ts';
-import HttpException from '../core/HttpException.ts';
 import CookieCollection from './CookieCollection.ts';
 import HeaderCollection from './HeaderCollection.ts';
+import ImplementationException from '../core/ImplementationException.ts';
 
 export type ConnectionInfo = {
-    encrypted?: boolean;
+    encrypted: boolean;
     info: {
         remoteAddr: {
             hostname: string;
@@ -21,7 +21,7 @@ export type ConnectionInfo = {
  * HTTP request
  */
 export default class HttpRequest extends AbstractRequest {
-    private connectionInfo: ConnectionInfo | null = null;
+    private connectionInfo: ConnectionInfo;
 
     /**
      * http headers
@@ -74,7 +74,7 @@ export default class HttpRequest extends AbstractRequest {
      * @returns {string}
      */
     public getParameter(_parameter: string, _defaultValue: string = ''): string {
-        throw new HttpException('Method not implemented.');
+        throw new ImplementationException('The method getParameter() is not implemented.');
     }
 
     /**
@@ -138,7 +138,7 @@ export default class HttpRequest extends AbstractRequest {
         const forward = this.request.headers.get('x-forwarded-for');
 
         if (null === forward) {
-            return this.connectionInfo?.info.remoteAddr.hostname ?? '';
+            return this.connectionInfo.info.remoteAddr.hostname;
         }
 
         return forward.indexOf(',') > 0 ? forward.substring(0, forward.indexOf(',')) : forward;
@@ -160,7 +160,7 @@ export default class HttpRequest extends AbstractRequest {
      */
     public getHostInfo(): string {
         const xfp = this.request.headers.get('x-forwarded-protocol');
-        const protocol = this.connectionInfo?.encrypted || (null !== xfp && 'https' === xfp) ? 'https' : 'http';
+        const protocol = this.connectionInfo.encrypted || (null !== xfp && 'https' === xfp) ? 'https' : 'http';
 
         const host = protocol + '://' + this.request.headers.get('host');
         return host;
