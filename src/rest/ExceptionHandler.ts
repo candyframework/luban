@@ -3,7 +3,7 @@
  * @license MIT
  */
 import type Application from './Application.ts';
-import type IException from '../core/IException.ts';
+import type AbstractException from '../core/AbstractException.ts';
 import AbstractExceptionHandler from '../core/AbstractExceptionHandler.ts';
 import HttpResponse from '../http/HttpResponse.ts';
 
@@ -18,9 +18,9 @@ export default class ExceptionHandler extends AbstractExceptionHandler {
     /**
      * @inheritdoc
      */
-    public handlerException(exception: IException): HttpResponse {
+    public handlerException(exception: AbstractException): HttpResponse {
         const app = this.application;
-        const msg = app.debug ? exception.message : 'The server encountered an internal error';
+        const msg = app.debug ? exception.message + '\n' + exception.stack : 'The server encountered an internal error';
 
         return HttpResponse.fromText(msg);
     }

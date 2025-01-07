@@ -4,8 +4,8 @@
  */
 import type HttpRequest from '../http/HttpRequest.ts';
 import type HttpResponse from '../http/HttpResponse.ts';
+import type AbstractException from './AbstractException.ts';
 import type AbstractExceptionHandler from './AbstractExceptionHandler.ts';
-import type IException from './IException.ts';
 
 /**
  * Application interface
@@ -64,7 +64,7 @@ export default interface IApplication {
     /**
      * Handle exception
      *
-     * @param {IException} exception Exception instance
+     * @param {AbstractException} exception Exception instance
      */
-    handlerException(exception: IException): HttpResponse;
+    handlerException(exception: AbstractException): HttpResponse;
 }

@@ -2,11 +2,11 @@
  * @author afu
  * @license MIT
  */
-import type IException from '../core/IException.ts';
 import type HttpRequest from '../http/HttpRequest.ts';
 import type HttpResponse from '../http/HttpResponse.ts';
 import type Interceptor from './Interceptor.ts';
 import type IResource from '../core/IResource.ts';
+import type AbstractException from '../core/AbstractException.ts';
 import AbstractApplication, { type ApplicationConfig } from '../core/AbstractApplication.ts';
 import ExceptionHandler from './ExceptionHandler.ts';
 import StringHelper from '../helpers/StringHelper.ts';
@@ -139,7 +139,7 @@ export default class Application extends AbstractApplication {
     /**
      * @inheritdoc
      */
-    public override handlerException(exception: IException): HttpResponse {
+    public override handlerException(exception: AbstractException): HttpResponse {
         const handler = new this.exceptionHandler(this);
 
         return handler.handlerException(exception);
