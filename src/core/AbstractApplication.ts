@@ -2,11 +2,11 @@
  * @author afu
  * @license MIT
  */
-import type IApplication from './IApplication.ts';
 import type HttpRequest from '../http/HttpRequest.ts';
 import type HttpResponse from '../http/HttpResponse.ts';
-import type AbstractException from './AbstractException.ts';
 import type AbstractExceptionHandler from './AbstractExceptionHandler.ts';
+import type IApplication from './IApplication.ts';
+import type IException from './IException.ts';
 import Candy from '../Candy.ts';
 import InvalidConfigException from './InvalidConfigEception.ts';
 
@@ -119,5 +119,5 @@ export default abstract class AbstractApplication implements IApplication {
     /**
      * @inheritdoc
      */
-    public abstract handlerException(exception: AbstractException): HttpResponse;
+    public abstract handlerException(exception: IException): HttpResponse;
 }

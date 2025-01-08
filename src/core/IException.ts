@@ -8,6 +8,11 @@
  */
 export default interface IException {
     /**
+     * Call stack
+     */
+    stack?: string;
+
+    /**
      * Exception message
      */
     message: string;

@@ -4,7 +4,7 @@
  */
 import type IApplication from './core/IApplication.ts';
 import type HttpResponse from './http/HttpResponse.ts';
-import type AbstractException from './core/AbstractException.ts';
+import type IException from './core/IException.ts';
 import HttpRequest, { type ConnectionInfo } from './http/HttpRequest.ts';
 
 /**
@@ -25,7 +25,7 @@ export default class Main {
         try {
             res = await this.application.requestListener(httpRequest);
         } catch (e) {
-            res = this.application.handlerException(e as AbstractException);
+            res = this.application.handlerException(e as IException);
         }
 
         return res.toResponse();

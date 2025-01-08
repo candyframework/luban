@@ -5,12 +5,12 @@
 import type IRestApplication from './IRestApplication.ts';
 import type HttpRequest from '../http/HttpRequest.ts';
 import type HttpResponse from '../http/HttpResponse.ts';
-import type AbstractException from '../core/AbstractException.ts';
+import type IException from '../core/IException.ts';
 import AbstractApplication, { type ApplicationConfig } from '../core/AbstractApplication.ts';
+import FastRouter, { type Route, type RouteParameters } from './FastRouter.ts';
 import ExceptionHandler from './ExceptionHandler.ts';
 import NotFoundException from '../core/NotFoundException.ts';
 import Candy from '../Candy.ts';
-import FastRouter, { type Route, type RouteParameters } from './FastRouter.ts';
 
 /**
  * Rest application configuration
@@ -87,7 +87,7 @@ export default class Application extends AbstractApplication implements IRestApp
     /**
      * @inheritdoc
      */
-    public override handlerException(exception: AbstractException): HttpResponse {
+    public override handlerException(exception: IException): HttpResponse {
         const handler = new this.exceptionHandler(this);
 
         return handler.handlerException(exception);
