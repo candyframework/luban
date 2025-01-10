@@ -2,9 +2,9 @@
  * @author afu
  * @license MIT
  */
+import type Cookie from './Cookie.ts';
 import type { JSONCompatible } from '../core/Json.ts';
 import HttpException from '../core/HttpException.ts';
-import Cookie from './Cookie.ts';
 
 /**
  * HTTP response
@@ -124,8 +124,8 @@ export default class HttpResponse {
     /**
      * Set http status code
      *
-     * @param {number} value the status code
-     * @param {string} text the status text
+     * @param {number} value The status code
+     * @param {string} text The status text
      */
     public setStatusCode(value: number, text: string = ''): HttpResponse {
         if (value < 100 || value >= 600) {
@@ -146,7 +146,7 @@ export default class HttpResponse {
     /**
      * Get header by name
      *
-     * @param {string} name the name of the header
+     * @param {string} name The name of the header
      * @returns {string | null}
      */
     public getHeader(name: string): string | null {
@@ -154,10 +154,10 @@ export default class HttpResponse {
     }
 
     /**
-     * Set header
+     * Set a header
      *
-     * @param {string} name the name of the header
-     * @param {string} value the value of the header
+     * @param {string} name The name of the header
+     * @param {string} value The value of the header
      */
     public setHeader(name: string, value: string): HttpResponse {
         this.headers.set(name, value);
@@ -177,7 +177,7 @@ export default class HttpResponse {
     /**
      * Set content
      *
-     * @param {string} content 实体内容
+     * @param {string} content The content of the response
      */
     public setContent(content: string): HttpResponse {
         this.content = content;
@@ -186,18 +186,15 @@ export default class HttpResponse {
     }
 
     /**
-     * Set a cookie
+     * Set one or more cookies
+     *
+     * ```typescript
+     * const response = new HttpResponse();
+     * response.setCookie(new Cookie('name', 'value'));
+     * response.setCookie(new Cookie('name2', 'value2', Date.now() + 1000 * 60 * 10));
+     * ```
      */
-    public setCookie(
-        name: string,
-        value: string,
-        expires: number = 0,
-        path: string = '',
-        domain: string = '',
-        secure: boolean = false,
-        httpOnly: boolean = false,
-    ): HttpResponse {
-        const cookie = new Cookie(name, value, expires, path, domain, secure, httpOnly);
+    public setCookie(cookie: Cookie): HttpResponse {
         this.headers.append('Set-Cookie', cookie.toString());
 
         return this;

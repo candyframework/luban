@@ -40,7 +40,7 @@ export default class HeaderCollection {
     /**
      * Get a header by name
      *
-     * @param {string} name the name of the header
+     * @param {string} name The name of the header
      * @returns {string | undefined}
      */
     public get(name: string): string | undefined {
@@ -57,8 +57,8 @@ export default class HeaderCollection {
     /**
      * Add a header, if there is a duplicate name, it will be overwritten
      *
-     * @param {string} name the name of the header
-     * @param {string} value the value of the header
+     * @param {string} name The name of the header
+     * @param {string} value The value of the header
      */
     public set(name: string, value: string): void {
         name = name.toLowerCase();
@@ -69,8 +69,8 @@ export default class HeaderCollection {
     /**
      * Add a header, if there is a duplicate name, it will be appended
      *
-     * @param {string} name the name of the header
-     * @param {string} value the value of the header
+     * @param {string} name The name of the header
+     * @param {string} value The value of the header
      */
     public add(name: string, value: string): void {
         name = name.toLowerCase();
@@ -87,7 +87,7 @@ export default class HeaderCollection {
     /**
      * Check if a header exists
      *
-     * @param {string} name the name of the header
+     * @param {string} name The name of the header
      * @returns {boolean}
      */
     public has(name: string): boolean {
@@ -99,7 +99,7 @@ export default class HeaderCollection {
     /**
      * Delete a header
      *
-     * @param {string} name the name of the header
+     * @param {string} name The name of the header
      * @returns {boolean}
      */
     public remove(name: string): boolean {

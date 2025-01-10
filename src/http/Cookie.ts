@@ -42,13 +42,13 @@ export default class Cookie {
     /**
      * constructor
      *
-     * @param {string} name cookie name
-     * @param {string} value cookie value
-     * @param {number} expires cookie expires time in milliseconds
-     * @param {string} path cookie path
-     * @param {string} domain cookie domain
-     * @param {boolean} secure cookie secure
-     * @param {boolean} httpOnly cookie httpOnly
+     * @param {string} name Cookie name
+     * @param {string} value Cookie value
+     * @param {number} expires Cookie expires time in milliseconds
+     * @param {string} path Cookie path
+     * @param {string} domain Cookie domain
+     * @param {boolean} secure Whether the cookie is secure
+     * @param {boolean} httpOnly Whether the cookie is httpOnly
      */
     constructor(
         name: string,

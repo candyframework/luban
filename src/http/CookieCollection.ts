@@ -50,8 +50,8 @@ export default class CookieCollection {
     /**
      * Add a cookie, if there is a duplicate name, it will be overwritten
      *
-     * @param {string} name the name of the cookie
-     * @param {string} value the value of the cookie
+     * @param {string} name The name of the cookie
+     * @param {string} value The value of the cookie
      */
     public set(name: string, value: string): void {
         name = name.toLowerCase();
@@ -62,7 +62,7 @@ export default class CookieCollection {
     /**
      * Check if a cookie exists
      *
-     * @param {string} name the name of the cookie
+     * @param {string} name The name of the cookie
      * @returns {boolean}
      */
     public has(name: string): boolean {
@@ -74,7 +74,7 @@ export default class CookieCollection {
     /**
      * Delete a cookie
      *
-     * @param {string} name the name of the cookie
+     * @param {string} name The name of the cookie
      * @returns {boolean}
      */
     public remove(name: string): boolean {
