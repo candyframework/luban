@@ -7,6 +7,7 @@ import type { Rule } from './IModel.ts';
 import type AbstractValidator from './AbstractValidator.ts';
 import Event from '../core/Event.ts';
 import ModelException from '../core/ModelException.ts';
+import Candy from '../Candy.ts';
 
 /**
  * The base model class
@@ -74,20 +75,13 @@ export default class Model extends Event implements IModel {
         }
 
         const ret = [];
-
         for (let i = 0; i < rules.length; i++) {
-            const instance = new rules[i].validator.classType() as AbstractValidator;
+            const instance = Candy.createObject(rules[i].validator) as AbstractValidator;
             instance.attributes = rules[i].attributes;
             // messages is optional
             instance.messages = undefined === rules[i].messages ? null : rules[i].messages;
             instance.attributeValues = this.attributes;
 
-            for (const k in rules[i].validator) {
-                if ('classType' !== k) {
-                    // @ts-ignore todo
-                    instance[k] = rules[i].validator[k];
-                }
-            }
             ret.push(instance);
         }
 

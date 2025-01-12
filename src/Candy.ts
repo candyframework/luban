@@ -66,6 +66,24 @@ export default class Candy {
         Candy.pathAliases.delete(alias);
     }
 
+    /**
+     * Create an object with the specified configuration
+     */
+    static createObject<T>(clazz: { classType?: new () => T; [key: string]: any }): T | null {
+        if (undefined === clazz.classType) {
+            return null;
+        }
+
+        const instance = new clazz.classType();
+        delete clazz.classType;
+        Candy.configure(instance, clazz);
+
+        return instance;
+    }
+
+    /**
+     * Create an object with the specified class path
+     */
     static async createObjectAsString(classPath: string, parameters: any = null): Promise<any> {
         const realClass = Candy.getPathAlias('@' + classPath) + Candy.defaultExtension;
         const path = Candy.toFilePath(realClass);
