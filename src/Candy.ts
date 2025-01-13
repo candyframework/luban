@@ -69,13 +69,10 @@ export default class Candy {
     /**
      * Create an object with the specified configuration
      */
-    static createObject<T>(clazz: { classType?: new () => T; [key: string]: any }): T | null {
-        if (undefined === clazz.classType) {
-            return null;
-        }
-
+    static createObject<T>(clazz: { classType: new () => T; [key: string]: any }): T {
         const instance = new clazz.classType();
-        delete clazz.classType;
+
+        Reflect.deleteProperty(clazz, 'classType');
         Candy.configure(instance, clazz);
 
         return instance;
