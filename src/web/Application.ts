@@ -119,14 +119,16 @@ export default class Application extends AbstractApplication {
      * @inheritdoc
      */
     public override async requestListener(request: HttpRequest): Promise<HttpResponse> {
-        const route = new URL(request.request.url).pathname;
-        const controller = await this.createController(route);
+        if (null !== this.interceptor) {
+            return new this.interceptor(this).run(request);
+        }
 
-        if (null === controller) {
+        const route = new URL(request.request.url).pathname;
+        if (route.includes('//')) {
             throw new NotFoundException('The route requested is not found.');
         }
 
-        // 是否继承自框架控制器
+        const controller = await this.createController(route);
         if (!(controller instanceof Controller)) {
             return controller.run(request);
             // return Reflect.apply(controller['run'], controller, [request]);
@@ -145,24 +147,14 @@ export default class Application extends AbstractApplication {
         return handler.handlerException(exception);
     }
 
-    private createController(route: string): Promise<IResource | null> {
+    private createController(route: string): Promise<IResource> {
         let moduleId = '';
         let controllerId = '';
         let viewPath = '';
 
         route = StringHelper.lTrimChar(route, '/');
-
         if ('' === route || '/' === route) {
             route = this.defaultRoute;
-        }
-
-        if (route.indexOf('//') >= 0) {
-            return Promise.resolve(null);
-        }
-
-        // 拦截路由
-        if (null !== this.interceptor) {
-            return Promise.resolve(new this.interceptor(this));
         }
 
         let id = '';

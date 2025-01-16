@@ -29,6 +29,6 @@ export default class Interceptor implements IResource {
      * @inheritdoc
      */
     public run(_request: HttpRequest): Promise<HttpResponse> {
-        return Promise.resolve(HttpResponse.fromText('Currently temporarily out of service.'));
+        return Promise.resolve(HttpResponse.fromText('The system is under maintenance.'));
     }
 }
