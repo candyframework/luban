@@ -64,6 +64,14 @@ export default class Application extends AbstractApplication {
 
     /**
      * Interceptor class
+     *
+     * ```typescript
+     * import MyInterceptor from 'somepath/MyInterceptor.ts';
+     *
+     * new Application({
+     *      interceptor: MyInterceptor
+     * });
+     * ```
      */
     public interceptor: typeof Interceptor | null = null;
 
@@ -71,9 +79,11 @@ export default class Application extends AbstractApplication {
      * Custom routes map
      *
      * ```typescript
-     * {
-     *      user: 'app/controllers/user/UserController'
-     * }
+     * new Application({
+     *      routesMap: {
+     *          user: 'app/controllers/user/UserController'
+     *      }
+     * });
      * ```
      */
     public routesMap: Record<string, string> | null = null;
@@ -82,15 +92,25 @@ export default class Application extends AbstractApplication {
      * Register modules and their paths
      *
      * ```typescript
-     * {
-     *      'yearactivity': 'app/modules/newyearactivity'
-     * }
+     * new Application({
+     *      modules: {
+     *          'yearactivity': 'app/modules/newyearactivity'
+     *      }
+     * });
      * ```
      */
     public modules: Record<string, string> | null = null;
 
     /**
      * Default view class
+     *
+     * ```typescript
+     * import MyView from 'somepath/MyView.ts';
+     *
+     * new Application({
+     *      defaultView: MyView
+     * });
+     * ```
      */
     public defaultView: typeof View = View;
 
