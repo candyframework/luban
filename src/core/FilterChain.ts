@@ -42,7 +42,7 @@ export default class FilterChain implements IFilterChain {
         }
 
         const filter = this.filters.get(this.position++) as IFilter;
-        return filter.doFilter(req, this);
+        return await filter.doFilter(req, this);
     }
 
     /**

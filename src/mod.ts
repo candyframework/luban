@@ -6,6 +6,7 @@ import type IApplication from './core/IApplication.ts';
 import type HttpResponse from './http/HttpResponse.ts';
 import type IException from './core/IException.ts';
 import HttpRequest, { type ConnectionInfo } from './http/HttpRequest.ts';
+import Hook from './core/Hook.ts';
 
 /**
  * Framework Entry
@@ -20,9 +21,13 @@ export default class Main {
     private async requestListener(req: Request, connectionInfo: ConnectionInfo): Promise<Response> {
         let res: HttpResponse;
 
-        const httpRequest = new HttpRequest(req, connectionInfo);
-
         try {
+            const hookData = await new Hook(req).run();
+            if (null !== hookData) {
+                return hookData;
+            }
+
+            const httpRequest = new HttpRequest(req, connectionInfo);
             res = await this.application.requestListener(httpRequest);
         } catch (e) {
             res = this.application.handlerException(e as IException);
