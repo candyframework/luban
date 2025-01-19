@@ -6,7 +6,7 @@ export type Middleware = (request: Request, hook: Hook) => Promise<Response | nu
 /**
  * Hook
  *
- * If a middleware returns a `Response`, the program will stop running and send the response to the client.
+ * If a middleware returns a `Response`, the current request will stop and send the response to the client
  */
 export default class Hook {
     /**
