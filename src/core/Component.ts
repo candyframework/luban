@@ -16,7 +16,7 @@ export default class Component extends Event {
 
     constructor() {
         super();
-        this.ensureDeclaredBehaviorsAttached();
+        this.attachDeclaredBehaviors();
     }
 
     /**
@@ -56,7 +56,7 @@ export default class Component extends Event {
     /**
      * Ensure that the declared behaviors are attached to the component
      */
-    private ensureDeclaredBehaviorsAttached(): void {
+    private attachDeclaredBehaviors(): void {
         const behaviors = this.behaviors();
         if (null === behaviors) {
             return;
