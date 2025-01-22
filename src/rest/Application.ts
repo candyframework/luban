@@ -40,7 +40,7 @@ export default class Application extends AbstractApplication implements IRestApp
      *
      * Each method has the follow structure
      *
-     * ```
+     * ```typescript
      * [
      *      { route: route1, handler: callbackFunction1 },
      *      { route: route2, handler: callbackFunction2 }
@@ -58,7 +58,7 @@ export default class Application extends AbstractApplication implements IRestApp
     };
 
     /**
-     * Flag to indicate whether to combine routes
+     * Whether to combine routes
      */
     public combineRoutes: boolean = false;
 
@@ -122,7 +122,7 @@ export default class Application extends AbstractApplication implements IRestApp
     }
 
     /**
-     * Adds a route to the collection
+     * Adds a route to a method
      *
      * @param {string} httpMethod
      * @param {string} route
@@ -136,7 +136,7 @@ export default class Application extends AbstractApplication implements IRestApp
     }
 
     /**
-     * Adds routes to the collection
+     * Adds a route to multiple methods
      *
      * @param {string[]} httpMethods
      * @param {string} route
