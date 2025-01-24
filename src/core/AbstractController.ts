@@ -4,13 +4,13 @@
  */
 import type FilterChain from './FilterChain.ts';
 import type HttpRequest from '../http/HttpRequest.ts';
+import type HttpResponse from '../http/HttpResponse.ts';
 import type IController from './IController.ts';
 import type IFilter from './IFilter.ts';
 import type { JSONCompatible } from './Json.ts';
 import ActionEvent from './ActionEvent.ts';
 import Event from './Event.ts';
 import FilterFactory from './FilterFactory.ts';
-import HttpResponse from '../http/HttpResponse.ts';
 
 /**
  * Abstract controller
@@ -66,13 +66,12 @@ export default abstract class AbstractController extends Event implements IContr
         actionEvent.request = request;
 
         this.beforeAction(actionEvent);
-
-        if (false === actionEvent.valid) {
-            return HttpResponse.fromText(actionEvent.data);
+        if (false === actionEvent.valid && null !== actionEvent.response) {
+            return actionEvent.response;
         }
 
         const res = await this.filterChain.doFilter(request);
-
+        actionEvent.response = res;
         this.afterAction(actionEvent);
 
         return res;

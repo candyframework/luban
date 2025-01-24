@@ -3,6 +3,7 @@
  * @license MIT
  */
 import type HttpRequest from '../http/HttpRequest.ts';
+import type HttpResponse from '../http/HttpResponse.ts';
 
 /**
  * Controller action event
@@ -14,9 +15,9 @@ export default class ActionEvent {
     public request: HttpRequest | null = null;
 
     /**
-     * Data
+     * Http response
      */
-    public data: string = '';
+    public response: HttpResponse | null = null;
 
     /**
      * A flag used to determine whether to stop the request
