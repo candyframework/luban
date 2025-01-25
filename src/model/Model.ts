@@ -155,9 +155,9 @@ export default class Model extends Event implements IModel {
     /**
      * @inheritdoc
      */
-    public async fillFromFormData(request: Request): Promise<boolean> {
+    public async loadFromFormData(request: Request): Promise<boolean> {
         if (null === this.attributes) {
-            throw new ModelException('The model has no attributes to fill.');
+            throw new ModelException('The model has no attributes.');
         }
 
         const form = await request.formData();
@@ -180,15 +180,15 @@ export default class Model extends Event implements IModel {
     /**
      * @inheritdoc
      */
-    public async fillFromJson(request: Request): Promise<boolean> {
+    public async loadFromJson(request: Request): Promise<boolean> {
         if (null === this.attributes) {
-            throw new ModelException('The model has no attributes to fill.');
+            throw new ModelException('The model has no attributes.');
         }
 
         const json = await request.json();
         const fields = Object.getOwnPropertyNames(this.attributes);
 
-        let value;
+        let value: unknown;
         for (const field of fields) {
             if (null !== this.attributesMap && undefined !== this.attributesMap[field]) {
                 value = json[this.attributesMap[field]];

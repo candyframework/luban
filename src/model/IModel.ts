@@ -123,10 +123,10 @@ export default interface IModel {
     /**
      * Fill the model with form data from the request
      */
-    fillFromFormData(request: Request): Promise<boolean>;
+    loadFromFormData(request: Request): Promise<boolean>;
 
     /**
      * Fill the model with json data from the request
      */
-    fillFromJson(request: Request): Promise<boolean>;
+    loadFromJson(request: Request): Promise<boolean>;
 }

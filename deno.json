@@ -1,6 +1,6 @@
 {
     "name": "@candy/framework",
-    "version": "0.1.12",
+    "version": "0.2.0",
     "exports": {
         ".": "./src/mod.ts",
         "./core/NotFoundException": "./src/core/NotFoundException.ts",
