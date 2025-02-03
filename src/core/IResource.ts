@@ -4,7 +4,7 @@
  */
 import type HttpRequest from '../http/HttpRequest.ts';
 import type HttpResponse from '../http/HttpResponse.ts';
-import type IFilter from './IFilter.ts';
+import type { SubFilter } from './IFilter.ts';
 
 /**
  * Class implementing this interface is a resource class
@@ -27,7 +27,7 @@ export default interface IResource {
      * }
      * ```
      */
-    filters(): IFilter[] | null;
+    filters(): SubFilter[] | null;
 
     /**
      * Run the resource

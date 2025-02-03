@@ -6,7 +6,7 @@ import type FilterChain from './FilterChain.ts';
 import type HttpRequest from '../http/HttpRequest.ts';
 import type HttpResponse from '../http/HttpResponse.ts';
 import type IController from './IController.ts';
-import type IFilter from './IFilter.ts';
+import type { SubFilter } from './IFilter.ts';
 import type { JSONCompatible } from './Json.ts';
 import ActionEvent from './ActionEvent.ts';
 import Event from './Event.ts';
@@ -54,7 +54,7 @@ export default abstract class AbstractController extends Event implements IContr
     /**
      * @inheritdoc
      */
-    public filters(): IFilter[] | null {
+    public filters(): SubFilter[] | null {
         return null;
     }
 
