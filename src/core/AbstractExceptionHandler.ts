@@ -3,18 +3,13 @@
  * @license MIT
  */
 import type HttpResponse from '../http/HttpResponse.ts';
-import type IApplication from './IApplication.ts';
 import type IException from './IException.ts';
 
 /**
  * Exception handler
  */
 export default abstract class AbstractExceptionHandler {
-    public application: IApplication;
-
-    constructor(application: IApplication) {
-        this.application = application;
-    }
+    constructor() {}
 
     /**
      * Handle exception

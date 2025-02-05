@@ -20,14 +20,6 @@ import View from './View.ts';
  */
 export type WebApplicationConfig = {
     /**
-     * @link Application#exceptionHandler
-     */
-    exceptionHandler?: typeof ExceptionHandler;
-    /**
-     * @link Application#interceptor
-     */
-    interceptor?: typeof Interceptor | null;
-    /**
      * @link Application#routesMap
      */
     routesMap?: Record<string, string>;
@@ -63,17 +55,9 @@ export default class Application extends AbstractApplication {
     public override exceptionHandler: typeof ExceptionHandler = ExceptionHandler;
 
     /**
-     * Interceptor class
-     *
-     * ```typescript
-     * import MyInterceptor from 'somepath/MyInterceptor.ts';
-     *
-     * new Application({
-     *      interceptor: MyInterceptor
-     * });
-     * ```
+     * @inheritdoc
      */
-    public interceptor: typeof Interceptor | null = null;
+    public override interceptor: typeof Interceptor | null = null;
 
     /**
      * Custom routes map
@@ -140,7 +124,7 @@ export default class Application extends AbstractApplication {
      */
     public override async requestListener(request: HttpRequest): Promise<HttpResponse> {
         if (null !== this.interceptor) {
-            return new this.interceptor(this).run(request);
+            return new this.interceptor().run(request);
         }
 
         const route = new URL(request.request.url).pathname;
@@ -162,7 +146,7 @@ export default class Application extends AbstractApplication {
      * @inheritdoc
      */
     public override handlerException(exception: IException): HttpResponse {
-        const handler = new this.exceptionHandler(this);
+        const handler = new this.exceptionHandler();
 
         return handler.handlerException(exception);
     }

@@ -5,6 +5,7 @@
 import type HttpRequest from '../http/HttpRequest.ts';
 import type HttpResponse from '../http/HttpResponse.ts';
 import type AbstractExceptionHandler from './AbstractExceptionHandler.ts';
+import type AbstractInterceptor from './AbstractInterceptor.ts';
 import type IException from './IException.ts';
 
 /**
@@ -25,6 +26,19 @@ export default interface IApplication {
      * Exception handler class
      */
     exceptionHandler: typeof AbstractExceptionHandler | null;
+
+    /**
+     * Interceptor class
+     *
+     * ```typescript
+     * import MyInterceptor from 'somepath/MyInterceptor.ts';
+     *
+     * new Application({
+     *      interceptor: MyInterceptor
+     * });
+     * ```
+     */
+    interceptor: typeof AbstractInterceptor | null;
 
     /**
      * Set application path

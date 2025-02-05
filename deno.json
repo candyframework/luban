@@ -27,6 +27,7 @@
         "./core/AbstractView": "./src/core/AbstractView.ts",
         "./core/IResource": "./src/core/IResource.ts",
         "./core/AbstractException": "./src/core/AbstractException.ts",
+        "./core/AbstractInterceptor": "./src/core/AbstractInterceptor.ts",
         "./core/Event": "./src/core/Event.ts",
         "./core/IFilterChain": "./src/core/IFilterChain.ts",
         "./core/AbstractApplication": "./src/core/AbstractApplication.ts",
@@ -34,6 +35,7 @@
         "./core/ImplementationException": "./src/core/ImplementationException.ts",
         "./web/ExceptionHandler": "./src/web/ExceptionHandler.ts",
         "./web/Interceptor": "./src/web/Interceptor.ts",
+        "./web/Context": "./src/web/Context.ts",
         "./web/View": "./src/web/View.ts",
         "./web/Application": "./src/web/Application.ts",
         "./web/Controller": "./src/web/Controller.ts",
@@ -63,7 +65,6 @@
         "./helpers/StringHelper": "./src/helpers/StringHelper.ts",
         "./ioc/ServiceLocator": "./src/ioc/ServiceLocator.ts",
         "./ioc/IService": "./src/ioc/IService.ts",
-        "./rest/ExceptionHandler": "./src/rest/ExceptionHandler.ts",
         "./rest/IRestApplication": "./src/rest/IRestApplication.ts",
         "./rest/Application": "./src/rest/Application.ts",
         "./rest/FastRouter": "./src/rest/FastRouter.ts"

@@ -2,7 +2,7 @@
  * @author afu
  * @license MIT
  */
-import type { ControllerContext } from './Controller.ts';
+import type { Context } from './Context.ts';
 import type { JSONCompatible } from '../core/Json.ts';
 import AbstractView from '../core/AbstractView.ts';
 import Candy from '../Candy.ts';
@@ -12,7 +12,7 @@ import ImplementationException from '../core/ImplementationException.ts';
  * Web view
  */
 export default class View extends AbstractView {
-    public context: ControllerContext;
+    public context: Context;
 
     /**
      * Enable layout or not
@@ -49,7 +49,7 @@ export default class View extends AbstractView {
      */
     public footerAssets: string[] | null = null;
 
-    constructor(context: ControllerContext) {
+    constructor(context: Context) {
         super();
         this.context = context;
     }

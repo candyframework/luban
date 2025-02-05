@@ -5,6 +5,7 @@
 import type HttpRequest from '../http/HttpRequest.ts';
 import type HttpResponse from '../http/HttpResponse.ts';
 import type AbstractExceptionHandler from './AbstractExceptionHandler.ts';
+import type AbstractInterceptor from './AbstractInterceptor.ts';
 import type IApplication from './IApplication.ts';
 import type IException from './IException.ts';
 import Candy from '../Candy.ts';
@@ -35,6 +36,11 @@ export type ApplicationConfig = {
     exceptionHandler?: typeof AbstractExceptionHandler;
 
     /**
+     * @link IApplication#Interceptor
+     */
+    interceptor?: typeof AbstractInterceptor;
+
+    /**
      * The path of the application
      */
     appPath?: string;
@@ -57,6 +63,7 @@ export default abstract class AbstractApplication implements IApplication {
     public encoding: string = 'UTF-8';
     public debug: boolean = false;
     public exceptionHandler: typeof AbstractExceptionHandler | null = null;
+    public interceptor: typeof AbstractInterceptor | null = null;
 
     constructor(config: ApplicationConfig) {
         Candy.application = this;

@@ -6,9 +6,10 @@ import type IRestApplication from './IRestApplication.ts';
 import type HttpRequest from '../http/HttpRequest.ts';
 import type HttpResponse from '../http/HttpResponse.ts';
 import type IException from '../core/IException.ts';
+import type Interceptor from '../web/Interceptor.ts';
 import AbstractApplication, { type ApplicationConfig } from '../core/AbstractApplication.ts';
 import FastRouter, { type Route, type RouteParameters } from './FastRouter.ts';
-import ExceptionHandler from './ExceptionHandler.ts';
+import ExceptionHandler from '../web/ExceptionHandler.ts';
 import NotFoundException from '../core/NotFoundException.ts';
 import Candy from '../Candy.ts';
 
@@ -16,10 +17,6 @@ import Candy from '../Candy.ts';
  * Rest application configuration
  */
 export type RestApplicationConfig = {
-    /**
-     * @link Application#exceptionHandler
-     */
-    exceptionHandler?: typeof ExceptionHandler;
     /**
      * @link Application#combineRoutes
      */
@@ -34,6 +31,11 @@ export default class Application extends AbstractApplication implements IRestApp
      * @inheritdoc
      */
     public override exceptionHandler: typeof ExceptionHandler = ExceptionHandler;
+
+    /**
+     * @inheritdoc
+     */
+    public override interceptor: typeof Interceptor | null = null;
 
     /**
      * Methods
@@ -74,6 +76,10 @@ export default class Application extends AbstractApplication implements IRestApp
      * @inheritdoc
      */
     public override requestListener(request: HttpRequest): Promise<HttpResponse> {
+        if (null !== this.interceptor) {
+            return new this.interceptor().run(request);
+        }
+
         const route = new URL(request.request.url).pathname;
         const ret = this.resolveRoutes(route, request.getRequestMethod());
 
@@ -88,7 +94,7 @@ export default class Application extends AbstractApplication implements IRestApp
      * @inheritdoc
      */
     public override handlerException(exception: IException): HttpResponse {
-        const handler = new this.exceptionHandler(this);
+        const handler = new this.exceptionHandler();
 
         return handler.handlerException(exception);
     }

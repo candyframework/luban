@@ -2,23 +2,12 @@
  * @author afu
  * @license MIT
  */
-import type Application from './Application.ts';
 import type HttpRequest from '../http/HttpRequest.ts';
 import type HttpResponse from '../http/HttpResponse.ts';
 import type View from './View.ts';
+import type { Context } from './Context.ts';
 import type { JSONCompatible } from '../core/Json.ts';
 import AbstractController from '../core/AbstractController.ts';
-
-/**
- * The context of the controller
- */
-export type ControllerContext = {
-    application: Application;
-    moduleId: string;
-    controllerId: string;
-    viewPath: string;
-    request?: HttpRequest;
-};
 
 /**
  * Web controller
@@ -27,14 +16,14 @@ export default abstract class Controller extends AbstractController {
     /**
      * Controller context
      */
-    public context: ControllerContext;
+    public context: Context;
 
     /**
      * View class
      */
     public view: View | null = null;
 
-    constructor(context: ControllerContext) {
+    constructor(context: Context) {
         super();
         this.context = context;
     }
@@ -44,7 +33,7 @@ export default abstract class Controller extends AbstractController {
      */
     public getView(): View {
         if (null === this.view) {
-            this.view = new this.context.application.defaultView(this.context);
+            this.view = new this.context.application.defaultView(this.context) as View;
         }
 
         return this.view;
