@@ -13,6 +13,11 @@ import type IException from './IException.ts';
  */
 export default interface IApplication {
     /**
+     * Application id
+     */
+    id: string;
+
+    /**
      * Encoding
      */
     encoding: string;

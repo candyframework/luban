@@ -12,6 +12,7 @@
         "./core/FilterChain": "./src/core/FilterChain.ts",
         "./core/InvalidConfigEception": "./src/core/InvalidConfigEception.ts",
         "./core/IFilter": "./src/core/IFilter.ts",
+        "./core/ApplicationConfiguration": "./src/core/ApplicationConfiguration.ts",
         "./core/AbstractRequest": "./src/core/AbstractRequest.ts",
         "./core/ModelException": "./src/core/ModelException.ts",
         "./core/IBehavior": "./src/core/IBehavior.ts",
@@ -37,6 +38,7 @@
         "./web/Interceptor": "./src/web/Interceptor.ts",
         "./web/Context": "./src/web/Context.ts",
         "./web/View": "./src/web/View.ts",
+        "./web/WebApplicationConfiguration": "./src/web/WebApplicationConfiguration.ts",
         "./web/Application": "./src/web/Application.ts",
         "./web/Controller": "./src/web/Controller.ts",
         "./Candy": "./src/Candy.ts",
@@ -66,6 +68,7 @@
         "./ioc/ServiceLocator": "./src/ioc/ServiceLocator.ts",
         "./ioc/IService": "./src/ioc/IService.ts",
         "./rest/IRestApplication": "./src/rest/IRestApplication.ts",
+        "./rest/RestApplicationConfiguration": "./src/rest/RestApplicationConfiguration.ts",
         "./rest/Application": "./src/rest/Application.ts",
         "./rest/FastRouter": "./src/rest/FastRouter.ts"
     },

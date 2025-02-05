@@ -8,70 +8,27 @@ import type AbstractExceptionHandler from './AbstractExceptionHandler.ts';
 import type AbstractInterceptor from './AbstractInterceptor.ts';
 import type IApplication from './IApplication.ts';
 import type IException from './IException.ts';
+import type { ApplicationConfiguration } from './ApplicationConfiguration.ts';
 import Candy from '../Candy.ts';
 import InvalidConfigException from './InvalidConfigEception.ts';
-
-/**
- * Base configuration for application
- */
-export type ApplicationConfig = {
-    /**
-     * @link AbstractApplication#id
-     */
-    id: string;
-
-    /**
-     * @link IApplication#encoding
-     */
-    endcoding?: string;
-
-    /**
-     * @link IApplication#debug
-     */
-    debug?: boolean;
-
-    /**
-     * @link IApplication#exceptionHandler
-     */
-    exceptionHandler?: typeof AbstractExceptionHandler;
-
-    /**
-     * @link IApplication#Interceptor
-     */
-    interceptor?: typeof AbstractInterceptor;
-
-    /**
-     * The path of the application
-     */
-    appPath?: string;
-
-    /**
-     * The path of runtime cache files
-     */
-    runtimePath?: string;
-};
 
 /**
  * Base class for application
  */
 export default abstract class AbstractApplication implements IApplication {
-    /**
-     * Application id
-     */
     public id: string = '';
-
     public encoding: string = 'UTF-8';
     public debug: boolean = false;
     public exceptionHandler: typeof AbstractExceptionHandler | null = null;
     public interceptor: typeof AbstractInterceptor | null = null;
 
-    constructor(config: ApplicationConfig) {
+    constructor(config: ApplicationConfiguration) {
         Candy.application = this;
 
         this.init(config);
     }
 
-    protected init(config: ApplicationConfig): void {
+    protected init(config: ApplicationConfiguration): void {
         if (undefined === config.id) {
             throw new InvalidConfigException('The "id" configuration of the Application is missing.');
         }

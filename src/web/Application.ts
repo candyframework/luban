@@ -7,43 +7,14 @@ import type HttpResponse from '../http/HttpResponse.ts';
 import type IException from '../core/IException.ts';
 import type Interceptor from './Interceptor.ts';
 import type IResource from '../core/IResource.ts';
-import AbstractApplication, { type ApplicationConfig } from '../core/AbstractApplication.ts';
+import type { WebApplicationConfiguration } from './WebApplicationConfiguration.ts';
+import AbstractApplication from '../core/AbstractApplication.ts';
 import ExceptionHandler from './ExceptionHandler.ts';
 import StringHelper from '../helpers/StringHelper.ts';
 import NotFoundException from '../core/NotFoundException.ts';
 import Candy from '../Candy.ts';
 import Controller from './Controller.ts';
 import View from './View.ts';
-
-/**
- * Web application configuration
- */
-export type WebApplicationConfig = {
-    /**
-     * @link Application#routesMap
-     */
-    routesMap?: Record<string, string>;
-    /**
-     * @link Application#modules
-     */
-    modules?: Record<string, string>;
-    /**
-     * @link Application#defaultView
-     */
-    defaultView?: typeof View;
-    /**
-     * @link Application#defaultControllerNamespace
-     */
-    defaultControllerNamespace?: string;
-    /**
-     * @link Application#defaultRoute
-     */
-    defaultRoute?: string;
-    /**
-     * @link Application#defaultControllerId
-     */
-    defaultControllerId?: string;
-} & ApplicationConfig;
 
 /**
  * Web application
@@ -113,7 +84,7 @@ export default class Application extends AbstractApplication {
      */
     public defaultControllerId = 'index';
 
-    constructor(config: WebApplicationConfig) {
+    constructor(config: WebApplicationConfiguration) {
         super(config);
 
         Candy.configure(this, config);
