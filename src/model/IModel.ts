@@ -23,7 +23,7 @@ export default interface IModel {
     /**
      * The model attributes and their default values. And The values of these attributes will be overwritten later
      *
-     * ```
+     * ```typescript
      * {name: 'zs', age: 18}
      * ```
      */
@@ -32,7 +32,7 @@ export default interface IModel {
     /**
      * The model attributes map to form fields
      *
-     * ```
+     * ```typescript
      * {name: 'user_name'}
      * ```
      */
@@ -46,7 +46,7 @@ export default interface IModel {
     /**
      * Returns the validation rules for attributes
      *
-     * ```
+     * ```typescript
      * [
      *      {
      *          validator: RequiredValidator,

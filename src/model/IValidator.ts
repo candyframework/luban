@@ -2,7 +2,6 @@
  * @author afu
  * @license MIT
  */
-
 export type SubValidator = new () => IValidator;
 
 /**
@@ -12,7 +11,7 @@ export default interface IValidator {
     /**
      * Atrributes list to be validated
      *
-     * ```
+     * ```typescript
      * ['name', 'age']
      * ```
      */
@@ -21,7 +20,7 @@ export default interface IValidator {
     /**
      * The error messages list for each attribute
      *
-     * ```
+     * ```typescript
      * ['name is required', 'age is required']
      * ```
      */
@@ -30,7 +29,7 @@ export default interface IValidator {
     /**
      * Atrributes values pass from model
      *
-     * ```
+     * ```typescript
      * {name: 'zs', age: 18}
      * ```
      */
