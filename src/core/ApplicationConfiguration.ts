@@ -6,27 +6,27 @@ import type AbstractInterceptor from './AbstractInterceptor.ts';
  */
 export type ApplicationConfiguration = {
     /**
-     * See {@link IApplication.id}
+     * The application id
      */
     id: string;
 
     /**
-     * See {@link IApplication.endcoding}
+     * The application encoding
      */
-    endcoding?: string;
+    encoding?: string;
 
     /**
-     * See {@link IApplication.debug}
+     * Debug state
      */
     debug?: boolean;
 
     /**
-     * See {@link IApplication.exceptionHandler}
+     * The exception handler
      */
     exceptionHandler?: typeof AbstractExceptionHandler;
 
     /**
-     * See {@link IApplication.interceptor}
+     * The interceptor
      */
     interceptor?: typeof AbstractInterceptor;
 

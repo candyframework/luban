@@ -6,32 +6,32 @@ import type { ApplicationConfiguration } from '../core/ApplicationConfiguration.
  */
 export type WebApplicationConfiguration = {
     /**
-     * See {@link Application.routesMap}
+     * Custom routes map
      */
     routesMap?: Record<string, string>;
 
     /**
-     * See {@link Application.modules}
+     * Custom modules map
      */
     modules?: Record<string, string>;
 
     /**
-     * See {@link Application.defaultView}
+     * The default template engine
      */
     defaultView?: typeof View;
 
     /**
-     * See {@link Application.defaultControllerNamespace}
+     * The default controller path
      */
     defaultControllerNamespace?: string;
 
     /**
-     * See {@link Application.defaultRoute}
+     * The default route
      */
     defaultRoute?: string;
 
     /**
-     * See {@link Application.defaultControllerId}
+     * The default controller id
      */
     defaultControllerId?: string;
 } & ApplicationConfiguration;
