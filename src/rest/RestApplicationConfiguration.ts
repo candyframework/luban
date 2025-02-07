@@ -5,7 +5,7 @@ import type { ApplicationConfiguration } from '../core/ApplicationConfiguration.
  */
 export type RestApplicationConfiguration = {
     /**
-     * @link Application#combineRoutes
+     * Whether to combine routes
      */
     combineRoutes?: boolean;
 } & ApplicationConfiguration;
