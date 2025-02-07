@@ -1,30 +1,38 @@
+import type HttpRequest from '../http/HttpRequest.ts';
+import type IApplication from './IApplication.ts';
+
 /**
  * Middleware
  */
-export type Middleware = (request: Request, hook: Hook) => Promise<Response | null>;
+export type Middleware = (request: Request, hook: Hook) => Promise<Response>;
 
 /**
  * Hook
- *
- * If a middleware returns a `Response`, the current request will stop and send the response to the client
  */
 export default class Hook {
     /**
      * The hook collection
      */
-    private static hooks: Middleware[] = [];
+    public static hooks: Middleware[] = [];
 
     /**
      * The current position of the hook
      */
-    private index: number = 0;
+    private index: number;
 
     /**
-     * Current request
+     * Current application
      */
-    private request: Request;
+    private application: IApplication;
 
-    constructor(req: Request) {
+    /**
+     * Current http request
+     */
+    private request: HttpRequest;
+
+    constructor(app: IApplication, req: HttpRequest) {
+        this.index = 0;
+        this.application = app;
         this.request = req;
     }
 
@@ -42,29 +50,33 @@ export default class Hook {
         Hook.hooks.push(middleware);
     }
 
+    private clear(): void {
+        // @ts-ignore nocheck
+        this.application = null;
+        // @ts-ignore nocheck
+        this.request = null;
+    }
+
     /**
      * Run the middlewares
      */
-    public async run(): Promise<Response | null> {
-        if (0 === Hook.hooks.length) {
-            return null;
-        }
-
-        const hook = Hook.hooks[this.index++];
+    public async run(): Promise<Response> {
         if (this.index >= Hook.hooks.length) {
-            return await hook(this.request, this);
+            const httpResponse = await this.application.requestListener(this.request);
+            this.clear();
+            return httpResponse.toResponse();
         }
 
-        return await hook(this.request, this);
+        // As you can see, the Request object is used here instead of HttpRequest
+        // This may be useful for compatibility with third-party middleware
+        const hook = Hook.hooks[this.index++];
+        return await hook(this.request.request, this);
     }
 
     /**
      * Continue to run the next middleware
      */
-    public next(): Promise<Response | null> {
-        if (this.index >= Hook.hooks.length) {
-            return Promise.resolve(null);
-        }
+    public next(): Promise<Response> {
         return this.run();
     }
 }

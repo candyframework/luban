@@ -22,12 +22,11 @@ export default class Main {
         let res: HttpResponse;
 
         try {
-            const hookData = await new Hook(req).run();
-            if (null !== hookData) {
-                return hookData;
+            const httpRequest = new HttpRequest(req, connectionInfo);
+            if (Hook.hooks.length > 0) {
+                return await new Hook(this.application, httpRequest).run();
             }
 
-            const httpRequest = new HttpRequest(req, connectionInfo);
             res = await this.application.requestListener(httpRequest);
         } catch (e) {
             res = this.application.handlerException(e as IException);
