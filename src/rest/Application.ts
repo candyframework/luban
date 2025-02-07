@@ -119,7 +119,7 @@ export default class Application extends AbstractApplication implements IRestApp
     }
 
     /**
-     * Adds a route to a method
+     * Add a route
      *
      * @param {string} httpMethod
      * @param {string} route
@@ -133,7 +133,7 @@ export default class Application extends AbstractApplication implements IRestApp
     }
 
     /**
-     * Adds a route to multiple methods
+     * Add a route to multiple methods
      *
      * @param {string[]} httpMethods
      * @param {string} route
