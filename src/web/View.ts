@@ -59,44 +59,44 @@ export default class View extends AbstractView {
      *
      * @returns {string}
      */
-    public getHeadAssets = (): string => {
+    public getHeadAssets(): string {
         return null === this.headAssets ? '' : this.headAssets.join('\n');
-    };
+    }
 
     /**
      * Add head asset
      *
      * @param {string} asset Asset
      */
-    public addHeadAsset = (asset: string): void => {
+    public addHeadAsset(asset: string): void {
         if (null === this.headAssets) {
             this.headAssets = [];
         }
 
         this.headAssets.push(asset);
-    };
+    }
 
     /**
      * Get footer assets
      *
      * @returns {string}
      */
-    public getFooterAssets = (): string => {
+    public getFooterAssets(): string {
         return null === this.footerAssets ? '' : this.footerAssets.join('\n');
-    };
+    }
 
     /**
      * Add footer asset
      *
      * @param {string} asset Asset
      */
-    public addFooterAsset = (asset: string): void => {
+    public addFooterAsset(asset: string): void {
         if (null === this.footerAssets) {
             this.footerAssets = [];
         }
 
         this.footerAssets.push(asset);
-    };
+    }
 
     /**
      * @inheritdoc
