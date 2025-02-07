@@ -24,7 +24,7 @@ export default class Main {
         try {
             const httpRequest = new HttpRequest(req, connectionInfo);
             if (Hook.hooks.length > 0) {
-                return await new Hook(this.application, httpRequest).run();
+                return await new Hook(this.application, httpRequest).next();
             }
 
             res = await this.application.requestListener(httpRequest);

@@ -60,7 +60,7 @@ export default class Hook {
     /**
      * Run the middlewares
      */
-    public async run(): Promise<Response> {
+    public async next(): Promise<Response> {
         if (this.index >= Hook.hooks.length) {
             const httpResponse = await this.application.requestListener(this.request);
             this.clear();
@@ -71,12 +71,5 @@ export default class Hook {
         // This may be useful for compatibility with third-party middleware
         const hook = Hook.hooks[this.index++];
         return await hook(this.request.request, this);
-    }
-
-    /**
-     * Continue to run the next middleware
-     */
-    public next(): Promise<Response> {
-        return this.run();
     }
 }
