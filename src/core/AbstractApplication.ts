@@ -24,7 +24,6 @@ export default abstract class AbstractApplication implements IApplication {
 
     constructor(config: ApplicationConfiguration) {
         Candy.application = this;
-
         this.init(config);
     }
 

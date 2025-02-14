@@ -68,7 +68,7 @@ export default class Application extends AbstractApplication implements IRestApp
      */
     public override requestListener(request: HttpRequest): Promise<HttpResponse> {
         if (null !== this.interceptor) {
-            return new this.interceptor().run(request);
+            return new this.interceptor().intercept(request);
         }
 
         const route = new URL(request.request.url).pathname;

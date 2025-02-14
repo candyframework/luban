@@ -9,8 +9,6 @@ import type IException from './IException.ts';
  * Exception handler
  */
 export default abstract class AbstractExceptionHandler {
-    constructor() {}
-
     /**
      * Handle exception
      *

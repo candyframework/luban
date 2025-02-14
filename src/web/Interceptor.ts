@@ -10,14 +10,10 @@ import HttpResponse from '../http/HttpResponse.ts';
  * Web Interceptor
  */
 export default class Interceptor extends AbstractInterceptor {
-    constructor() {
-        super();
-    }
-
     /**
      * @inheritdoc
      */
-    public run(_request: HttpRequest): Promise<HttpResponse> {
+    public intercept(_request: HttpRequest): Promise<HttpResponse> {
         return Promise.resolve(HttpResponse.fromText('The system is under maintenance.'));
     }
 }
