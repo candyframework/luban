@@ -3,7 +3,7 @@
  * @license MIT
  */
 import type IView from './IView.ts';
-import type { JSONCompatible } from './Json.ts';
+import type { JSONCompatible } from './Types.ts';
 
 /**
  * Abstract view

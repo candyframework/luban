@@ -3,7 +3,7 @@
  * @license MIT
  */
 import type { Context } from './Context.ts';
-import type { JSONCompatible } from '../core/Json.ts';
+import type { JSONCompatible } from '../core/Types.ts';
 import AbstractView from '../core/AbstractView.ts';
 import Candy from '../Candy.ts';
 import ImplementationException from '../core/ImplementationException.ts';

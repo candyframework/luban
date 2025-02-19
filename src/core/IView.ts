@@ -1,4 +1,4 @@
-import type { JSONCompatible } from './Json.ts';
+import type { JSONCompatible } from './Types.ts';
 
 /**
  * View interface

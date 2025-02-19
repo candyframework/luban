@@ -7,7 +7,7 @@ import type HttpRequest from '../http/HttpRequest.ts';
 import type HttpResponse from '../http/HttpResponse.ts';
 import type IController from './IController.ts';
 import type { SubFilter } from './IFilter.ts';
-import type { JSONCompatible } from './Json.ts';
+import type { JSONCompatible } from './Types.ts';
 import ActionEvent from './ActionEvent.ts';
 import Event from './Event.ts';
 import FilterFactory from './FilterFactory.ts';

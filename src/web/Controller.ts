@@ -6,7 +6,7 @@ import type HttpRequest from '../http/HttpRequest.ts';
 import type HttpResponse from '../http/HttpResponse.ts';
 import type View from './View.ts';
 import type { Context } from './Context.ts';
-import type { JSONCompatible } from '../core/Json.ts';
+import type { JSONCompatible } from '../core/Types.ts';
 import AbstractController from '../core/AbstractController.ts';
 
 /**

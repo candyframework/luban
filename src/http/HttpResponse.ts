@@ -3,7 +3,7 @@
  * @license MIT
  */
 import type Cookie from './Cookie.ts';
-import type { JSONCompatible } from '../core/Json.ts';
+import type { JSONCompatible } from '../core/Types.ts';
 import HttpException from '../core/HttpException.ts';
 
 /**
