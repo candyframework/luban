@@ -46,6 +46,16 @@ export default interface IApplication {
     interceptor: typeof AbstractInterceptor | null;
 
     /**
+     * The path of the application
+     */
+    appPath?: string;
+
+    /**
+     * The path of runtime cache files
+     */
+    runtimePath?: string;
+
+    /**
      * Set application path
      *
      * @param {string} path Application path

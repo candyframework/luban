@@ -8,9 +8,7 @@ import type AbstractExceptionHandler from './AbstractExceptionHandler.ts';
 import type AbstractInterceptor from './AbstractInterceptor.ts';
 import type IApplication from './IApplication.ts';
 import type IException from './IException.ts';
-import type { ApplicationConfiguration } from './ApplicationConfiguration.ts';
 import Candy from '../Candy.ts';
-import InvalidConfigException from './InvalidConfigEception.ts';
 
 /**
  * Base class for application
@@ -22,16 +20,12 @@ export default abstract class AbstractApplication implements IApplication {
     public exceptionHandler: typeof AbstractExceptionHandler | null = null;
     public interceptor: typeof AbstractInterceptor | null = null;
 
-    constructor(config: ApplicationConfiguration) {
+    constructor(config: Partial<IApplication>) {
         Candy.application = this;
         this.init(config);
     }
 
-    protected init(config: ApplicationConfiguration): void {
-        if (undefined === config.id) {
-            throw new InvalidConfigException('The "id" configuration of the Application is missing.');
-        }
-
+    protected init(config: Partial<IApplication>): void {
         if (undefined !== config.appPath) {
             this.setAppPath(config.appPath);
             delete config.appPath;

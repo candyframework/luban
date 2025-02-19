@@ -10,6 +10,11 @@ import type { Route } from './FastRouter.ts';
  */
 export default interface IRestApplication extends IApplication {
     /**
+     * Whether to combine routes
+     */
+    combineRoutes?: boolean;
+
+    /**
      * Get request
      */
     get(route: string, handler: Route['handler']): void;

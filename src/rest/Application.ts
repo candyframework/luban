@@ -7,7 +7,6 @@ import type HttpRequest from '../http/HttpRequest.ts';
 import type HttpResponse from '../http/HttpResponse.ts';
 import type IException from '../core/IException.ts';
 import type Interceptor from '../web/Interceptor.ts';
-import type { RestApplicationConfiguration } from './RestApplicationConfiguration.ts';
 import FastRouter, { type Route, type RouteParameters } from './FastRouter.ts';
 import AbstractApplication from '../core/AbstractApplication.ts';
 import ExceptionHandler from '../web/ExceptionHandler.ts';
@@ -57,7 +56,7 @@ export default class Application extends AbstractApplication implements IRestApp
 
     public cachedRouter: Map<string, FastRouter> = new Map();
 
-    constructor(config: RestApplicationConfiguration) {
+    constructor(config: Partial<IRestApplication>) {
         super(config);
 
         Candy.configure(this, config);

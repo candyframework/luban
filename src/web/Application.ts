@@ -7,7 +7,7 @@ import type HttpResponse from '../http/HttpResponse.ts';
 import type IException from '../core/IException.ts';
 import type Interceptor from './Interceptor.ts';
 import type IResource from '../core/IResource.ts';
-import type { WebApplicationConfiguration } from './WebApplicationConfiguration.ts';
+import type IWebApplication from './IWebApplication.ts';
 import AbstractApplication from '../core/AbstractApplication.ts';
 import ExceptionHandler from './ExceptionHandler.ts';
 import StringHelper from '../helpers/StringHelper.ts';
@@ -19,7 +19,7 @@ import View from './View.ts';
 /**
  * Web application
  */
-export default class Application extends AbstractApplication {
+export default class Application extends AbstractApplication implements IWebApplication {
     /**
      * @inheritdoc
      */
@@ -31,60 +31,36 @@ export default class Application extends AbstractApplication {
     public override interceptor: typeof Interceptor | null = null;
 
     /**
-     * Custom routes map
-     *
-     * ```typescript
-     * new Application({
-     *      routesMap: {
-     *          user: 'app/controllers/user/UserController'
-     *      }
-     * });
-     * ```
+     * @inheritdoc
      */
     public routesMap: Record<string, string> | null = null;
 
     /**
-     * Register modules and their paths
-     *
-     * ```typescript
-     * new Application({
-     *      modules: {
-     *          'yearactivity': 'app/modules/newyearactivity'
-     *      }
-     * });
-     * ```
+     * @inheritdoc
      */
     public modules: Record<string, string> | null = null;
 
     /**
-     * Default view class
-     *
-     * ```typescript
-     * import MyView from 'somepath/MyView.ts';
-     *
-     * new Application({
-     *      defaultView: MyView
-     * });
-     * ```
+     * @inheritdoc
      */
     public defaultView: typeof View = View;
 
     /**
-     * Default controller directory
+     * @inheritdoc
      */
     public defaultControllerNamespace = 'app/controllers';
 
     /**
-     * Default route
+     * @inheritdoc
      */
     public defaultRoute = 'index/index';
 
     /**
-     * Default controller id
+     * @inheritdoc
      */
     public defaultControllerId = 'index';
 
-    constructor(config: WebApplicationConfiguration) {
+    constructor(config: Partial<IWebApplication>) {
         super(config);
 
         Candy.configure(this, config);
