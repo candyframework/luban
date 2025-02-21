@@ -20,9 +20,9 @@ export default class Main {
 
     private async requestListener(req: Request, connectionInfo: ConnectionInfo): Promise<Response> {
         let res: HttpResponse;
+        const httpRequest = new HttpRequest(req, connectionInfo);
 
         try {
-            const httpRequest = new HttpRequest(req, connectionInfo);
             if (Hook.hooks.length > 0) {
                 return await new Hook(this.application, httpRequest).next();
             }

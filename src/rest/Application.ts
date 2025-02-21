@@ -51,7 +51,7 @@ export default class Application extends AbstractApplication implements IRestApp
     };
 
     /**
-     * Whether to combine routes
+     * @inheritdoc
      */
     public combineRoutes: boolean = false;
 
