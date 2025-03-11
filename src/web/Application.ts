@@ -8,6 +8,7 @@ import type IException from '../core/IException.ts';
 import type Interceptor from './Interceptor.ts';
 import type IResource from '../core/IResource.ts';
 import type IWebApplication from './IWebApplication.ts';
+import type { FilterProperties } from '../core/Types.ts';
 import AbstractApplication from '../core/AbstractApplication.ts';
 import ExceptionHandler from './ExceptionHandler.ts';
 import StringHelper from '../helpers/StringHelper.ts';
@@ -60,7 +61,7 @@ export default class Application extends AbstractApplication implements IWebAppl
      */
     public defaultControllerId = 'index';
 
-    constructor(config: Partial<IWebApplication>) {
+    constructor(config: Partial<FilterProperties<IWebApplication>>) {
         super(config);
 
         Candy.configure(this, config);
