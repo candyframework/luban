@@ -37,7 +37,7 @@ export default interface IWebApplication extends IApplication {
      * import MyView from 'somepath/MyView.ts';
      *
      * new Application({
-     *      defaultView: MyView
+     *      defaultView: new MyView()
      * });
      * ```
      */

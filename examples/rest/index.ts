@@ -7,7 +7,7 @@ import Hook from '../../src/core/Hook.ts';
 import AbstractInterceptor from '../../src/core/AbstractInterceptor.ts';
 class MyInterceptor extends AbstractInterceptor {
     public async intercept(_request: HttpRequest) {
-        return HttpResponse.fromText('123The system is under maintenance.');
+        return HttpResponse.fromText('The system is under maintenance.');
     }
 }
 
@@ -23,7 +23,7 @@ Hook.use(async (_req: Request, hook: Hook) => {
 const app = new Application({
     id: 'rest',
     debug: true,
-    // interceptor: MyInterceptor,
+    // interceptor: new MyInterceptor(),
 });
 
 app.get('/', async (_request: HttpRequest) => {

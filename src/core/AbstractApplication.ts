@@ -17,8 +17,8 @@ export default abstract class AbstractApplication implements IApplication {
     public id: string = '';
     public encoding: string = 'UTF-8';
     public debug: boolean = false;
-    public exceptionHandler: typeof AbstractExceptionHandler | null = null;
-    public interceptor: typeof AbstractInterceptor | null = null;
+    public exceptionHandler: AbstractExceptionHandler | null = null;
+    public interceptor: AbstractInterceptor | null = null;
 
     constructor(config: Partial<IApplication>) {
         Candy.application = this;

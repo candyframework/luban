@@ -29,8 +29,16 @@ export default interface IApplication {
 
     /**
      * Exception handler class
+     *
+     * ```typescript
+     * import MyErrorHandler from 'somepath/MyErrorHandler.ts';
+     *
+     * new Application({
+     *      exceptionHandler: new MyErrorHandler()
+     * });
+     * ```
      */
-    exceptionHandler: typeof AbstractExceptionHandler | null;
+    exceptionHandler: AbstractExceptionHandler | null;
 
     /**
      * Interceptor class
@@ -39,11 +47,11 @@ export default interface IApplication {
      * import MyInterceptor from 'somepath/MyInterceptor.ts';
      *
      * new Application({
-     *      interceptor: MyInterceptor
+     *      interceptor: new MyInterceptor()
      * });
      * ```
      */
-    interceptor: typeof AbstractInterceptor | null;
+    interceptor: AbstractInterceptor | null;
 
     /**
      * The path of the application

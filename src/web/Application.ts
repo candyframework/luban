@@ -8,6 +8,7 @@ import type IException from '../core/IException.ts';
 import type Interceptor from './Interceptor.ts';
 import type IResource from '../core/IResource.ts';
 import type IWebApplication from './IWebApplication.ts';
+import type View from './View.ts';
 import type { FilterProperties } from '../core/Types.ts';
 import AbstractApplication from '../core/AbstractApplication.ts';
 import ExceptionHandler from './ExceptionHandler.ts';
@@ -15,7 +16,6 @@ import StringHelper from '../helpers/StringHelper.ts';
 import NotFoundException from '../core/NotFoundException.ts';
 import Candy from '../Candy.ts';
 import Controller from './Controller.ts';
-import View from './View.ts';
 
 /**
  * Web application
@@ -24,12 +24,12 @@ export default class Application extends AbstractApplication implements IWebAppl
     /**
      * @inheritdoc
      */
-    public override exceptionHandler: typeof ExceptionHandler = ExceptionHandler;
+    public override exceptionHandler: ExceptionHandler | null = null;
 
     /**
      * @inheritdoc
      */
-    public override interceptor: typeof Interceptor | null = null;
+    public override interceptor: Interceptor | null = null;
 
     /**
      * @inheritdoc
@@ -44,7 +44,7 @@ export default class Application extends AbstractApplication implements IWebAppl
     /**
      * @inheritdoc
      */
-    public defaultView: typeof View = View;
+    public defaultView: View | null = null;
 
     /**
      * @inheritdoc
@@ -72,7 +72,7 @@ export default class Application extends AbstractApplication implements IWebAppl
      */
     public override async requestListener(request: HttpRequest): Promise<HttpResponse> {
         if (null !== this.interceptor) {
-            return new this.interceptor().intercept(request);
+            return this.interceptor.intercept(request);
         }
 
         const route = new URL(request.request.url).pathname;
@@ -94,9 +94,11 @@ export default class Application extends AbstractApplication implements IWebAppl
      * @inheritdoc
      */
     public override handlerException(exception: IException): HttpResponse {
-        const handler = new this.exceptionHandler();
+        if (null === this.exceptionHandler) {
+            return new ExceptionHandler().handlerException(exception);
+        }
 
-        return handler.handlerException(exception);
+        return this.exceptionHandler.handlerException(exception);
     }
 
     private createController(route: string): Promise<IResource> {

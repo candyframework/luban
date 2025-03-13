@@ -21,12 +21,12 @@ export default class Application extends AbstractApplication implements IRestApp
     /**
      * @inheritdoc
      */
-    public override exceptionHandler: typeof ExceptionHandler = ExceptionHandler;
+    public override exceptionHandler: ExceptionHandler | null = null;
 
     /**
      * @inheritdoc
      */
-    public override interceptor: typeof Interceptor | null = null;
+    public override interceptor: Interceptor | null = null;
 
     /**
      * Methods
@@ -68,7 +68,7 @@ export default class Application extends AbstractApplication implements IRestApp
      */
     public override requestListener(request: HttpRequest): Promise<HttpResponse> {
         if (null !== this.interceptor) {
-            return new this.interceptor().intercept(request);
+            return this.interceptor.intercept(request);
         }
 
         const route = new URL(request.request.url).pathname;
@@ -85,9 +85,11 @@ export default class Application extends AbstractApplication implements IRestApp
      * @inheritdoc
      */
     public override handlerException(exception: IException): HttpResponse {
-        const handler = new this.exceptionHandler();
+        if (null === this.exceptionHandler) {
+            return new ExceptionHandler().handlerException(exception);
+        }
 
-        return handler.handlerException(exception);
+        return this.exceptionHandler.handlerException(exception);
     }
 
     /**

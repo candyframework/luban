@@ -4,10 +4,10 @@
  */
 import type HttpRequest from '../http/HttpRequest.ts';
 import type HttpResponse from '../http/HttpResponse.ts';
-import type View from './View.ts';
 import type { Context } from './Context.ts';
 import type { JSONCompatible } from '../core/Types.ts';
 import AbstractController from '../core/AbstractController.ts';
+import View from './View.ts';
 
 /**
  * Web controller
@@ -33,7 +33,13 @@ export default abstract class Controller extends AbstractController {
      */
     public getView(): View {
         if (null === this.view) {
-            this.view = new this.context.application.defaultView(this.context) as View;
+            if (null === this.context.application.defaultView) {
+                this.view = new View();
+            } else {
+                this.view = this.context.application.defaultView as View;
+            }
+
+            this.view.context = this.context;
         }
 
         return this.view;

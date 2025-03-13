@@ -7,12 +7,15 @@ import type { JSONCompatible } from '../core/Types.ts';
 import AbstractView from '../core/AbstractView.ts';
 import Candy from '../Candy.ts';
 import ImplementationException from '../core/ImplementationException.ts';
+import RuntimeException from '../core/RuntimeException.ts';
 
 /**
  * Web view
+ *
+ * A template engine should extends this class and implement the `renderFile` methods
  */
 export default class View extends AbstractView {
-    public context: Context;
+    public context: Context | null = null;
 
     /**
      * Enable layout or not
@@ -49,9 +52,8 @@ export default class View extends AbstractView {
      */
     public footerAssets: string[] | null = null;
 
-    constructor(context: Context) {
+    constructor() {
         super();
-        this.context = context;
     }
 
     /**
@@ -104,6 +106,10 @@ export default class View extends AbstractView {
     protected override findView(view: string): string {
         if ('@' === view.charAt(0)) {
             return Candy.getPathAlias(view) + this.defaultExtension;
+        }
+
+        if (null === this.context) {
+            throw new RuntimeException('The context of the view is not set.');
         }
 
         const context = this.context;
