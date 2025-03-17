@@ -123,9 +123,7 @@ export default class View extends AbstractView {
         }
 
         return app.getAppPath() +
-            '/views/' +
-            context.viewPath +
-            '/' +
+            '/views/' + context.viewPath + '/' +
             view + this.defaultExtension;
     }
 
