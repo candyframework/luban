@@ -11,6 +11,16 @@ import type HttpRequest from '@candy/framework/http/HttpRequest';
 import Main from '@candy/framework';
 import Application from '@candy/framework/rest/Application';
 import HttpResponse from '@candy/framework/http/HttpResponse';
+import Hook from '@candy/framework/core/Hook';
+
+Hook.use(async (_req: Request, hook: Hook) => {
+    console.log('hook1 run');
+    return await hook.next();
+});
+Hook.use(async (_req: Request, hook: Hook) => {
+    console.log('hook2 run');
+    return await hook.next();
+});
 
 const app = new Application({
     id: 'rest',
