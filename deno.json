@@ -3,6 +3,7 @@
     "version": "0.2.4",
     "exports": {
         ".": "./src/mod.ts",
+        "./LuBan": "./src/LuBan.ts",
         "./core/NotFoundException": "./src/core/NotFoundException.ts",
         "./core/IException": "./src/core/IException.ts",
         "./core/Component": "./src/core/Component.ts",
@@ -11,6 +12,7 @@
         "./core/FilterChain": "./src/core/FilterChain.ts",
         "./core/InvalidConfigEception": "./src/core/InvalidConfigEception.ts",
         "./core/IFilter": "./src/core/IFilter.ts",
+        "./core/RuntimeException": "./src/core/RuntimeException.ts",
         "./core/AbstractRequest": "./src/core/AbstractRequest.ts",
         "./core/ModelException": "./src/core/ModelException.ts",
         "./core/IBehavior": "./src/core/IBehavior.ts",
@@ -40,7 +42,6 @@
         "./web/Application": "./src/web/Application.ts",
         "./web/IWebApplication": "./src/web/IWebApplication.ts",
         "./web/Controller": "./src/web/Controller.ts",
-        "./Candy": "./src/Candy.ts",
         "./utils/IQueue": "./src/utils/IQueue.ts",
         "./utils/Stack": "./src/utils/Stack.ts",
         "./utils/LinkedQueue": "./src/utils/LinkedQueue.ts",

@@ -5,7 +5,7 @@
 import type IException from '../core/IException.ts';
 import AbstractExceptionHandler from '../core/AbstractExceptionHandler.ts';
 import HttpResponse from '../http/HttpResponse.ts';
-import Candy from '../Candy.ts';
+import LuBan from '../LuBan.ts';
 
 /**
  * Web exception handler
@@ -19,7 +19,7 @@ export default class ExceptionHandler extends AbstractExceptionHandler {
      * @inheritdoc
      */
     public handlerException(exception: IException): HttpResponse {
-        const app = Candy.application;
+        const app = LuBan.application;
         const msg = app?.debug ? exception.message + '\n' + exception.stack : 'The server encountered an internal error';
 
         return HttpResponse.fromText(msg);

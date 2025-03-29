@@ -12,7 +12,7 @@ import FastRouter, { type Route, type RouteParameters } from './FastRouter.ts';
 import AbstractApplication from '../core/AbstractApplication.ts';
 import ExceptionHandler from '../web/ExceptionHandler.ts';
 import NotFoundException from '../core/NotFoundException.ts';
-import Candy from '../Candy.ts';
+import LuBan from '../LuBan.ts';
 
 /**
  * Rest application
@@ -60,7 +60,7 @@ export default class Application extends AbstractApplication implements IRestApp
     constructor(config: Partial<FilterProperties<IRestApplication>>) {
         super(config);
 
-        Candy.configure(this, config);
+        LuBan.configure(this, config);
     }
 
     /**

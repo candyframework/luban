@@ -7,7 +7,7 @@ import type { Rule } from './IModel.ts';
 import type AbstractValidator from './AbstractValidator.ts';
 import Event from '../core/Event.ts';
 import ModelException from '../core/ModelException.ts';
-import Candy from '../Candy.ts';
+import LuBan from '../LuBan.ts';
 
 /**
  * The base model class
@@ -76,7 +76,7 @@ export default class Model extends Event implements IModel {
 
         const ret = [];
         for (let i = 0; i < rules.length; i++) {
-            const instance = Candy.createObject(rules[i].validator) as AbstractValidator;
+            const instance = LuBan.createObject(rules[i].validator) as AbstractValidator;
             instance.attributes = rules[i].attributes;
             // messages is optional
             instance.messages = undefined === rules[i].messages ? null : rules[i].messages;

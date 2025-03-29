@@ -1,5 +1,5 @@
 import type { JSONCompatible } from '../../src/core/Types.ts';
-import CandyJs from '../../src/mod.ts';
+import Main from '../../src/mod.ts';
 import Application from '../../src/web/Application.ts';
 import View from '../../src/web/View.ts';
 
@@ -16,7 +16,7 @@ const app = new Application({
     appPath: Deno.cwd() + '/app',
     defaultView: new MyView(),
 });
-const cj = new CandyJs(app);
+const cj = new Main(app);
 
 cj.listen({
     port: 2333,

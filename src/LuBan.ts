@@ -8,7 +8,7 @@ import FileHelper from './helpers/FileHelper.ts';
 /**
  * Asistant class
  */
-export default class Candy {
+export default class LuBan {
     static defaultExtension: string = '.ts';
     static application: IApplication | null = null;
     static pathAliases: Map<string, string> = new Map([['@luban', import.meta.dirname!]]);
@@ -27,7 +27,7 @@ export default class Candy {
         // alias
         const pos = alias.indexOf('/');
         const root = -1 === pos ? alias : alias.substring(0, pos);
-        const path = Candy.pathAliases.get(root);
+        const path = LuBan.pathAliases.get(root);
         if (undefined !== path) {
             return -1 === pos ? path : path + alias.substring(pos);
         }
@@ -50,7 +50,7 @@ export default class Candy {
             path = path.substring(0, path.length - 1);
         }
 
-        Candy.pathAliases.set(alias, path);
+        LuBan.pathAliases.set(alias, path);
     }
 
     /**
@@ -63,7 +63,7 @@ export default class Candy {
             alias = '@' + alias;
         }
 
-        Candy.pathAliases.delete(alias);
+        LuBan.pathAliases.delete(alias);
     }
 
     /**
@@ -73,7 +73,7 @@ export default class Candy {
         const instance = new clazz.classType();
 
         Reflect.deleteProperty(clazz, 'classType');
-        Candy.configure(instance, clazz);
+        LuBan.configure(instance, clazz);
 
         return instance;
     }
@@ -82,8 +82,8 @@ export default class Candy {
      * Create an object with the specified class path
      */
     static async createObjectAsString(classPath: string, parameters: any = null): Promise<any> {
-        const realClass = Candy.getPathAlias('@' + classPath) + Candy.defaultExtension;
-        const path = Candy.toFilePath(realClass);
+        const realClass = LuBan.getPathAlias('@' + classPath) + LuBan.defaultExtension;
+        const path = LuBan.toFilePath(realClass);
         const ClassName = await import(path);
 
         return new ClassName.default(parameters);

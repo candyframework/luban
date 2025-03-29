@@ -3,7 +3,7 @@
  * @license MIT
  */
 import type IService from './IService.ts';
-import Candy from '../Candy.ts';
+import LuBan from '../LuBan.ts';
 
 /**
  * 服务定位器 [Service Locator](//en.wikipedia.org/wiki/Service_locator_pattern)
@@ -69,7 +69,7 @@ export default class ServiceLocator {
 
         const definition = this.definitions.get(name);
         if (undefined !== definition) {
-            service = Candy.createObject(definition) as IService;
+            service = LuBan.createObject(definition) as IService;
             this.cache.set(name, service);
             return service;
         }

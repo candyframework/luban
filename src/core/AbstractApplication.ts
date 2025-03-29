@@ -8,7 +8,7 @@ import type AbstractExceptionHandler from './AbstractExceptionHandler.ts';
 import type AbstractInterceptor from './AbstractInterceptor.ts';
 import type IApplication from './IApplication.ts';
 import type IException from './IException.ts';
-import Candy from '../Candy.ts';
+import LuBan from '../LuBan.ts';
 
 /**
  * Base class for application
@@ -21,7 +21,7 @@ export default abstract class AbstractApplication implements IApplication {
     public interceptor: AbstractInterceptor | null = null;
 
     constructor(config: Partial<IApplication>) {
-        Candy.application = this;
+        LuBan.application = this;
         this.init(config);
     }
 
@@ -44,28 +44,28 @@ export default abstract class AbstractApplication implements IApplication {
      * @inheritdoc
      */
     public setAppPath(path: string): void {
-        Candy.setPathAlias('@app', path);
+        LuBan.setPathAlias('@app', path);
     }
 
     /**
      * @inheritdoc
      */
     public getAppPath(): string {
-        return Candy.getPathAlias('@app');
+        return LuBan.getPathAlias('@app');
     }
 
     /**
      * @inheritdoc
      */
     public setRuntimePath(path: string): void {
-        Candy.setPathAlias('@runtime', path);
+        LuBan.setPathAlias('@runtime', path);
     }
 
     /**
      * @inheritdoc
      */
     public getRuntimePath(): string {
-        return Candy.getPathAlias('@runtime');
+        return LuBan.getPathAlias('@runtime');
     }
 
     /**

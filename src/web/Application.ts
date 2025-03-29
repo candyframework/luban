@@ -14,7 +14,7 @@ import AbstractApplication from '../core/AbstractApplication.ts';
 import ExceptionHandler from './ExceptionHandler.ts';
 import StringHelper from '../helpers/StringHelper.ts';
 import NotFoundException from '../core/NotFoundException.ts';
-import Candy from '../Candy.ts';
+import LuBan from '../LuBan.ts';
 import Controller from './Controller.ts';
 
 /**
@@ -64,7 +64,7 @@ export default class Application extends AbstractApplication implements IWebAppl
     constructor(config: Partial<FilterProperties<IWebApplication>>) {
         super(config);
 
-        Candy.configure(this, config);
+        LuBan.configure(this, config);
     }
 
     /**
@@ -135,7 +135,7 @@ export default class Application extends AbstractApplication implements IWebAppl
         // search order: routesMap, module, commonController
         let clazz = '';
         if (null !== this.routesMap && undefined !== this.routesMap[id]) {
-            return Candy.createObjectAsString(this.routesMap[id], {
+            return LuBan.createObjectAsString(this.routesMap[id], {
                 application: this,
                 moduleId: moduleId,
                 controllerId: controllerId,
@@ -149,7 +149,7 @@ export default class Application extends AbstractApplication implements IWebAppl
                 '/controllers/' +
                 StringHelper.ucFirst(controllerId) + 'Controller';
 
-            return Candy.createObjectAsString(clazz, {
+            return LuBan.createObjectAsString(clazz, {
                 application: this,
                 moduleId: moduleId,
                 controllerId: controllerId,
@@ -161,7 +161,7 @@ export default class Application extends AbstractApplication implements IWebAppl
             '/' + viewPath + '/' +
             StringHelper.ucFirst(controllerId) + 'Controller';
 
-        return Candy.createObjectAsString(clazz, {
+        return LuBan.createObjectAsString(clazz, {
             application: this,
             moduleId: moduleId,
             controllerId: controllerId,

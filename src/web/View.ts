@@ -5,7 +5,7 @@
 import type { Context } from './Context.ts';
 import type { JSONCompatible } from '../core/Types.ts';
 import AbstractView from '../core/AbstractView.ts';
-import Candy from '../Candy.ts';
+import LuBan from '../LuBan.ts';
 import ImplementationException from '../core/ImplementationException.ts';
 import RuntimeException from '../core/RuntimeException.ts';
 
@@ -105,7 +105,7 @@ export default class View extends AbstractView {
      */
     protected override findView(view: string): string {
         if ('@' === view.charAt(0)) {
-            return Candy.getPathAlias(view) + this.defaultExtension;
+            return LuBan.getPathAlias(view) + this.defaultExtension;
         }
 
         if (null === this.context) {
