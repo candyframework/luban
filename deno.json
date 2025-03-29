@@ -1,5 +1,5 @@
 {
-    "name": "@candy/framework",
+    "name": "@luban/framework",
     "version": "0.2.4",
     "exports": {
         ".": "./src/mod.ts",

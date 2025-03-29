@@ -4,14 +4,14 @@ This project is rewritten based on the architecture of Project [CandyJs](https:/
 
 ## Quick start
 
-CandyJs application start with an entry file
+LuBan application start with an entry file
 
 ```typescript
-import type HttpRequest from '@candy/framework/http/HttpRequest';
-import Main from '@candy/framework';
-import Application from '@candy/framework/rest/Application';
-import HttpResponse from '@candy/framework/http/HttpResponse';
-import Hook from '@candy/framework/core/Hook';
+import type HttpRequest from '@luban/framework/http/HttpRequest';
+import Main from '@luban/framework';
+import Application from '@luban/framework/rest/Application';
+import HttpResponse from '@luban/framework/http/HttpResponse';
+import Hook from '@luban/framework/core/Hook';
 
 Hook.use(async (_req: Request, hook: Hook) => {
     console.log('hook1 run');

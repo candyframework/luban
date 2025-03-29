@@ -11,7 +11,7 @@ import FileHelper from './helpers/FileHelper.ts';
 export default class Candy {
     static defaultExtension: string = '.ts';
     static application: IApplication | null = null;
-    static pathAliases: Map<string, string> = new Map([['@candy', import.meta.dirname!]]);
+    static pathAliases: Map<string, string> = new Map([['@luban', import.meta.dirname!]]);
 
     /**
      * Get the actual path of alias
