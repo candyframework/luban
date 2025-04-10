@@ -7,7 +7,6 @@ import type { JSONCompatible } from '../core/Types.ts';
 import AbstractView from '../core/AbstractView.ts';
 import LuBan from '../LuBan.ts';
 import ImplementationException from '../core/ImplementationException.ts';
-import RuntimeException from '../core/RuntimeException.ts';
 
 /**
  * Web view
@@ -108,12 +107,9 @@ export default class View extends AbstractView {
             return LuBan.getPathAlias(view) + this.defaultExtension;
         }
 
-        if (null === this.context) {
-            throw new RuntimeException('The context of the view is not set.');
-        }
-
-        const context = this.context;
-        const app = this.context.application;
+        // Context already set
+        const context = this.context!;
+        const app = context.application;
 
         // 模块无子目录 普通控制器有子目录
         if (null !== app.modules && '' !== context.moduleId) {
