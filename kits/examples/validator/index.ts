@@ -1,5 +1,5 @@
-import Main from '../../src/mod.ts';
-import Application from '../../src/web/Application.ts';
+import Main from '../../mod.ts';
+import Application from '../../web/Application.ts';
 
 const app = new Application({
     id: 'validator',

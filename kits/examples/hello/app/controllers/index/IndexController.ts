@@ -1,6 +1,6 @@
-import type HttpRequest from '../../../../../src/http/HttpRequest.ts';
-import HttpResponse from '../../../../../src/http/HttpResponse.ts';
-import Controller from '../../../../../src/web/Controller.ts';
+import type HttpRequest from '../../../../../http/HttpRequest.ts';
+import HttpResponse from '../../../../../http/HttpResponse.ts';
+import Controller from '../../../../../web/Controller.ts';
 
 export default class IndexController extends Controller {
     public override async run(_request: HttpRequest): Promise<HttpResponse> {

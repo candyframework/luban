@@ -1,22 +1,34 @@
 const tree: Record<string, string> = {
-    '.': './src/mod.ts',
+    '.': './mod.ts',
 };
+
+const blackList = [
+    '.git',
+    '.vscode',
+    '.gitignore',
+    'kits',
+    'mod.ts',
+    'deno.json',
+    'LICENSE',
+    'README.md',
+];
 
 export default async function build(dir: string) {
     const entries = Deno.readDir(dir);
     for await (const entry of entries) {
-        if (entry.name === '.' || entry.name === '..' || entry.name === '.DS_Store') {
+        if (blackList.includes(entry.name)) {
             continue;
         }
 
-        if (entry.name === 'mod.ts') {
+        if (entry.name === '.' || entry.name === '..' || entry.name === '.DS_Store') {
             continue;
         }
 
         const full = dir + '/' + entry.name;
         if (entry.isFile) {
-            let key = full.replace('/src/', '/');
+            let key = full;
             if (key.endsWith('.ts')) {
+                // Remove the file extension
                 key = key.slice(0, -3);
             }
             tree[key] = full;
@@ -26,6 +38,6 @@ export default async function build(dir: string) {
     }
 }
 
-build('./src').then(() => {
+build('.').then(() => {
     console.log(tree);
 });

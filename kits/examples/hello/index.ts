@@ -1,7 +1,7 @@
-import type { JSONCompatible } from '../../src/core/Types.ts';
-import Main from '../../src/mod.ts';
-import Application from '../../src/web/Application.ts';
-import View from '../../src/web/View.ts';
+import type { JSONCompatible } from '../../core/Types.ts';
+import Main from '../../mod.ts';
+import Application from '../../web/Application.ts';
+import View from '../../web/View.ts';
 
 class MyView extends View {
     protected override async renderFile<T>(file: string, _parameters: JSONCompatible<T> | null): Promise<string> {
