@@ -1,10 +1,10 @@
-import type HttpRequest from '../../http/HttpRequest.ts';
-import Application from '../../rest/Application.ts';
-import Main from '../../mod.ts';
-import HttpResponse from '../../http/HttpResponse.ts';
-import Hook from '../../core/Hook.ts';
+import type HttpRequest from '../../../http/HttpRequest.ts';
+import Application from '../../../rest/Application.ts';
+import Main from '../../../mod.ts';
+import HttpResponse from '../../../http/HttpResponse.ts';
+import Hook from '../../../core/Hook.ts';
 
-import AbstractInterceptor from '../../core/AbstractInterceptor.ts';
+import AbstractInterceptor from '../../../core/AbstractInterceptor.ts';
 class MyInterceptor extends AbstractInterceptor {
     public async intercept(_request: HttpRequest) {
         return HttpResponse.fromText('The system is under maintenance.');

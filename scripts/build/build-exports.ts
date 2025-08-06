@@ -6,7 +6,7 @@ const blackList = [
     '.git',
     '.vscode',
     '.gitignore',
-    'kits',
+    'scripts',
     'mod.ts',
     'deno.json',
     'LICENSE',

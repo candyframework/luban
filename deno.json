@@ -72,8 +72,7 @@
         "./rest/FastRouter": "./rest/FastRouter.ts"
     },
     "tasks": {
-        "build-exports": "deno run --allow-read ./kits/scripts/build-exports.ts",
-        "dev": "deno test --watch mod.ts"
+        "build-exports": "deno run --allow-read ./scripts/build/build-exports.ts"
     },
     "license": "MIT",
     "fmt": {
