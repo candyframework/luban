@@ -7,11 +7,6 @@ import type HttpResponse from '../http/HttpResponse.ts';
 import type IFilterChain from './IFilterChain.ts';
 
 /**
- * Implement class of IFilter
- */
-export type SubFilter = new () => IFilter;
-
-/**
  * Filter interface
  *
  * The class that implements the `doFilter` method considers to be a filter

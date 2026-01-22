@@ -49,10 +49,6 @@ export default class FilterChain implements IFilterChain {
      * Add a filter to the filter chain
      */
     public addFilter(filter: IFilter): void {
-        if (this.filters.contains(filter)) {
-            return;
-        }
-
         this.filters.add(filter);
     }
 
