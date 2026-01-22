@@ -69,19 +69,21 @@ export default class LuBan {
     /**
      * Create an object with the specified configuration
      */
-    static createObject<T>(clazz: { classType: new () => T; [key: string]: any }): T {
-        const instance = new clazz.classType();
+    static createObject<T>(definition: { classType: new () => T; [key: string]: unknown }): T {
+        const instance = new definition.classType();
 
-        Reflect.deleteProperty(clazz, 'classType');
-        LuBan.configure(instance, clazz);
+        // Filter out classType property
+        const properties = { ...definition };
+        Reflect.deleteProperty(properties, 'classType');
 
+        LuBan.configure(instance, properties);
         return instance;
     }
 
     /**
      * Create an object with the specified class path
      */
-    static async createObjectAsString(classPath: string, parameters: any = null): Promise<any> {
+    static async createObjectAsString(classPath: string, parameters: unknown = null): Promise<unknown> {
         const realClass = LuBan.getPathAlias('@' + classPath) + LuBan.defaultExtension;
         const path = LuBan.toFilePath(realClass);
         const ClassName = await import(path);

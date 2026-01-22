@@ -2,11 +2,10 @@
  * @author afu
  * @license MIT
  */
-import type IService from './IService.ts';
 import LuBan from '../LuBan.ts';
 
 /**
- * 服务定位器 [Service Locator](//en.wikipedia.org/wiki/Service_locator_pattern)
+ * [Service Locator](//en.wikipedia.org/wiki/Service_locator_pattern)
  *
  * ```typescript
  * const serviceLocator = new ServiceLocator();
@@ -21,31 +20,31 @@ import LuBan from '../LuBan.ts';
  * const instanceService1 = serviceLocator.getService('service1');
  * ```
  */
-export default class ServiceLocator {
+export default class ServiceLocator<T> {
     /**
      * Service instances
      */
-    public cache: Map<string, IService> = new Map();
+    public cache: Map<string, T> = new Map();
 
     /**
      * Service definitions
      */
-    public definitions: Map<string, { classType: new () => IService; [key: string]: any }> = new Map();
+    public definitions: Map<string, { classType: new () => T; [key: string]: unknown }> = new Map();
 
     /**
      * Set a service
      *
      * @param {string} name The name of the service
-     * @param {any} service The service instance
+     * @param {T} service The service instance
      */
-    public setService(name: string, service: IService): void {
+    public setService(name: string, service: T): void {
         this.cache.set(name, service);
     }
 
     /**
      * Set a serivce as definition
      */
-    public setServicesAsDefinition(definition: Record<string, { classType: new () => IService; [key: string]: any }>): void {
+    public setServicesAsDefinition(definition: Record<string, { classType: new () => T; [key: string]: unknown }>): void {
         for (const key in definition) {
             this.definitions.set(key, definition[key]);
         }
@@ -61,7 +60,7 @@ export default class ServiceLocator {
     /**
      * Get a service
      */
-    public getService(name: string): IService | null {
+    public getService(name: string): T | null {
         let service = this.cache.get(name);
         if (undefined !== service) {
             return service;
@@ -69,7 +68,7 @@ export default class ServiceLocator {
 
         const definition = this.definitions.get(name);
         if (undefined !== definition) {
-            service = LuBan.createObject(definition) as IService;
+            service = LuBan.createObject(definition) as T;
             this.cache.set(name, service);
             return service;
         }
